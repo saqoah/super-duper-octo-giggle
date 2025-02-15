@@ -15,26 +15,6 @@ USER_AGENTS = [
     # Add more user agents as needed
 ]
 
-async def extract_image_data(element):
-    if not element:
-        return {"src": None, "alt": None}
-
-    src = await element.get_attribute('src')
-    if not src or 'placeholder' in src:
-        src = await element.get_attribute('data-src')
-
-    srcset = await element.get_attribute('srcset')
-    if srcset:
-        srcset_urls = [url.split(' ')[0] for url in srcset.split(',')]
-        src = srcset_urls[-1] if srcset_urls else src  # Use the largest image by default
-
-    alt = await element.get_attribute('alt')
-
-    return {
-        "src": src if src else None,
-        "alt": alt if alt else None
-    }
-
 async def scrape_website(schema):
     url = schema.get("url", "https://www.google.com/")
     async with async_playwright() as p:
@@ -72,11 +52,7 @@ async def scrape_website(schema):
                         if value["type"] == "string":
                             if selector_type == "css":
                                 element = await page.query_selector(selector)
-                                if value.get("is_image", False):
-                                    image_data = await extract_image_data(element)
-                                    data[key] = image_data
-                                else:
-                                    data[key] = await element.get_attribute(value["attribute"]) if element and "attribute" in value else await element.inner_text() if element else None
+                                data[key] = await element.get_attribute(value["attribute"]) if element and "attribute" in value else await element.inner_text() if element else None
                             elif selector_type == "xpath":
                                 data[key] = elements[0] if elements else None
                         elif value["type"] == "array":
@@ -88,11 +64,7 @@ async def scrape_website(schema):
                                     sub_selector = sub_value["selector"]
                                     if sub_selector_type == "css":
                                         sub_element = await element.query_selector(sub_selector)
-                                        if sub_value.get("is_image", False):
-                                            image_data = await extract_image_data(sub_element)
-                                            item[sub_key] = image_data
-                                        else:
-                                            item[sub_key] = await sub_element.get_attribute(sub_value["attribute"]) if sub_element and "attribute" in sub_value else await sub_element.inner_text() if sub_element else None
+                                        item[sub_key] = await sub_element.get_attribute(sub_value["attribute"]) if sub_element and "attribute" in sub_value else await sub_element.inner_text() if sub_element else None
                                     elif sub_selector_type == "xpath":
                                         sub_elements = await page.locator(sub_selector).all_inner_texts()
                                         item[sub_key] = sub_elements[0] if sub_elements else None
