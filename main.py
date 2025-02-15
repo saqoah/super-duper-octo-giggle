@@ -6,7 +6,6 @@ import logging
 from playwright.async_api import async_playwright
 from urllib.parse import urljoin
 
-
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
@@ -17,17 +16,20 @@ USER_AGENTS = [
 ]
 
 async def extract_image_data(element):
+    if not element:
+        return None
+
     src = await element.get_attribute('src')
     if not src or 'placeholder' in src:
         src = await element.get_attribute('data-src')
-    
+
     srcset = await element.get_attribute('srcset')
     if srcset:
-        srcset_urls = [url.split(' ')[0] for urlset in srcset.split(',')]
+        srcset_urls = [url.split(' ')[0] for url in srcset.split(',')]
         src = srcset_urls[-1]  # Use the largest image by default
-    
+
     alt = await element.get_attribute('alt')
-    
+
     return {
         "src": src,
         "alt": alt
@@ -51,7 +53,8 @@ async def scrape_website(schema):
         try:
             await page.goto(url, wait_until='networkidle')
 
-            data = {}
+            data = {key: None for key in schema["properties"]}  # Initialize data with None for each key
+
             if "properties" in schema:
                 for key, value in schema["properties"].items():
                     try:
@@ -59,7 +62,7 @@ async def scrape_website(schema):
                         selector = value["selector"]
 
                         if selector_type == "css":
-                            await page.wait_for_selector(selector, state="attached", timeout=10000)
+                            await page.wait_for_selector(selector, state="attached", timeout=20000)
                             elements = await page.query_selector_all(selector)
                         elif selector_type == "xpath":
                             elements = await page.locator(selector).all_inner_texts()
@@ -89,7 +92,7 @@ async def scrape_website(schema):
                                             image_data = await extract_image_data(sub_element)
                                             item[sub_key] = image_data
                                         else:
-                                            item[sub_key] = await sub_element.get_attribute(sub_value["attribute"]) if sub_element and "attribute" in sub_value else await sub_element.inner_text() [...]
+                                            item[sub_key] = await sub_element.get_attribute(sub_value["attribute"]) if sub_element and "attribute" in sub_value else await sub_element.inner_text() if sub_element else None
                                     elif sub_selector_type == "xpath":
                                         sub_elements = await page.locator(sub_selector).all_inner_texts()
                                         item[sub_key] = sub_elements[0] if sub_elements else None
@@ -124,7 +127,7 @@ async def perform_action(page, action):
         try:
             if selector:
                 if selector_type == "css":
-                    await page.wait_for_selector(selector, state="attached", timeout=10000)
+                    await page.wait_for_selector(selector, state="attached", timeout=20000)
                     element = await page.query_selector(selector)
                 elif selector_type == "xpath":
                     element = await page.locator(selector).first
@@ -162,13 +165,12 @@ async def main():
 
     try:
         data = await scrape_website(schema)
-        if data:
-            with open("output.json", "w", encoding="utf-8") as outfile:
-                json.dump(data, outfile, indent=2, ensure_ascii=False)
-        else:
-            logging.info("No data was retrieved from the website.")
+        if data is None:
+            data = {key: None for key in schema["properties"]}  # Ensure data is not empty
+        with open("output.json", "w", encoding="utf-8") as outfile:
+            json.dump(data, outfile, indent=2, ensure_ascii=False)
     except Exception as e:
         logging.error(f"An error occurred during execution: {e}")
 
 if __name__ == "__main__":
-        asyncio.run(main())
+    asyncio.run(main())
