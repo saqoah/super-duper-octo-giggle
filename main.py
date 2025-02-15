@@ -1,22 +1,23 @@
 """
 Advanced Web Scraper using Playwright
-Version: 2.0.0
-Last Updated: 2025-02-15
+Version: 2.1.0
+Release Date: 2025-02-15
+Last Updated: 2025-02-15 20:36:04 UTC
 Author: saqoah
 
 This script provides a flexible web scraping framework using Playwright with support for
-dynamic content, custom selectors, and various action types.
+dynamic content, custom selectors, regex patterns, and various action types.
 """
 
 import nest_asyncio
-import re
 import json
 import random
 import asyncio
 import logging
+import re
 from datetime import datetime, timezone
-from typing import Dict, List, Optional, Union, Any, TypedDict
-from playwright.async_api import async_playwright, Page, ElementHandle, Locator
+from typing import Dict, List, Optional, Union, Any, TypedDict, Pattern
+from playwright.async_api import async_playwright, Page, ElementHandle, Locator, Browser, BrowserContext
 
 # Configure logging with UTC timestamp
 logging.basicConfig(
@@ -25,9 +26,14 @@ logging.basicConfig(
     datefmt='%Y-%m-%d %H:%M:%S'
 )
 
-# Custom logger that includes UTC timestamps
+# Custom logger
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
+
+# Script metadata
+SCRIPT_VERSION = "2.1.0"
+CURRENT_USER = "saqoah"
+LAST_UPDATED = "2025-02-15 20:36:04"
 
 class ScrapingError(Exception):
     """Custom exception for scraping-related errors."""
@@ -48,6 +54,7 @@ class PropertyConfig(TypedDict, total=False):
     selector: str
     attribute: Optional[str]
     items: Optional[Dict[str, Any]]
+    pattern: Optional[str]
 
 class ScrapingSchema(TypedDict):
     url: str
@@ -70,6 +77,21 @@ BROWSER_ARGS = [
     '--disable-extensions'
 ]
 
+async def create_browser_context(playwright) -> BrowserContext:
+    """Creates and configures a browser context with optimal settings."""
+    browser = await playwright.chromium.launch(
+        headless=True,
+        args=BROWSER_ARGS
+    )
+    
+    context = await browser.new_context(
+        user_agent=random.choice(USER_AGENTS),
+        viewport={'width': 1920, 'height': 1080},
+        ignore_https_errors=True
+    )
+    
+    return context
+
 async def scrape_website(schema: ScrapingSchema) -> Optional[Dict[str, Any]]:
     """
     Main scraping function that processes a schema and extracts data from a website.
@@ -84,18 +106,10 @@ async def scrape_website(schema: ScrapingSchema) -> Optional[Dict[str, Any]]:
     url = schema.get("url", "https://www.google.com/")
     
     logger.info(f"Starting scraping job for {url} at {start_time.strftime('%Y-%m-%d %H:%M:%S')} UTC")
+    logger.info(f"Script version: {SCRIPT_VERSION}, User: {CURRENT_USER}")
     
     async with async_playwright() as p:
-        browser = await p.chromium.launch(
-            headless=True,
-            args=BROWSER_ARGS
-        )
-
-        context = await browser.new_context(
-            user_agent=random.choice(USER_AGENTS),
-            viewport={'width': 1920, 'height': 1080}
-        )
-        
+        context = await create_browser_context(p)
         page = await context.new_page()
 
         try:
@@ -124,56 +138,6 @@ async def scrape_website(schema: ScrapingSchema) -> Optional[Dict[str, Any]]:
             return None
         finally:
             await context.close()
-            await browser.close()
-
-
-async def extract_with_regex(page: Page, selector: str, selector_type: str, regex: str, attribute: Optional[str], inner_text: bool) -> List[Dict[str, Any]]:
-    """
-    Helper function to extract elements matching a regex pattern.
-    
-    Args:
-        page (Page): The Playwright page object.
-        selector (str): The CSS or XPath selector.
-        selector_type (str): The type of selector ("css" or "xpath").
-        regex (str): The regex pattern to filter elements.
-        attribute (Optional[str]): The attribute to extract (e.g., "href").
-        inner_text (bool): Whether to include the inner text of the element.
-        
-    Returns:
-        List[Dict[str, Any]]: A list of dictionaries containing the extracted data.
-    """
-    try:
-        # Extract all elements matching the selector
-        if selector_type == "css":
-            await page.wait_for_selector(selector, state="attached", timeout=20000)
-            elements = await page.query_selector_all(selector)
-        elif selector_type == "xpath":
-            elements = await page.locator(selector).all()
-        else:
-            raise ValueError(f"Invalid selector type: {selector_type}")
-
-        # Filter elements based on the regex pattern
-        result = []
-        for element in elements:
-            # Extract the attribute (e.g., href) and inner text
-            attribute_value = await element.get_attribute(attribute) if attribute else None
-            text_value = await element.inner_text() if inner_text else None
-
-            # Check if the attribute value matches the regex
-            if attribute_value and re.search(regex, attribute_value):
-                item = {attribute: attribute_value}
-                if inner_text:
-                    item["inner_text"] = text_value
-                result.append(item)
-
-        return result
-
-    except Exception as e:
-        logger.error(f"Error in extract_with_regex: {str(e)}")
-        return []
-
-
-
 
 async def extract_data(page: Page, schema: ScrapingSchema) -> Dict[str, Any]:
     """
@@ -202,9 +166,6 @@ async def extract_data(page: Page, schema: ScrapingSchema) -> Dict[str, Any]:
 
     return data
 
-
-
-
 async def extract_property(page: Page, key: str, value: PropertyConfig) -> Any:
     """
     Extracts a single property from the page based on its configuration.
@@ -217,25 +178,47 @@ async def extract_property(page: Page, key: str, value: PropertyConfig) -> Any:
     Returns:
         Any: The extracted data for the property
     """
-    selector_type = value.get("selector_type", "css")
-    selector = value["selector"]
-
     try:
         if value["type"] == "regex":
-            # Call the helper function for regex extraction
-            return await extract_with_regex(
-                page=page,
-                selector=selector,
-                selector_type=selector_type,
-                regex=value["regex"],
-                attribute=value.get("attribute"),
-                inner_text=value.get("inner_text", False)
-            )
+            pattern = value.get("pattern")
+            if not pattern:
+                raise ValueError(f"Regex pattern is required for key '{key}'")
+            
+            elements = await page.query_selector_all("a")
+            results = []
+            
+            regex = re.compile(pattern, re.IGNORECASE)
+            
+            for element in elements:
+                try:
+                    href = await element.get_attribute("href")
+                    text = await element.inner_text()
+                    
+                    if href and regex.search(href):
+                        results.append({
+                            "url": href,
+                            "text": text.strip(),
+                            "matches": regex.findall(href)
+                        })
+                except Exception as e:
+                    logger.debug(f"Skipping element due to: {str(e)}")
+                    continue
+            
+            return results
 
-        # Existing logic for other types...
-        elif value["type"] == "string":
+        selector_type = value.get("selector_type", "css")
+        selector = value["selector"]
+
+        if selector_type == "css":
+            await page.wait_for_selector(selector, state="attached", timeout=20000)
+            elements = await page.query_selector_all(selector)
+        elif selector_type == "xpath":
+            elements = await page.locator(selector).all_inner_texts()
+        else:
+            raise ValueError(f"Invalid selector type: {selector_type}")
+
+        if value["type"] == "string":
             if selector_type == "css":
-                await page.wait_for_selector(selector, state="attached", timeout=5000)
                 element = await page.query_selector(selector)
                 if "attribute" in value and element:
                     return await element.get_attribute(value["attribute"])
@@ -250,7 +233,6 @@ async def extract_property(page: Page, key: str, value: PropertyConfig) -> Any:
                     sub_selector_type = sub_value.get("selector_type", "css")
                     sub_selector = sub_value["selector"]
                     
-                    # Handle "self" selector for array items
                     if sub_selector == "self":
                         if "attribute" in sub_value:
                             item[sub_key] = await element.get_attribute(sub_value["attribute"])
@@ -279,8 +261,6 @@ async def extract_property(page: Page, key: str, value: PropertyConfig) -> Any:
     except Exception as e:
         logger.error(f"Error extracting {key}: {str(e)}")
         return None
-
-
 
 async def perform_action(page: Page, action: ActionConfig) -> None:
     """
@@ -338,7 +318,8 @@ async def main() -> None:
     Main entry point for the scraping script.
     Loads the schema and initiates the scraping process.
     """
-    logger.info(f"Script started by user: saqoah at {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')} UTC")
+    logger.info(f"Script started at {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')} UTC")
+    logger.info(f"User: {CURRENT_USER}")
     
     try:
         with open("schema.json", "r", encoding="utf-8") as f:
@@ -355,9 +336,20 @@ async def main() -> None:
         if data is None:
             data = {key: None for key in schema["properties"]}
             
+        timestamp = datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')
         output_file = f"output.json"
+        
         with open(output_file, "w", encoding="utf-8") as outfile:
-            json.dump(data, outfile, indent=2, ensure_ascii=False)
+            json.dump({
+                "metadata": {
+                    "timestamp": datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S'),
+                    "version": SCRIPT_VERSION,
+                    "user": CURRENT_USER,
+                    "url": schema.get("url")
+                },
+                "data": data
+            }, outfile, indent=2, ensure_ascii=False)
+            
         logger.info(f"Data successfully saved to {output_file}")
         
     except Exception as e:
