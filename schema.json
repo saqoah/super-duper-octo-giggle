@@ -15,16 +15,10 @@
       "selector": "img",
       "items": {
         "properties": {
-          "src": {
+          "html": {
             "type": "string",
             "selector": "img",
-            "attribute": "src",
-            "is_image": true
-          },
-          "alt": {
-            "type": "string",
-            "selector": "img",
-            "attribute": "alt"
+            "attribute": "outerHTML"
           }
         }
       }
