@@ -1,31 +1,45 @@
 {
-  "url": "https://www.bbc.com/",
+  "url": "https://www.bbc.com",
   "properties": {
     "title": {
       "type": "string",
-      "selector": "title"
+      "selector": "title",
+      "selector_type": "css"
     },
     "description": {
       "type": "string",
       "selector": "meta[name='description']",
+      "selector_type": "css",
       "attribute": "content"
     },
     "images": {
       "type": "array",
       "selector": "img",
+      "selector_type": "css",
       "items": {
         "properties": {
-          "html": {
-            "type": "string",
-            "selector": "img",
-            "attribute": "outerHTML"
+          "src": {
+            "selector": "",
+            "selector_type": "css",
+            "attribute": "src"
+          },
+          "alt": {
+            "selector": "",
+            "selector_type": "css",
+            "attribute": "alt"
           }
         }
       }
     },
-    "body": {
+    "bodyText": {
       "type": "string",
-      "selector": "body"
+      "selector": "body",
+      "selector_type": "css"
+    },
+    "footer": {
+      "type": "html",
+      "selector": "footer",
+      "selector_type": "css"
     }
   }
 }
