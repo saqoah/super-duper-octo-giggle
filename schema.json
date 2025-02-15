@@ -12,6 +12,12 @@
       "selector_type": "css",
       "attribute": "content"
     },
+    "newsLinks": {
+      "type": "regex",
+      "pattern": "news/[\\w-]+$",
+      "selector_type": "css",
+      "selector": "a"
+    },
     "images": {
       "type": "array",
       "selector": "img",
@@ -31,10 +37,20 @@
         }
       }
     },
-    "bodyText": {
-      "type": "string",
-      "selector": "body",
+    "footer": {
+      "type": "html",
+      "selector": "footer",
       "selector_type": "css"
     }
-  }
+  },
+  "actions": [
+    {
+      "type": "scroll",
+      "duration": 1
+    },
+    {
+      "type": "wait",
+      "duration": 2
+    }
+  ]
 }
