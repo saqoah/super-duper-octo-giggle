@@ -1,5 +1,5 @@
 {
-  "url": "https://www.bbc.com",
+  "url": "https://french-stream.my/15119949-the-gorge.html",
   "properties": {
     "title": {
       "type": "string",
@@ -11,12 +11,6 @@
       "selector": "meta[name='description']",
       "selector_type": "css",
       "attribute": "content"
-    },
-    "newsLinks": {
-      "type": "regex",
-      "pattern": "news/[\\w-]+$",
-      "selector_type": "css",
-      "selector": "a"
     },
     "images": {
       "type": "array",
@@ -37,20 +31,11 @@
         }
       }
     },
-    "footer": {
-      "type": "html",
-      "selector": "footer",
-      "selector_type": "css"
+    "uqloadLinks": {
+      "type": "regex",
+      "pattern": "uqload[\\w.-/]+",
+      "selector_type": "css",
+      "selector": "a, iframe"
     }
-  },
-  "actions": [
-    {
-      "type": "scroll",
-      "duration": 1
-    },
-    {
-      "type": "wait",
-      "duration": 2
-    }
-  ]
+  }
 }
