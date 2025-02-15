@@ -33,3 +33,13 @@ jobs:
     - name: Run script
       run: |
         python main.py
+
+    - name: Commit output.json
+      run: |
+        git config --global user.name 'github-actions'
+        git config --global user.email 'github-actions@github.com'
+        git add output.json
+        git commit -m 'Add output.json'
+        git push
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
