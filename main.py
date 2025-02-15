@@ -62,7 +62,7 @@ async def scrape_website(schema):
                         selector = value["selector"]
 
                         if selector_type == "css":
-                            await page.wait_for_selector(selector, state="attached", timeout=20000)
+                            await page.wait_for_selector(selector, state="attached", timeout=5000)
                             elements = await page.query_selector_all(selector)
                         elif selector_type == "xpath":
                             elements = await page.locator(selector).all_inner_texts()
