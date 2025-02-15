@@ -5,6 +5,7 @@ import asyncio
 import logging
 from playwright.async_api import async_playwright
 from urllib.parse import urljoin
+from IPython import get_ipython
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -22,7 +23,7 @@ async def extract_image_data(element):
     
     srcset = await element.get_attribute('srcset')
     if srcset:
-        srcset_urls = [url.split(' ')[0] for url in srcset.split(',')]
+        srcset_urls = [url.split(' ')[0] for urlset in srcset.split(',')]
         src = srcset_urls[-1]  # Use the largest image by default
     
     alt = await element.get_attribute('alt')
