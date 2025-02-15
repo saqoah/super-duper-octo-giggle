@@ -33,9 +33,13 @@
     },
     "uqloadLinks": {
       "type": "regex",
-      "pattern": "uqload[\\w.-/]+",
+      "pattern": "(https?://(?:www\\.)?uqload\\.\\w+/[^\"\\s]+)",
       "selector_type": "css",
       "selector": "a, iframe"
     }
+  },
+  "metadata": {
+    "timestamp": "2025-02-15 20:58:14",
+    "user": "saqoah"
   }
 }
