@@ -1,1 +1,46 @@
-[]
+{
+  "title": "Amazon.com",
+  "description": null,
+  "images": [
+    {
+      "src": null,
+      "alt": null
+    },
+    {
+      "src": null,
+      "alt": null
+    }
+  ],
+  "videos": null,
+  "body": "Enter the characters you see below\n\nSorry, we just need to make sure you're not a robot. For best results, please make sure your browser is accepting cookies.\n\nType the characters you see in this image:\nTry different image\nContinue shopping\nConditions of Use     Privacy Policy\n© 1996-2014, Amazon.com, Inc. or its affiliates ",
+  "social_media": [
+    {
+      "youtube": null,
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    },
+    {
+      "youtube": null,
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    },
+    {
+      "youtube": null,
+      "twitter": null,
+      "facebook": null,
+      "instagram": null
+    }
+  ],
+  "emails": null,
+  "phone_numbers": null,
+  "links": [
+    {
+      "url": null
+    },
+    {
+      "url": null
+    }
+  ]
+}
