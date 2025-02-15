@@ -19,12 +19,12 @@
       "items": {
         "properties": {
           "src": {
-            "selector": "",
+            "selector": "self",  // Changed from empty string to "self"
             "selector_type": "css",
             "attribute": "src"
           },
           "alt": {
-            "selector": "",
+            "selector": "self",  // Changed from empty string to "self"
             "selector_type": "css",
             "attribute": "alt"
           }
