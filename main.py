@@ -191,18 +191,26 @@ async def extract_property(page: Page, key: str, value: PropertyConfig) -> Any:
                 for sub_key, sub_value in value["items"]["properties"].items():
                     sub_selector_type = sub_value.get("selector_type", "css")
                     sub_selector = sub_value["selector"]
-                    if sub_selector_type == "css":
-                        sub_element = await element.query_selector(sub_selector)
-                        item[sub_key] = (
-                            await sub_element.get_attribute(sub_value["attribute"])
-                            if sub_element and "attribute" in sub_value
-                            else await sub_element.inner_text()
-                            if sub_element
-                            else None
-                        )
-                    elif sub_selector_type == "xpath":
-                        sub_elements = await page.locator(sub_selector).all_inner_texts()
-                        item[sub_key] = sub_elements[0] if sub_elements else None
+                    
+                    # Handle "self" selector for array items
+                    if sub_selector == "self":
+                        if "attribute" in sub_value:
+                            item[sub_key] = await element.get_attribute(sub_value["attribute"])
+                        else:
+                            item[sub_key] = await element.inner_text()
+                    else:
+                        if sub_selector_type == "css":
+                            sub_element = await element.query_selector(sub_selector)
+                            item[sub_key] = (
+                                await sub_element.get_attribute(sub_value["attribute"])
+                                if sub_element and "attribute" in sub_value
+                                else await sub_element.inner_text()
+                                if sub_element
+                                else None
+                            )
+                        elif sub_selector_type == "xpath":
+                            sub_elements = await page.locator(sub_selector).all_inner_texts()
+                            item[sub_key] = sub_elements[0] if sub_elements else None
                 result.append(item)
             return result
 
