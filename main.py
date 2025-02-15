@@ -17,7 +17,7 @@ USER_AGENTS = [
 
 async def extract_image_data(element):
     if not element:
-        return None
+        return {"src": None, "alt": None}
 
     src = await element.get_attribute('src')
     if not src or 'placeholder' in src:
@@ -26,13 +26,13 @@ async def extract_image_data(element):
     srcset = await element.get_attribute('srcset')
     if srcset:
         srcset_urls = [url.split(' ')[0] for url in srcset.split(',')]
-        src = srcset_urls[-1]  # Use the largest image by default
+        src = srcset_urls[-1] if srcset_urls else src  # Use the largest image by default
 
     alt = await element.get_attribute('alt')
 
     return {
-        "src": src,
-        "alt": alt
+        "src": src if src else None,
+        "alt": alt if alt else None
     }
 
 async def scrape_website(schema):
@@ -62,7 +62,7 @@ async def scrape_website(schema):
                         selector = value["selector"]
 
                         if selector_type == "css":
-                            await page.wait_for_selector(selector, state="attached", timeout=5000)
+                            await page.wait_for_selector(selector, state="attached", timeout=20000)
                             elements = await page.query_selector_all(selector)
                         elif selector_type == "xpath":
                             elements = await page.locator(selector).all_inner_texts()
