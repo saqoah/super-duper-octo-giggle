@@ -5,7 +5,7 @@ import asyncio
 import logging
 from playwright.async_api import async_playwright
 from urllib.parse import urljoin
-from IPython import get_ipython
+
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -171,8 +171,4 @@ async def main():
         logging.error(f"An error occurred during execution: {e}")
 
 if __name__ == "__main__":
-    if 'google.colab' in str(get_ipython()):
-        nest_asyncio.apply()
-        asyncio.run(main())
-    else:
         asyncio.run(main())
