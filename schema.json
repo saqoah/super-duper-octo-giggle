@@ -1,5 +1,5 @@
 {
-  "url": "https://www.theguardian.com/europe/",
+  "url": "https://www.theguardian.com/europe",
   "properties": {
     "title": {
       "type": "string",
@@ -29,89 +29,9 @@
         }
       }
     },
-    "videos": {
-      "type": "array",
-      "selector": "video",
-      "items": {
-        "properties": {
-          "src": {
-            "type": "string",
-            "selector": "video",
-            "attribute": "src"
-          }
-        }
-      }
-    },
     "body": {
       "type": "string",
       "selector": "body"
-    },
-    "social_media": {
-      "type": "array",
-      "selector": "a",
-      "items": {
-        "properties": {
-          "youtube": {
-            "type": "string",
-            "selector": "a[href*='youtube.com']",
-            "attribute": "href"
-          },
-          "twitter": {
-            "type": "string",
-            "selector": "a[href*='twitter.com']",
-            "attribute": "href"
-          },
-          "facebook": {
-            "type": "string",
-            "selector": "a[href*='facebook.com']",
-            "attribute": "href"
-          },
-          "instagram": {
-            "type": "string",
-            "selector": "a[href*='instagram.com']",
-            "attribute": "href"
-          }
-        }
-      }
-    },
-    "emails": {
-      "type": "array",
-      "selector": "a[href^='mailto:']",
-      "items": {
-        "properties": {
-          "email": {
-            "type": "string",
-            "selector": "a[href^='mailto:']",
-            "attribute": "href"
-          }
-        }
-      }
-    },
-    "phone_numbers": {
-      "type": "array",
-      "selector": "a[href^='tel:']",
-      "items": {
-        "properties": {
-          "phone_number": {
-            "type": "string",
-            "selector": "a[href^='tel:']",
-            "attribute": "href"
-          }
-        }
-      }
-    },
-    "links": {
-      "type": "array",
-      "selector": "a[href]",
-      "items": {
-        "properties": {
-          "url": {
-            "type": "string",
-            "selector": "a[href]",
-            "attribute": "href"
-          }
-        }
-      }
     }
   }
 }
