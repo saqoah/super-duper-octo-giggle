@@ -12,9 +12,9 @@
       "selector_type": "css",
       "attribute": "content"
     },
-    "images": {
+    "externalImages": {
       "type": "array",
-      "selector": "img",
+      "selector": "img[src^='http']",
       "selector_type": "css",
       "items": {
         "properties": {
@@ -35,11 +35,12 @@
       "type": "regex",
       "pattern": "(https?://(?:www\\.)?uqload\\.\\w+/[^\"\\s]+)",
       "selector_type": "css",
-      "selector": "a, iframe"
+      "selector": "body",
+      "attribute": "innerHTML"
     }
   },
   "metadata": {
-    "timestamp": "2025-02-15 20:58:14",
+    "timestamp": "2025-02-15 21:04:34",
     "user": "saqoah"
   }
 }
