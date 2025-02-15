@@ -88,7 +88,7 @@ async def scrape_website(schema):
                                             image_data = await extract_image_data(sub_element)
                                             item[sub_key] = image_data
                                         else:
-                                            item[sub_key] = await sub_element.get_attribute(sub_value["attribute"]) if sub_element and "attribute" in sub_value else await sub_element.inner_text() if sub_element else None
+                                            item[sub_key] = await sub_element.get_attribute(sub_value["attribute"]) if sub_element and "attribute" in sub_value else await sub_element.inner_text() [...]
                                     elif sub_selector_type == "xpath":
                                         sub_elements = await page.locator(sub_selector).all_inner_texts()
                                         item[sub_key] = sub_elements[0] if sub_elements else None
@@ -162,7 +162,8 @@ async def main():
     try:
         data = await scrape_website(schema)
         if data:
-            print(json.dumps(data, indent=2, ensure_ascii=False))
+            with open("output.json", "w", encoding="utf-8") as outfile:
+                json.dump(data, outfile, indent=2, ensure_ascii=False)
         else:
             logging.info("No data was retrieved from the website.")
     except Exception as e:
