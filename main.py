@@ -9,6 +9,7 @@ dynamic content, custom selectors, and various action types.
 """
 
 import nest_asyncio
+import re
 import json
 import random
 import asyncio
@@ -125,6 +126,55 @@ async def scrape_website(schema: ScrapingSchema) -> Optional[Dict[str, Any]]:
             await context.close()
             await browser.close()
 
+
+async def extract_with_regex(page: Page, selector: str, selector_type: str, regex: str, attribute: Optional[str], inner_text: bool) -> List[Dict[str, Any]]:
+    """
+    Helper function to extract elements matching a regex pattern.
+    
+    Args:
+        page (Page): The Playwright page object.
+        selector (str): The CSS or XPath selector.
+        selector_type (str): The type of selector ("css" or "xpath").
+        regex (str): The regex pattern to filter elements.
+        attribute (Optional[str]): The attribute to extract (e.g., "href").
+        inner_text (bool): Whether to include the inner text of the element.
+        
+    Returns:
+        List[Dict[str, Any]]: A list of dictionaries containing the extracted data.
+    """
+    try:
+        # Extract all elements matching the selector
+        if selector_type == "css":
+            await page.wait_for_selector(selector, state="attached", timeout=20000)
+            elements = await page.query_selector_all(selector)
+        elif selector_type == "xpath":
+            elements = await page.locator(selector).all()
+        else:
+            raise ValueError(f"Invalid selector type: {selector_type}")
+
+        # Filter elements based on the regex pattern
+        result = []
+        for element in elements:
+            # Extract the attribute (e.g., href) and inner text
+            attribute_value = await element.get_attribute(attribute) if attribute else None
+            text_value = await element.inner_text() if inner_text else None
+
+            # Check if the attribute value matches the regex
+            if attribute_value and re.search(regex, attribute_value):
+                item = {attribute: attribute_value}
+                if inner_text:
+                    item["inner_text"] = text_value
+                result.append(item)
+
+        return result
+
+    except Exception as e:
+        logger.error(f"Error in extract_with_regex: {str(e)}")
+        return []
+
+
+
+
 async def extract_data(page: Page, schema: ScrapingSchema) -> Dict[str, Any]:
     """
     Extracts data from the page according to the schema configuration.
@@ -152,6 +202,9 @@ async def extract_data(page: Page, schema: ScrapingSchema) -> Dict[str, Any]:
 
     return data
 
+
+
+
 async def extract_property(page: Page, key: str, value: PropertyConfig) -> Any:
     """
     Extracts a single property from the page based on its configuration.
@@ -168,16 +221,21 @@ async def extract_property(page: Page, key: str, value: PropertyConfig) -> Any:
     selector = value["selector"]
 
     try:
-        if selector_type == "css":
-            await page.wait_for_selector(selector, state="attached", timeout=20000)
-            elements = await page.query_selector_all(selector)
-        elif selector_type == "xpath":
-            elements = await page.locator(selector).all_inner_texts()
-        else:
-            raise ValueError(f"Invalid selector type: {selector_type}")
+        if value["type"] == "regex":
+            # Call the helper function for regex extraction
+            return await extract_with_regex(
+                page=page,
+                selector=selector,
+                selector_type=selector_type,
+                regex=value["regex"],
+                attribute=value.get("attribute"),
+                inner_text=value.get("inner_text", False)
+            )
 
-        if value["type"] == "string":
+        # Existing logic for other types...
+        elif value["type"] == "string":
             if selector_type == "css":
+                await page.wait_for_selector(selector, state="attached", timeout=5000)
                 element = await page.query_selector(selector)
                 if "attribute" in value and element:
                     return await element.get_attribute(value["attribute"])
@@ -221,6 +279,8 @@ async def extract_property(page: Page, key: str, value: PropertyConfig) -> Any:
     except Exception as e:
         logger.error(f"Error extracting {key}: {str(e)}")
         return None
+
+
 
 async def perform_action(page: Page, action: ActionConfig) -> None:
     """
