@@ -35,11 +35,6 @@
       "type": "string",
       "selector": "body",
       "selector_type": "css"
-    },
-    "footer": {
-      "type": "html",
-      "selector": "footer",
-      "selector_type": "css"
     }
   }
 }
