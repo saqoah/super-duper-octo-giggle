@@ -1,23 +1,18 @@
 {
   "metadata": {
-    "timestamp": "2025-02-22 15:31:43",
+    "timestamp": "2025-02-22 15:37:24",
     "version": "2.3.1",
-    "url": "https://fsvid.lol/embed-mw23hm16z5mm.html"
+    "url": "https://vidsrc.to/embed/movie/200"
   },
   "data": {
-    "inner_text": "This video file cannot be played.\n(Error Code: 102630)",
+    "inner_text": "",
     "images": [
       {
-        "src": "https://pixel.onaudience.com/?partner=137085098&mapped=51A01740238302A5EA633EFF5912EF47",
+        "src": "https://pixel.onaudience.com/?partner=137085098&mapped=104017402386437E65A8B54F19114218",
         "alt": null
       }
     ],
-    "links": [
-      {
-        "href": "https://fsvid.lol/premium.html",
-        "text": "Upgrade you account"
-      }
-    ],
+    "links": [],
     "scripts": [
       {
         "content": ""
@@ -38,37 +33,16 @@
         "content": ""
       },
       {
-        "content": "$.cookie('file_id', '34152', { expires: 10 });\n$.cookie('aff', '5', { expires: 10 });"
+        "content": "aclib.runInPagePush({\n        zoneId: '9098850',\n        refreshRate: 30,\n        maxAds: 2,\n    });"
       },
       {
-        "content": "document.addEventListener(\"DOMContentLoaded\", function() {\n            // URL du fichier PHP à récupérer\n            const filePath = '/js/ad-script.php';\n\n            // Utilisation d'XMLHttpRequest pour récupérer le contenu\n            const xhr = new XMLHttpRequest();\n            xhr.open('GET', filePath, true);\n            xhr.onreadystatechange = function() {\n                if (xhr.readyState === 4) {\n                    if (xhr.status === 200) {\n                        // Créer un élément div pour insérer le contenu directement\n                        const scriptElement = document.createElement('div');\n                        scriptElement.innerHTML = xhr.responseText;\n                        document.body.appendChild(scriptElement);\n                    } else {\n                        console.error('Erreur lors du chargement du fichier ad-script.php');\n                    }\n                }\n            };\n            xhr.send();\n        });"
+        "content": "aclib.runPop({\n        zoneId: '9098842',\n    });"
       },
       {
-        "content": ""
-      },
-      {
-        "content": ""
+        "content": "var _Hasync= _Hasync|| [];\n_Hasync.push(['Histats.start', '1,4896283,4,0,0,0,00010000']);\n_Hasync.push(['Histats.fasi', '1']);\n_Hasync.push(['Histats.track_hits', '']);\n(function() {\nvar hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;\nhs.src = ('//s10.histats.com/js15_as.js');\n(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);\n})();"
       },
       {
         "content": ""
-      },
-      {
-        "content": "jwplayer.key=\"rqQQ9nLfWs+4Fl37jqVWGp6N8e2Z0WldRIKhFg==\";"
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": "jwplayer(\"vplayer\").setup({\n    sources: [{file:\"https://s1.fsvid.lol/hls2/01/00006/vpn2r0ef5rij_o/master.m3u8?t=FJIBxsKWU9Lv4XNrBW-UKYruMnGBELCY4UBjaE6mqsE&s=1740238302&e=43200&f=34152&i=0.0&sp=0\"}],\n    image: \"https://s1.fsvid.lol/i/01/00006/vpn2r0ef5rij.jpg\",\n    width: \"100%\", \n    height: \"100%\",\n    stretching: \"uniform\",\n    duration: \"5193.81\",\n    preload: 'metadata',\n    androidhls: \"true\"\n    ,tracks: [{file: \"/srt/empty.srt\", label: \"Upload captions\", kind: \"captions\"}]\n    ,captions: { \n\t    \t\t\tuserFontScale: 1, \n\t    \t\t\tcolor: '#FFFFFF', \n\t    \t\t\tbackgroundColor: 'transparent',\n\t    \t\t\tfontFamily:\"Arial\", \n\t    \t\t\tbackgroundOpacity: 50, \n\t    \t\t\tfontOpacity: '100',\n    \t\t\t},'qualityLabels':{\"2642\":\"Original\"},abouttext:\"FRENCH STREAM\", aboutlink:\"https://fstream.one/\",cast: {},playbackRateControls: true, playbackRates: [0.5, 1, 1.25, 1.5, 2 , 3 , 4]\n  });\n\n// Ajout des événements pour la communication\nvar player = jwplayer();\nplayer.on('time', function(event) {\n    window.parent.postMessage({\n        action: 'timeupdate',\n        currentTime: event.position,\n        duration: event.duration\n    }, '*');\n});\n\nplayer.on('play', function() {\n    window.parent.postMessage({\n        action: 'updatePlayPauseButton',\n        isPlaying: true\n    }, '*');\n});\n\nplayer.on('pause', function() {\n    window.parent.postMessage({\n        action: 'updatePlayPauseButton',\n        isPlaying: false\n    }, '*');\n});\n\nplayer.on('complete', function() {\n    window.parent.postMessage({\n        action: 'complete'\n    }, '*');\n});\n\nplayer.on('ready', function() {\n    window.parent.postMessage({\n        action: 'videoLoaded',\n        duration: player.getDuration()\n    }, '*');\n});\n\n// Gestion des commandes reçues\nwindow.addEventListener('message', function(event) {\n    if (typeof event.data === 'object') {\n        switch(event.data.action) {\n            case 'play':\n                player.play();\n                break;\n            case 'pause':\n                player.pause();\n                break;\n            case 'seek':\n                player.seek(event.data.value);\n                break;\n            case 'seekForward':\n                player.seek(player.getPosition() + 10);\n                break;\n            case 'seekBackward':\n                player.seek(Math.max(0, player.getPosition() - 10));\n                break;\n            case 'togglePlayPause':\n                if (player.getState() === 'playing') {\n                    player.pause();\n                } else {\n                    player.play();\n                }\n                break;\n        }\n    }\n});\n\nvar vvplay,vvad;\nvar vastdone1=0,vastdone2=0;\nvar player = jwplayer();\nvar prevt=0, tott=0, v2done=0, lastt=0;\n$.ajaxSetup({ headers: { 'Content-Cache': 'no-cache' } });\nplayer.on('time', function(x) { \n    if(5>0 && x.position>=5 && vvad!=1){vvad=1;$('div.video_ad_fadein').fadeIn('slow');}\n    \n    \n});\nplayer.on('seek', function(x) { prevt=x.position; });\nplayer.on('play', function(x) { doPlay(x); });\nplayer.on('complete', function() { $('div.video_ad').show();  });\nplayer.on('pause', function(x) {  });\n//player.on('all', function(x) { console.log(x); });\n\nfunction doPlay(x)\n{\n  $('div.video_ad').hide();\n  $('#over_player_msg').hide();\n  if(vvplay)return;\n  vvplay=1;\n  adb=0;\n  if( window.cRAds === undefined ){ adb=1; }\n  $.get('/dl?op=view&file_code=mw23hm16z5mm&hash=34152-20-42-1740238302-2c7ea16547caeb84508ae959fd3d38e4&embed=1&referer=&adb='+adb, function(data) {$('#fviews').html(data);} );\n  \n}\n\nfunction set_audio_track()\n{\n  var tracks=player.getAudioTracks(track_name);\n  console.log(tracks);\n  if(tracks.length>1){\n  \tfor(i=0;i<tracks.length;i++){ if(tracks[i].name==track_name){ console.log('!!='+i); player.setCurrentAudioTrack(i); } }\n  }\n}\n\n    player.on('ready', function(){\n    \t\tplayer.on('captionsChanged',function(tr){\n\tif( RegExp('empty').test(tr.tracks[tr.track].id) )\n\t{\n\t\tjwplayer().pause(true);\n\t\tjwplayer().setCurrentCaptions(0);\n\t\topenIframeOverlay('/?op=upload_srt&file_code=mw23hm16z5mm');\n\t}\n} );\n\nfunction openIframeOverlay(url)\n{\nvar $dd=\t$(\"<div />\").css({\n   position: \"absolute\",\n    width: \"100%\",\n    height: \"100%\",\n    left: 0,\n    top: 0,\n    zIndex: 1000000,\n    background: \"rgba(10%, 10%, 10%, 0.4)\",\n    \"text-align\": \"center\"\n});\n$(\"<iframe />\").css({\n    width: \"60%\",\n    height: \"60%\",\n    zIndex: 1000001,\n    \"margin-top\": \"50px\"\n}).prop({'src':url, 'frameborder':'0', 'scrolling':'no'}).appendTo($dd);\n\n $dd.click(function (){ $(this).remove(); jwplayer().play(); });\n $dd.appendTo( $('#vplayer') );\n}\njwplayer().addButton(\n    '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"jw-svg-icon jw-svg-icon-rewind2\" viewBox=\"0 0 240 240\" focusable=\"false\"><path d=\"m 25.993957,57.778 v 125.3 c 0.03604,2.63589 2.164107,4.76396 4.8,4.8 h 62.7 v -19.3 h -48.2 v -96.4 H 160.99396 v 19.3 c 0,5.3 3.6,7.2 8,4.3 l 41.8,-27.9 c 2.93574,-1.480087 4.13843,-5.04363 2.7,-8 -0.57502,-1.174985 -1.52502,-2.124979 -2.7,-2.7 l -41.8,-27.9 c -4.4,-2.9 -8,-1 -8,4.3 v 19.3 H 30.893957 c -2.689569,0.03972 -4.860275,2.210431 -4.9,4.9 z m 163.422413,73.04577 c -3.72072,-6.30626 -10.38421,-10.29683 -17.7,-10.6 -7.31579,0.30317 -13.97928,4.29374 -17.7,10.6 -8.60009,14.23525 -8.60009,32.06475 0,46.3 3.72072,6.30626 10.38421,10.29683 17.7,10.6 7.31579,-0.30317 13.97928,-4.29374 17.7,-10.6 8.60009,-14.23525 8.60009,-32.06475 0,-46.3 z m -17.7,47.2 c -7.8,0 -14.4,-11 -14.4,-24.1 0,-13.1 6.6,-24.1 14.4,-24.1 7.8,0 14.4,11 14.4,24.1 0,13.1 -6.5,24.1 -14.4,24.1 z m -47.77056,9.72863 v -51 l -4.8,4.8 -6.8,-6.8 13,-12.99999 c 3.02543,-3.03598 8.21053,-0.88605 8.2,3.4 v 62.69999 z\"></path></svg>',\n    \"Forward 10 sec\", \n    function() {\n        jwplayer().seek( jwplayer().getPosition()+10 );\n    },\n    \"ff11\"\n);\n$(\"div[button=ff11]\").detach().insertAfter('.jw-icon-rewind');\n\njwplayer().addButton(\n    '<svg xmlns=\"http://www.w3.org/2000/svg\" class=\"jw-svg-icon jw-svg-icon-rewind\" viewBox=\"0 0 240 240\" focusable=\"false\"><path d=\"M113.2,131.078a21.589,21.589,0,0,0-17.7-10.6,21.589,21.589,0,0,0-17.7,10.6,44.769,44.769,0,0,0,0,46.3,21.589,21.589,0,0,0,17.7,10.6,21.589,21.589,0,0,0,17.7-10.6,44.769,44.769,0,0,0,0-46.3Zm-17.7,47.2c-7.8,0-14.4-11-14.4-24.1s6.6-24.1,14.4-24.1,14.4,11,14.4,24.1S103.4,178.278,95.5,178.278Zm-43.4,9.7v-51l-4.8,4.8-6.8-6.8,13-13a4.8,4.8,0,0,1,8.2,3.4v62.7l-9.6-.1Zm162-130.2v125.3a4.867,4.867,0,0,1-4.8,4.8H146.6v-19.3h48.2v-96.4H79.1v19.3c0,5.3-3.6,7.2-8,4.3l-41.8-27.9a6.013,6.013,0,0,1-2.7-8,5.887,5.887,0,0,1,2.7-2.7l41.8-27.9c4.4-2.9,8-1,8,4.3v19.3H209.2A4.974,4.974,0,0,1,214.1,57.778Z\"></path></svg>',\n    \"Rewind 10 sec\", \n    function() {\n    \tvar tt = jwplayer().getPosition()-10;\n    \tif(tt<0)tt=0;\n        jwplayer().seek( tt );\n    },\n    \"ff00\"\n);\n$(\"div[button=ff00]\").detach().insertAfter('.jw-icon-rewind');\n$(\"div.jw-icon-rewind\").hide();\n\n    });\n\njwplayer().addButton(\n    \"/images/download3.png\",\n    \"Watch on site\", \n    function() {\n        //window.top.location.href = 'https://fsvid.lol/mw23hm16z5mm.html';\n        var win = window.open('https://fsvid.lol/d/mw23hm16z5mm.html', '_blank');\n        win.focus();\n    },\n    \"download11\"\n);\t\tplayer.on(\"audioTracks\",function(event){\n\t\t\tvar tracks=player.getAudioTracks();\n\t\t\tif(tracks.length<2)return;\n\t\t\t$('.jw-settings-topbar-buttons').mousedown(function() { \n\t\t\t$('#jw-settings-submenu-audioTracks').removeClass('jw-settings-submenu-active');\n\t\t\t$('.jw-submenu-audioTracks').attr('aria-expanded','false');\n\t\t});\n\t\tplayer.addButton(\"/images/dualy.svg\",\"Audio Track\",function(){\n\t\t\t$('.jw-controls').toggleClass('jw-settings-open');\n\t\t\t$('.jw-settings-captions, .jw-settings-playbackRates').attr('aria-checked','false');\n\t\t\tif( $('.jw-controls').hasClass('jw-settings-open') ){ \n\t\t\t\t$('.jw-submenu-audioTracks').attr('aria-checked','true');\n\t\t\t\t$('.jw-submenu-audioTracks').attr('aria-expanded','true');\n\t\t\t\t$('.jw-settings-submenu-quality').removeClass('jw-settings-submenu-active');\n\t\t\t\t$('.jw-settings-submenu-audioTracks').addClass('jw-settings-submenu-active');\n\t\t\t}\n\t\t\telse {\n\t\t\t\t$('.jw-submenu-audioTracks').attr('aria-checked','false');\n\t\t\t\t$('.jw-submenu-audioTracks').attr('aria-expanded','false');\n\t\t\t\t$('.jw-settings-submenu-audioTracks').removeClass('jw-settings-submenu-active');\n\t\t\t}\n\t\t},\"dualSound\");\n\t\t\n\t\tif( !localStorage.getItem('default_audio') ) setTimeout(\"audio_set('French')\", 300 );\n\t});\n\tvar current_audio;\n\tfunction audio_set(audio_name)\n\t{\n\t\tvar tracks=player.getAudioTracks();\n\t\tif(tracks.length>1){\n\t\t\tfor(i=0;i<tracks.length;i++){ if(tracks[i].name==audio_name){ if(i==current_audio){return;} current_audio=i; player.setCurrentAudioTrack(i); } }\n\t\t}\n\t}"
-      },
-      {
-        "content": "var gaga = setInterval(function() {\n                \tif($('.media-control').is(':visible')){\n                    \t$('.media-control-right-panel').prepend('<div id=\"fsvid\" style=\"height:32px;float:right;color:#fff; width:50px; margin-top:4px;margin-right:12px\"> <a href=\"https://fsvid.lol/d/mw23hm16z5mm\" target=\"_blank\"><img src=\"/images/ddl2.png\" alt=\"fsvid\" /></a></div>'); \n                \t\tif($('#fsvid').length >0){\n                \t\tclearInterval(gaga);\n                \t\t}\n                \t}\n                }, 500);"
-      },
-      {
-        "content": "$(function() {\n \n});"
-      },
-      {
-        "content": "var _Hasync= _Hasync|| [];\n_Hasync.push(['Histats.start', '1,4890747,4,0,0,0,00010000']);\n_Hasync.push(['Histats.fasi', '1']);\n_Hasync.push(['Histats.track_hits', '']);\n(function() {\nvar hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;\nhs.src = ('//s10.histats.com/js15_as.js');\n(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);\n})();"
       },
       {
         "content": ""
@@ -83,36 +57,29 @@
         "content": ""
       }
     ],
-    "playback_urls": [
-      "https://fstream.one/",
-      "https://s1.fsvid.lol/hls2/01/00006/vpn2r0ef5rij_o/master.m3u8?t=FJIBxsKWU9Lv4XNrBW-UKYruMnGBELCY4UBjaE6mqsE&s=1740238302&e=43200&f=34152&i=0.0&sp=0"
-    ],
+    "playback_urls": [],
     "iframe_urls": [
-      "https://t.dtscout.com/idg/?su=51A01740238302A5EA633EFF5912EF47",
-      "https://pxdrop.lijit.com/a/t_.htm?ver=1.1741.924&cid=c026&cls=sync#cls=sync&dmn=fsvid.lol&GDPR_v2=&us_privacy=&pubid=dt_scout&gpp=&gpp_sid=&tt=t.dhj&cid=c026&lbl=lijit&flbl=pxcel&ll=d&ver=1.1741.924&ell=d&cck=ljt_reader&pn=%2Fembed-mw23hm16z5mm.html&qs=na&rdn=fsvid.lol&rpn=%2Fembed-mw23hm16z5mm.html&rqs=na&cc=US&cont=NA&rc=VA&ipaddr=",
-      "https://tags.crwdcntrl.net/lt/shared/2/lt.iframe.html?c=3825"
+      "https://vidsrc.xyz/embed/movie/200/",
+      "https://t.dtscout.com/idg/?su=104017402386437E65A8B54F19114218",
+      "https://pxdrop.lijit.com/a/t_.htm?ver=1.1741.924&cid=c026&cls=sync#cls=sync&dmn=vidsrc.to&GDPR_v2=&us_privacy=&pubid=dt_scout&gpp=&gpp_sid=&tt=t.dhj&cid=c026&lbl=lijit&flbl=pxcel&ll=d&ver=1.1741.924&ell=d&cck=ljt_reader&pn=%2Fembed%2Fmovie%2F200&qs=na&rdn=vidsrc.to&rpn=%2Fembed%2Fmovie%2F200&rqs=na&cc=US&cont=NA&rc=AZ&ipaddr="
     ],
     "network_requests": [
-      "https://s4.histats.com/stats/0.php?4890747&@f16&@g1&@h1&@i1&@j1740238302603&@k0&@l1&@m&@n0&@o1000&@q0&@r0&@s0&@ten-US%40posix&@u1920&@b1:-58885579&@b3:1740238303&@b4:js15_as.js&@b5:0&@a-_0.2.1&@vhttps%3A%2F%2Ffsvid.lol%2Fembed-mw23hm16z5mm.html&@w",
-      "https://t.dtscdn.com/widget/?d=51A01740238302A5EA633EFF5912EF47&nid=300&p=0&t=0&s=1920x1080x24&u=https%3A%2F%2Ffsvid.lol%2Fembed-mw23hm16z5mm.html&r=",
-      "https://t.dtscout.com/idg/?su=51A01740238302A5EA633EFF5912EF47",
-      "https://a.dtssrv.com/a?i=51A01740238302A5EA633EFF5912EF47&k=lotpano&v=d14b4b90ea61ec743aa55b96a493185ca02c3f4a67d597a83d436f1f61f520dd",
-      "https://de.tynt.com/deb/v2?id=wu!&dn=AFWU&cc=1&chpv=10_15_7&chuav=Not(A%3ABrand%3Bv%3D99.0.0.0%2C%20HeadlessChrome%3Bv%3D133.0.6943.16%2C%20Chromium%3Bv%3D133.0.6943.16&chp=macOS&chmob=0&chua=Not(A%3ABrand%3Bv%3D99%2C%20HeadlessChrome%3Bv%3D133%2C%20Chromium%3Bv%3D133&r=&pu=https%3A%2F%2Ffsvid.lol%2Fembed-mw23hm16z5mm.html",
-      "https://map.go.affec.tv/map/3a/?pid=CoIKSGe57d98jFnACnKwAg%3D%3D&us_privacy=&ts=1740238303162.3",
-      "https://sync.crwdcntrl.net/map/c=1389/tp=STSC/tpid=e089a6a8-4ab9-476d-9c56-3f7a140292ff-67b9eddf-5553/gdpr=0",
-      "https://fsvid.lol/embed-mw23hm16z5mm.html",
-      "https://e.dtscout.com/e/?v=1a&pid=5200&site=1&l=https%3A%2F%2Ffsvid.lol%2Fembed-mw23hm16z5mm.html&j=",
-      "https://t.dtscout.com/pv/?_a=v&_h=fsvid.lol&_ss=2taslnwnjv&_pv=1&_ls=0&_u1=1&_u3=1&_cc=us&_pl=d&_cbid=38cb&_cb=_dtspv.c",
-      "https://pixel-sync.sitescout.com/connectors/lotame/usersync?cookieQ=1&gdpr=0&redir=https%3A%2F%2Fsync.crwdcntrl.net%2Fmap%2Fc%3D1389%2Ftp%3DSTSC%2Ftpid%3D%24UUID%2Fgdpr%3D0",
-      "https://ml314.com/utsync.ashx?eid=50146&et=0&fp=738250c1cc6de11f9f12536b6338b4d2&gdpr=0",
-      "https://ssum-sec.casalemedia.com/ium?sourceid=11&uid=738250c1cc6de11f9f12536b6338b4d2&gdpr=0",
-      "https://dp1.33across.com/ps/?pid=669&uid=CoIKSGe57d98jFnACnKwAg%3D%3D&us_privacy=&random=1740238303162.7&pu=https%3A%2F%2Ffsvid.lol%2Fembed-mw23hm16z5mm.html",
-      "https://s10.histats.com/js15_as.js",
+      "https://pd.sharethis.com/pd/dtscout",
       "https://p.dtsan.net/dtsa.js",
-      "https://ic.tynt.com/b/p?id=wu!&lm=0&ts=1740238303045&dn=AFWU&iso=0&pu=https%3A%2F%2Ffsvid.lol%2Fembed-mw23hm16z5mm.html&t=fsvid.lol&chpv=10_15_7&chuav=Not(A%3ABrand%3Bv%3D99.0.0.0%2C%20HeadlessChrome%3Bv%3D133.0.6943.16%2C%20Chromium%3Bv%3D133.0.6943.16&chp=macOS&chmob=0&chua=Not(A%3ABrand%3Bv%3D99%2C%20HeadlessChrome%3Bv%3D133%2C%20Chromium%3Bv%3D133",
-      "https://pixel-sync.sitescout.com/connectors/lotame/usersync?gdpr=0&redir=https%3A%2F%2Fsync.crwdcntrl.net%2Fmap%2Fc%3D1389%2Ftp%3DSTSC%2Ftpid%3D%24UUID%2Fgdpr%3D0",
-      "https://live.rezync.com/sync/?c=4656c20ee35215f78e9273796625d90b&p=cab5a4722e64fa65aba8e60b6da5d556&pid=CoIKSGe57d98jFnACnKwAg%3D%3D&pcat=Technology+%26+Computing&pdev=&pctry=US&referrer=https%3A%2F%2Ffsvid.lol%2Fembed-mw23hm16z5mm.html&us_privacy=&cache_buster=1740238303162.4",
-      "https://sync.crwdcntrl.net/qmap?c=2700&tp=UNDR&gdpr=0&tpid=crtsn0meyx0866hbxvvta5ybd"
+      "https://ic.tynt.com/b/p?id=wu!&lm=0&ts=1740238643876&dn=AFWU&iso=0&pu=https%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200&t=vidsrc.to&chpv=10.0&chuav=Not(A%3ABrand%3Bv%3D99.0.0.0%2C%20HeadlessChrome%3Bv%3D133.0.6943.16%2C%20Chromium%3Bv%3D133.0.6943.16&chp=Windows&chmob=0&chua=Not(A%3ABrand%3Bv%3D99%2C%20HeadlessChrome%3Bv%3D133%2C%20Chromium%3Bv%3D133",
+      "https://vidsrc.xyz/embed/movie/200/",
+      "https://t.dtscout.com/idg/?su=104017402386437E65A8B54F19114218",
+      "https://t.dtscdn.com/widget/?d=104017402386437E65A8B54F19114218&nid=300&p=0&t=0&s=1920x1080x24&u=https%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200&r=",
+      "https://youradexchange.com/script/push.php?r=9098850&ipp=1&mads=2&position=top&srs=faff207db65c464e15a8978ff965e8b2&ufp=Linux%20x86_64%2FMozilla%2FNetscape%2Ftrue%2Ffalse%2FGoogle%20Inc.1920x10800en-US%40posix8424%20bits&cbpage=https%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200&atv=58.0&cbref=&chu=%22Not(A%3ABrand%22%3Bv%3D99%2C%20%22HeadlessChrome%22%3Bv%3D133%2C%20%22Chromium%22%3Bv%3D133&chmob=%3F0&chp=Windows&chpv=10.0&chuafv=133.0.6943.16",
+      "https://vidsrc.to/embed/movie/200",
+      "https://s4.histats.com/stats/0.php?4896283&@f16&@g1&@h1&@i1&@j1740238642916&@k0&@l1&@m&@n0&@o1000&@q0&@r0&@s0&@ten-US%40posix&@u1920&@b1:-72670121&@b3:1740238643&@b4:js15_as.js&@b5:0&@a-_0.2.1&@vhttps%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200&@w",
+      "https://bcp.crwdcntrl.net/5/ct=y/c=3825/tp=DTSC/tpid=104017402386437E65A8B54F19114218",
+      "https://t.dtscout.com/pv/?_a=v&_h=vidsrc.to&_ss=3te1w8cb1h&_pv=1&_ls=0&_u1=1&_u3=1&_cc=us&_pl=d&_cbid=5cpi&_cb=_dtspv.c",
+      "https://youradexchange.com/script/suurl5.php?r=9098842&chu=%22Not(A%3ABrand%22%3Bv%3D99%2C%20%22HeadlessChrome%22%3Bv%3D133%2C%20%22Chromium%22%3Bv%3D133&chmob=%3F0&chp=Windows&chpv=10.0&chuafv=133.0.6943.16&cbur=0.06817127864578332&cbiframe=0&cbWidth=1920&cbHeight=1080&cbtitle=&cbpage=https%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200&cbref=&cbdescription=&cbkeywords=&cbcdn=acscdn.com&ufp=Linux%20x86_64%2FMozilla%2FNetscape%2Ftrue%2Ffalse%2FGoogle%20Inc.1920x10800en-US%40posix8424%20bits&ts=1740238642704&srs=faff207db65c464e15a8978ff965e8b2&atv=58.0",
+      "https://e.dtscout.com/e/?v=1a&pid=5200&site=1&l=https%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200&j=",
+      "https://de.tynt.com/deb/v2?id=wu!&dn=AFWU&cc=1&chpv=10.0&chuav=Not(A%3ABrand%3Bv%3D99.0.0.0%2C%20HeadlessChrome%3Bv%3D133.0.6943.16%2C%20Chromium%3Bv%3D133.0.6943.16&chp=Windows&chmob=0&chua=Not(A%3ABrand%3Bv%3D99%2C%20HeadlessChrome%3Bv%3D133%2C%20Chromium%3Bv%3D133&r=&pu=https%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200",
+      "https://bcp.crwdcntrl.net/5/c=3825/tp=DTSC/tpid=104017402386437E65A8B54F19114218",
+      "https://s10.histats.com/js15_as.js"
     ]
   }
 }
