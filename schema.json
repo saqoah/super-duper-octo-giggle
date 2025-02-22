@@ -25,7 +25,7 @@
         },
         "filter": {
           "attribute": "src",
-          "pattern": ".*\\.(jpg|png)$"
+          "pattern": ".*\\.(jpg|png|gif|webp)$"
         }
       }
     },
@@ -71,6 +71,29 @@
       "pattern": "\"(https?://[^\"]+?(?:embed|video|stream|media|player|m3u8|mp4|ts)[^\"]*)\""
     }
   },
+  "actions": [
+    {
+      "type": "click",
+      "selector_type": "css",
+      "selector": "button, div",
+      "match_text": "(play|start|watch|▷)",
+      "retries": 1
+    },
+    {
+      "type": "wait",
+      "duration": 2
+    },
+    {
+      "type": "click",
+      "selector_type": "css",
+      "selector": "body",
+      "retries": 1
+    },
+    {
+      "type": "wait",
+      "duration": 3
+    }
+  ],
   "post_actions": {
     "iframe_urls": {
       "selector_type": "css",
@@ -80,7 +103,7 @@
     "network_requests": {
       "type": "network",
       "methods": ["GET", "POST"],
-      "pattern": ".*(?:m3u8|mp4|ts|video|media|embed).*"
+      "pattern": ".*(?:m3u8|mp4|ts|video|stream|media|embed).*"
     }
   }
 }
