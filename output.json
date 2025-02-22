@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": "2025-02-22 16:35:45",
+    "timestamp": "2025-02-22 16:40:25",
     "version": "2.3.1",
     "url": "https://www.amazon.com/best-sellers-laptops/zgbs/pc/565108"
   },
@@ -13,14 +13,37 @@
       {},
       {},
       {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
+      {},
       {}
     ],
     "network_requests": [
-      "https://capi.connatix.com/us/pixel?pId=32&puId=hH4bZo2HRkitBchWpcHr1g&callback=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3DconnatixHMT%26id%3D%7BpuId%7D&gdpr_consent=&final=true",
+      "https://fls-na.amazon.com/1/batch/1/OP/ATVPDKIKX0DER:139-6902280-6805136:YCGW8R2N00NEZZJM8H4P$uedata=s:%2Frd%2Fuedata%3Fld%26v%3D0.306711.0%26id%3DYCGW8R2N00NEZZJM8H4P%26ctb%3D1%26sc0%3Dglow-toaster-api-timer-DESKTOP%26bb0%3D450%26pc0%3D653%26ld0%3D653%26t0%3D1740242421777%26csmtags%3Daui%3Asw%3Apage_proxy%3Ano_ctrl%7Caui%7Caui%3Aajax%26pty%3Dzeitgeist%26spty%3Dbs%26pti%3Dpc%26tid%3DYCGW8R2N00NEZZJM8H4P%26aftb%3D1%26lob%3D1:653",
+      "https://capi.connatix.com/us/pixel?pId=32&puId=_eDiCF-lTGCTJH13zCNgHA&callback=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3DconnatixHMT%26id%3D%7BpuId%7D&gdpr_consent=&final=true",
+      "https://s.amazon-adsystem.com/v3/pr?exlist=n-xr-HMT_n-id-HMT_n-eq-HMT3_n-ix-HMT_n-y-HMT_n-cx-HMT_n-telaria_n-dx-HMT2_imdb_n-lucid_n-samba.tv_n-rb-HMT3_adb_mp_af_n-sk_n-mediarithmics_n-lm-HMT3_index_n-kg-HMT_an_n-pm-HMT_nsln_fbca_nd_n-ym-HMT_n-ox-hmt_tbl_ns_bsw_bk_n-dm2-HMT_gem_n-zeotap-4_fw_n-fo-HMT_n-kr-new_n-bsw-hmt_n-st-HMT1_n-fw-HMT1_n-og-HMT_adelphic_g_kr_n-comscr.com_ox_n-tl-HMT_n-semasio-ecm_n-gg-HMT2_n-g-hmt_n-ispot_pm&fv=1.0&ex-pl-fbca=8Sku21VrRuaw_2ilWJL3cw&a=cm&ex-pl-n-kr-new=BnzZmWvRTsGQiQ5EVRLABQ&dmt=1&gdpr_consent=&ex-pl-n-g-hmt=mQ_6q8pDS22tNFHnGROGKw&ep=ttam_T219Ay-cPciHbT10gWSoU9-b2dQnapielXH2WRNFwR41h2m5lx2CsYMB6zQP-ATJHZaCRxnWr3-Q9_y35QpzKRjQqI6nke4z6GrG-HufIwIEqi8tHrw3LzPA2uMLdEHvOD0nKLmkQ6frdJcA6PhShS09ja73MRfvuKeQ7-510jnosnIEfYMabgnhwjDKlODHLWJQW_NpeAV_pHUUXuoVLVG3uOxrwagrSqSj9p5NAyr4fd8INqazEZwwUSYYX997pAl6j0RqPjrxsHLKCaiIrLKkbD_UPc6KDfeOtDTeIJs4L4Q2lmNU6x-Gagev8EMddeMGewpac2Thoa3UdnykaOf2_Dt2aRnTx7F7dtt4zfzNs7SBapQ-pafMu-u6N0vXoN2JCAVu0MeaJ02AnXY5x8dwsCaQnkmghDsi-W1Ad89q3k8NmRCMfYn8bsoQhWooG3GdLaZGMJHe2h-Xzpo5WLRBIQKrf2NCxlGavp-V9-DEBijoa8lULXflPK7D4ZdFhKBXG5xR8qIgU2QeFRrf72EetDwRb7xHtAl4_lmJE6PTqpNg3pqvykzIHJCB_SBrHdwcv-iEsC62OHii2m_ABiwe_Dgzhiu8Nu5bSQ7OZCaHHkjJQFwAWlWI-5Q7kQz65XiKFt-UakBRH68704oEI2D3UlILPSy-eMm-GFfpHcyU6cmZ5R5s33Uis4mL8HLnSOFFsww3HfsPkLyPlfICSwbYMP8dAgyk3G6JpJWCBH3iyRmUH8-SVCqpnKxrYnKAni0SHg94Y4yKV_1QaDOXTpdSWx13TL-SmsFJWkbAMxSajUat70tJvYfplA1UCYuwwyA0d76YCJI8ii4x4lLJpzYTWCWFpe5ddg8tBDIcPx4Z8lD1m7RIg_AQXL_n-ZzXJkQSsQBI1FMA6vCHeJr55_4vVk-yFw8RceOPSnJxBA9QUZSiaHgpLQDwE-0wVRHtMlzbZs2_7YFlHnvpEuztdSmmPWoMoIxne13PZOuqujF_vL6Se2aeMG4N5mHcHBjtriJfIp_Z-5L2w33ZFO3hiSJ-__rYTO27tMXw1-Q5bgpX0k1YQZpaHrUIj4baPlJMQOtdGVmRUchYkKfhsatSaLlPfZr-sVWQUgtickaervxtX8pLj2qrpVeB6j0hXskaGVBETvNWJlARyZPEU2WBV79QEVqIxhJ2UtV_rTQR08rkKsWTIA_abqThJ4ZeFW7uJ5iIbTvAuaZKi4mcNy2EOaRqTkmlYwzWtd9qKFqdcM5YjG2KoIoY1GFJCEVa9GwrWIpGI_kk8AmEjNwTQ",
       "https://lciapi.ninthdecimal.com/v1/lci/sync/adv-amzn/c-23445/?rdr=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3F%26ex%3Dninthdecimal.com%26id%3D%24%7BND_UID%7D",
-      "https://fls-na.amazon.com/1/batch/1/OP/ATVPDKIKX0DER:142-2658220-4328734:Z2ME04TKB5P1HNZX32HM$uedata=s:%2Frd%2Fuedata%3Fld%26v%3D0.306711.0%26id%3DZ2ME04TKB5P1HNZX32HM%26ctb%3D1%26sc0%3Dglow-toaster-api-timer-DESKTOP%26bb0%3D418%26pc0%3D525%26ld0%3D525%26t0%3D1740242144384%26csmtags%3Daui%3Asw%3Abrowser%3Aregister%3Asupported%7Caui%7Caui%3Aajax%26pty%3Dzeitgeist%26spty%3Dbs%26pti%3Dpc%26tid%3DZ2ME04TKB5P1HNZX32HM%26aftb%3D1%26lob%3D1:525",
-      "https://crb.kargo.com/api/v1/dsync/amazon?exid=pSJ7LfbwTmS8nK1TaoR27Q&r=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3DKargoHMT&id=&gdpr_consent=",
-      "https://capi.connatix.com/us/pixel?pId=32&puId=hH4bZo2HRkitBchWpcHr1g&callback=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3DconnatixHMT%26id%3D%7BpuId%7D&gdpr_consent="
+      "https://crb.kargo.com/api/v1/dsync/amazon?exid=_vXQ07t2STCTNKbeFgOQkQ&r=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3DKargoHMT&id=&gdpr_consent=",
+      "https://capi.connatix.com/us/pixel?pId=32&puId=_eDiCF-lTGCTJH13zCNgHA&callback=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3DconnatixHMT%26id%3D%7BpuId%7D&gdpr_consent="
     ]
   }
 }
