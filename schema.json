@@ -1,61 +1,86 @@
 {
-  "url": "https://www.amazon.com/best-sellers-laptops/zgbs/pc/565108",
+  "url": "https://french-stream.my/15119718-henry-danger-the-movie.html",
   "properties": {
-    "page_content": {
+    "inner_text": {
       "type": "string",
       "selector_type": "css",
-      "selector": "body",
-      "attribute": "innerHTML"
+      "selector": "body"
     },
-    "laptops": {
+    "images": {
       "type": "array",
       "selector_type": "css",
-      "selector": "div",
+      "selector": "img",
       "items": {
         "properties": {
-          "raw_content": {
+          "src": {
             "type": "string",
             "selector": "self",
-            "attribute": "innerHTML"
+            "attribute": "src"
           },
-          "title": {
+          "alt": {
             "type": "string",
-            "selector": "*",
-            "attribute": "textContent",
-            "filter": {
-              "attribute": "textContent",
-              "pattern": ".{10,}"
-            }
-          },
-          "link": {
+            "selector": "self",
+            "attribute": "alt"
+          }
+        },
+        "filter": {
+          "attribute": "src",
+          "pattern": ".*\\.(jpg|png|gif|webp)$"
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "a[href]",
+      "items": {
+        "properties": {
+          "href": {
             "type": "string",
-            "selector": "a",
+            "selector": "self",
             "attribute": "href"
           },
-          "price": {
+          "text": {
             "type": "string",
-            "selector": "*",
-            "attribute": "textContent",
-            "filter": {
-              "attribute": "textContent",
-              "pattern": "\\$\\d+\\.\\d{2}"
-            }
+            "selector": "self"
+          }
+        },
+        "filter": {
+          "attribute": "text",
+          "pattern": ".+"
+        }
+      }
+    },
+    "scripts": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "script",
+      "items": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "selector": "self"
           }
         }
       }
+    },
+    "playback_urls": {
+      "type": "regex",
+      "selector_type": "css",
+      "selector": "script, iframe",
+      "pattern": "\"(https?://[^\"]+?(?:embed|video|stream|media|player|m3u8|mp4|ts)[^\"]*)\""
     }
   },
-  "actions": [
-    {
-      "type": "wait",
-      "duration": 10
-    }
-  ],
   "post_actions": {
+    "iframe_urls": {
+      "selector_type": "css",
+      "selector": "iframe",
+      "attribute": "src"
+    },
     "network_requests": {
       "type": "network",
-      "methods": ["GET"],
-      "pattern": ".*(?:json|api|product).*"
+      "methods": ["GET", "POST"],
+      "pattern": ".*(?:m3u8|mp4|ts|video|stream|media|embed).*"
     }
   }
 }
