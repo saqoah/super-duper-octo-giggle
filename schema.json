@@ -71,19 +71,6 @@
       "pattern": "\"(https?://[^\"]+?(?:embed|video|stream|media|player|m3u8|mp4|ts)[^\"]*)\""
     }
   },
-  "actions": [
-    {
-      "type": "click",
-      "selector_type": "css",
-      "selector": "button, a",
-      "match_text": "(play|regarder|stream|lecture)",
-      "retries": 3
-    },
-    {
-      "type": "wait",
-      "duration": 5
-    }
-  ],
   "post_actions": {
     "iframe_urls": {
       "selector_type": "css",
