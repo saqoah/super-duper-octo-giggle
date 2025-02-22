@@ -1,58 +1,69 @@
 {
-  "url": "https://wiflix-pro.site/serie-en-streaming/32858-reacher-saison-3.html",
+  "url": "https://www.amazon.com/best-sellers-laptops/zgbs/pc/565108",
   "properties": {
-    "links": {
+    "page_content": {
+      "type": "string",
+      "selector_type": "css",
+      "selector": "body",
+      "attribute": "innerHTML"
+    },
+    "laptops": {
       "type": "array",
       "selector_type": "css",
-      "selector": "a[href]",
+      "selector": "div[data-asin]",
       "items": {
         "properties": {
-          "href": {
+          "raw_content": {
             "type": "string",
             "selector": "self",
+            "attribute": "innerHTML"
+          },
+          "title": {
+            "type": "string",
+            "selector": "*",
+            "attribute": "textContent",
+            "filter": {
+              "attribute": "textContent",
+              "pattern": ".{10,}"
+            }
+          },
+          "link": {
+            "type": "string",
+            "selector": "a",
             "attribute": "href"
           },
-          "text": {
+          "price": {
             "type": "string",
-            "selector": "self"
+            "selector": "*",
+            "attribute": "textContent",
+            "filter": {
+              "attribute": "textContent",
+              "pattern": "\\$\\d+\\.\\d{2}"
+            }
           }
         },
-        "filter": {
-          "attribute": "text",
-          "pattern": ".+"
-        }
+        "extract_children": true
       }
-    },
-    "scripts": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "script",
-      "items": {
-        "properties": {
-          "content": {
-            "type": "string",
-            "selector": "self"
-          }
-        }
-      }
-    },
-    "playback_urls": {
-      "type": "regex",
-      "selector_type": "css",
-      "selector": "script, iframe",
-      "pattern": "\"(https?://[^\"]+?(?:embed|video|stream|media|player|m3u8|mp4|ts)[^\"]*)\""
     }
   },
+  "actions": [
+    {
+      "type": "wait",
+      "duration": 10
+    }
+  ],
   "post_actions": {
-    "iframe_urls": {
-      "selector_type": "css",
-      "selector": "iframe",
-      "attribute": "src"
-    },
     "network_requests": {
       "type": "network",
-      "methods": ["GET", "POST"],
-      "pattern": ".*(?:m3u8|mp4|ts|video|stream|media|embed).*"
+      "methods": ["GET"],
+      "pattern": ".*(?:json|api|product).*",
+      "capture_response": true
     }
-  }
+  },
+  "headers": {
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://www.google.com/"
+  },
+  "max_retries": 5,
+  "timeout": 120
 }
