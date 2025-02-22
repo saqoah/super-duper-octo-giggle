@@ -1,85 +1,14 @@
 {
   "metadata": {
-    "timestamp": "2025-02-22 15:37:24",
+    "timestamp": "2025-02-22 15:47:47",
     "version": "2.3.1",
     "url": "https://vidsrc.to/embed/movie/200"
   },
   "data": {
-    "inner_text": "",
-    "images": [
-      {
-        "src": "https://pixel.onaudience.com/?partner=137085098&mapped=104017402386437E65A8B54F19114218",
-        "alt": null
-      }
-    ],
-    "links": [],
-    "scripts": [
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": "aclib.runInPagePush({\n        zoneId: '9098850',\n        refreshRate: 30,\n        maxAds: 2,\n    });"
-      },
-      {
-        "content": "aclib.runPop({\n        zoneId: '9098842',\n    });"
-      },
-      {
-        "content": "var _Hasync= _Hasync|| [];\n_Hasync.push(['Histats.start', '1,4896283,4,0,0,0,00010000']);\n_Hasync.push(['Histats.fasi', '1']);\n_Hasync.push(['Histats.track_hits', '']);\n(function() {\nvar hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;\nhs.src = ('//s10.histats.com/js15_as.js');\n(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);\n})();"
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      }
-    ],
-    "playback_urls": [],
-    "iframe_urls": [
-      "https://vidsrc.xyz/embed/movie/200/",
-      "https://t.dtscout.com/idg/?su=104017402386437E65A8B54F19114218",
-      "https://pxdrop.lijit.com/a/t_.htm?ver=1.1741.924&cid=c026&cls=sync#cls=sync&dmn=vidsrc.to&GDPR_v2=&us_privacy=&pubid=dt_scout&gpp=&gpp_sid=&tt=t.dhj&cid=c026&lbl=lijit&flbl=pxcel&ll=d&ver=1.1741.924&ell=d&cck=ljt_reader&pn=%2Fembed%2Fmovie%2F200&qs=na&rdn=vidsrc.to&rpn=%2Fembed%2Fmovie%2F200&rqs=na&cc=US&cont=NA&rc=AZ&ipaddr="
-    ],
-    "network_requests": [
-      "https://pd.sharethis.com/pd/dtscout",
-      "https://p.dtsan.net/dtsa.js",
-      "https://ic.tynt.com/b/p?id=wu!&lm=0&ts=1740238643876&dn=AFWU&iso=0&pu=https%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200&t=vidsrc.to&chpv=10.0&chuav=Not(A%3ABrand%3Bv%3D99.0.0.0%2C%20HeadlessChrome%3Bv%3D133.0.6943.16%2C%20Chromium%3Bv%3D133.0.6943.16&chp=Windows&chmob=0&chua=Not(A%3ABrand%3Bv%3D99%2C%20HeadlessChrome%3Bv%3D133%2C%20Chromium%3Bv%3D133",
-      "https://vidsrc.xyz/embed/movie/200/",
-      "https://t.dtscout.com/idg/?su=104017402386437E65A8B54F19114218",
-      "https://t.dtscdn.com/widget/?d=104017402386437E65A8B54F19114218&nid=300&p=0&t=0&s=1920x1080x24&u=https%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200&r=",
-      "https://youradexchange.com/script/push.php?r=9098850&ipp=1&mads=2&position=top&srs=faff207db65c464e15a8978ff965e8b2&ufp=Linux%20x86_64%2FMozilla%2FNetscape%2Ftrue%2Ffalse%2FGoogle%20Inc.1920x10800en-US%40posix8424%20bits&cbpage=https%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200&atv=58.0&cbref=&chu=%22Not(A%3ABrand%22%3Bv%3D99%2C%20%22HeadlessChrome%22%3Bv%3D133%2C%20%22Chromium%22%3Bv%3D133&chmob=%3F0&chp=Windows&chpv=10.0&chuafv=133.0.6943.16",
-      "https://vidsrc.to/embed/movie/200",
-      "https://s4.histats.com/stats/0.php?4896283&@f16&@g1&@h1&@i1&@j1740238642916&@k0&@l1&@m&@n0&@o1000&@q0&@r0&@s0&@ten-US%40posix&@u1920&@b1:-72670121&@b3:1740238643&@b4:js15_as.js&@b5:0&@a-_0.2.1&@vhttps%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200&@w",
-      "https://bcp.crwdcntrl.net/5/ct=y/c=3825/tp=DTSC/tpid=104017402386437E65A8B54F19114218",
-      "https://t.dtscout.com/pv/?_a=v&_h=vidsrc.to&_ss=3te1w8cb1h&_pv=1&_ls=0&_u1=1&_u3=1&_cc=us&_pl=d&_cbid=5cpi&_cb=_dtspv.c",
-      "https://youradexchange.com/script/suurl5.php?r=9098842&chu=%22Not(A%3ABrand%22%3Bv%3D99%2C%20%22HeadlessChrome%22%3Bv%3D133%2C%20%22Chromium%22%3Bv%3D133&chmob=%3F0&chp=Windows&chpv=10.0&chuafv=133.0.6943.16&cbur=0.06817127864578332&cbiframe=0&cbWidth=1920&cbHeight=1080&cbtitle=&cbpage=https%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200&cbref=&cbdescription=&cbkeywords=&cbcdn=acscdn.com&ufp=Linux%20x86_64%2FMozilla%2FNetscape%2Ftrue%2Ffalse%2FGoogle%20Inc.1920x10800en-US%40posix8424%20bits&ts=1740238642704&srs=faff207db65c464e15a8978ff965e8b2&atv=58.0",
-      "https://e.dtscout.com/e/?v=1a&pid=5200&site=1&l=https%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200&j=",
-      "https://de.tynt.com/deb/v2?id=wu!&dn=AFWU&cc=1&chpv=10.0&chuav=Not(A%3ABrand%3Bv%3D99.0.0.0%2C%20HeadlessChrome%3Bv%3D133.0.6943.16%2C%20Chromium%3Bv%3D133.0.6943.16&chp=Windows&chmob=0&chua=Not(A%3ABrand%3Bv%3D99%2C%20HeadlessChrome%3Bv%3D133%2C%20Chromium%3Bv%3D133&r=&pu=https%3A%2F%2Fvidsrc.to%2Fembed%2Fmovie%2F200",
-      "https://bcp.crwdcntrl.net/5/c=3825/tp=DTSC/tpid=104017402386437E65A8B54F19114218",
-      "https://s10.histats.com/js15_as.js"
-    ]
+    "inner_text": null,
+    "images": null,
+    "links": null,
+    "scripts": null,
+    "playback_urls": null
   }
 }
