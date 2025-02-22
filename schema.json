@@ -42,7 +42,7 @@
   "actions": [
     {
       "type": "wait",
-      "duration": 10  // Extended to 10s for full JS load
+      "duration": 10 
     }
   ],
   "post_actions": {
