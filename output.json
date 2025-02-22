@@ -1,52 +1,13 @@
 {
   "metadata": {
-    "timestamp": "2025-02-22 21:39:01",
+    "timestamp": "2025-02-22 21:55:52",
     "version": "2.3.2",
-    "url": "https://french-tv.lol/index.php?newsid=4"
+    "url": "https://vm.tiktok.com/ZNdJdfffJ/"
   },
   "data": {
-    "inner_text": "FRENCH\nSTREAM TV\n|  CHAINES TV\n|  FRENCH STREAM |\n|  ANIMES |\n|  CONTACT |\nLIVE\nBein Sport 1\nSIGNALER UN PROBLEME\n\n\nGARDER CE SITE GRATUIT ET SANS PUBLICITÉ EN FAISANT UN DON\n|  CHAINES TV\n|  FRENCH STREAM |\n|  ANIMES |\n|  CONTACT |",
-    "scripts": [
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": "{\"@context\":\"https://schema.org\",\"@graph\":[{\"@type\":\"BreadcrumbList\",\"@context\":\"https://schema.org/\",\"itemListElement\":[{\"@type\":\"ListItem\",\"position\":1,\"item\":{\"@id\":\"https://french-tv.lol/\",\"name\":\"French TV LIVE STREAMING\"}},{\"@type\":\"ListItem\",\"position\":2,\"item\":{\"@id\":\"https://french-tv.lol/index.php?do=cat&amp;category=chaines-live\",\"name\":\"chaines live\"}},{\"@type\":\"ListItem\",\"position\":3,\"item\":{\"@id\":\"https://french-tv.lol/index.php?newsid=4\",\"name\":\"Bein Sport 1\"}}]}]}"
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": "function openPopup(type) {\n            let content = \"\";\n            if (type === 'donation') {\n                content = `\n                    <h2>Soutenez-nous avec un don BTC</h2>\n                    <img src='https://i.imgur.com/wy5YZ19.jpeg' alt='QR Code'>\n                    <p class='btc-key'>Adresse BTC : <br><strong>bc1q0lpl5vmdp6vf3n5s3k7y5lszvsmsw35k4q4fkv</strong></p>\n                    <p class='help-link' onclick='openPopup(\"help\")'>Pas familiarisé avec le BTC ?</p>\n                `;\n            } else if (type === 'help') {\n                content = `\n                    <div class='help-content'>\n                        <h2>Avantages du Bitcoin</h2>\n                        <ul>\n                            <li><strong>Sécurisé</strong> - Le Bitcoin est une monnaie numérique sécurisée. Contrairement à PayPal ou à une carte bancaire, il n’est pas nécessaire de saisir des informations bancaires ni de fournir une adresse e-mail. Il suffit simplement de scanner le QR code avec votre téléphone, et c'est terminé !</li>\n                            <li><strong>Coinbase</strong> - Pour commencer à utiliser le BTC, nous vous conseillons l'application Coinbase, car elle est simple d'utilisation. Il vous suffit de télécharger Coinbase depuis votre store pour recevoir et envoyer du BTC facilement.</li>\n                            <li><strong>Faire un don</strong> - Une fois l'application installée, connectez-vous puis scannez simplement notre QR Code pour envoyer un don.</li>\n                        </ul>\n                        <p class='help-link' onclick='openPopup(\"donation\")'>Faire un don</p>\n                    </div>\n                `;\n            }\n            document.getElementById(\"popup-content\").innerHTML = content;\n            document.getElementById(\"popup\").style.display = \"block\";\n            document.getElementById(\"overlay\").style.display = \"block\";\n        }\n\n        function closePopup() {\n            document.getElementById(\"popup\").style.display = \"none\";\n            document.getElementById(\"overlay\").style.display = \"none\";\n        }"
-      },
-      {
-        "content": "<!--\nvar dle_root       = '/';\nvar dle_admin      = '';\nvar dle_login_hash = 'd89ebff74f46fc009aaf04c143b5e6b763b340eb';\nvar dle_group      = 5;\nvar dle_link_type  = 0;\nvar dle_skin       = 'french-live';\nvar dle_wysiwyg    = '2';\nvar quick_wysiwyg  = '2';\nvar dle_min_search = '4';\nvar dle_act_lang   = [\"Yes\", \"Annuler\", \"Enter\", \"Annuler\", \"Save\", \"Delete\", \"Loading. Please, wait...\"];\nvar menu_short     = 'Quick edit';\nvar menu_full      = 'Full edit';\nvar menu_profile   = 'View profile';\nvar menu_send      = 'Send message';\nvar menu_uedit     = 'Admin Center';\nvar dle_info       = 'Information';\nvar dle_confirm    = 'Confirm';\nvar dle_prompt     = 'Enter the information';\nvar dle_req_field  = [\"Fill the name field\", \"Fill the message field\", \"Fill the field with the subject of the message\"];\nvar dle_del_agree  = 'Are you sure you want to delete it? This action cannot be undone';\nvar dle_spam_agree = 'Are you sure you want to mark the user as a spammer? This will remove all his comments';\nvar dle_c_title    = 'Envoyer une plainte';\nvar dle_complaint  = 'Dites-nous ce qui cloche';\nvar dle_mail       = 'Your e-mail:';\nvar dle_big_text   = 'Highlighted section of text is too large.';\nvar dle_orfo_title = 'Enter a comment to the detected error on the page for Administration ';\nvar dle_p_send     = 'Valider';\nvar dle_p_send_ok  = 'Notification has been sent successfully ';\nvar dle_save_ok    = 'Changes are saved successfully. Refresh the page?';\nvar dle_reply_title= 'Reply to the comment';\nvar dle_tree_comm  = '0';\nvar dle_del_news   = 'Delete article';\nvar dle_sub_agree  = 'Do you really want to subscribe to this article’s comments?';\nvar dle_unsub_agree  = 'Do you really want to unsubscribe from comments on this publication?';\nvar dle_captcha_type  = '0';\nvar dle_share_interesting  = [\"Share a link to the selected text\", \"Twitter\", \"Facebook\", \"Вконтакте\", \"Direct Link:\", \"Right-click and select «Copy Link»\"];\nvar DLEPlayerLang     = {prev: 'Previous',next: 'Next',play: 'Play',pause: 'Pause',mute: 'Mute', unmute: 'Unmute', settings: 'Settings', enterFullscreen: 'Enable full screen mode', exitFullscreen: 'Disable full screen mode', speed: 'Speed', normal: 'Normal', quality: 'Quality', pip: 'PiP mode'};\nvar DLEGalleryLang    = {CLOSE: 'Close (Esc)', NEXT: 'Next Image', PREV: 'Previous image', ERROR: 'Warning! An error was detected', IMAGE_ERROR: 'Failed to load image', TOGGLE_SLIDESHOW: 'Watch slideshow (space) ',TOGGLE_FULLSCREEN: 'Full-screen mode', TOGGLE_THUMBS: 'Turn on / Turn off thumbnails', ITERATEZOOM: 'Increase / Reduce', DOWNLOAD: 'Download image' };\nvar DLEGalleryMode    = 1;\nvar DLELazyMode       = 0;\nvar allow_dle_delete_news   = false;\nvar dle_search_delay   = false;\nvar dle_search_value   = '';\njQuery(function($){\n\t\t\t\t\tsetTimeout(function() {\n\t\t\t\t\t\t$.get(dle_root + \"engine/ajax/controller.php?mod=adminfunction\", { 'id': '4', action: 'newsread', user_hash: dle_login_hash });\n\t\t\t\t\t}, 5000);\n\n\t\n\t\n\ttinyMCE.baseURL = dle_root + 'engine/editor/jscripts/tiny_mce';\n\ttinyMCE.suffix = '.min';\n\tvar dle_theme = '';\n\n\tif(dle_theme != '') {\n\t\t$('body').addClass( dle_theme );\n\t}\ttinymce.init({\n\t\tselector: 'textarea#comments',\n\t\tlanguage : \"en\",\n\t\tdirectionality: 'ltr',\n\t\tbody_class: dle_theme,\n\t\tskin: dle_theme == 'dle_theme_dark' ? 'oxide-dark' : 'oxide',\n\t\telement_format : 'html',\n\t\twidth : \"100%\",\n\t\theight : 260,\n\n\t\tdeprecation_warnings: false,\n\t\tpromotion: false,\n\t\tcache_suffix: '?v=ph1s3',\n\t\tlicense_key: 'gpl',\n\t\tplugins: \"link autolink lists quickbars dlebutton codesample\",\n\t\t\n\t\tdraggable_modal: true,\n\t\ttoolbar_mode: 'floating',\n\t\tcontextmenu: false,\n\t\trelative_urls : false,\n\t\tconvert_urls : false,\n\t\tremove_script_host : false,\n\t\tbrowser_spellcheck: true,\n\t\textended_valid_elements : \"div[align|style|class|data-commenttime|data-commentuser|contenteditable],span[id|data-username|data-userurl|align|style|class|contenteditable],b/strong,i/em,u,s,p[align|style|class|contenteditable],pre[class],code\",\n\t\tquickbars_insert_toolbar: '',\n\t\tquickbars_selection_toolbar: 'bold italic underline | dlequote dlespoiler dlehide',\n\t\t\n\t    formats: {\n\t      bold: {inline: 'b'},\n\t      italic: {inline: 'i'},\n\t      underline: {inline: 'u', exact : true},\n\t      strikethrough: {inline: 's', exact : true}\n\t    },\n\t\t\n\t\tpaste_as_text: true,\n\t\telementpath: false,\n\t\tbranding: false,\n\t\t\n\t\tdle_root : dle_root,\n\t\tdle_upload_area : \"comments\",\n\t\tdle_upload_user : \"\",\n\t\tdle_upload_news : \"0\",\n\t\t\n\t\tmenubar: false,\n\t\tlink_default_target: '_blank',\n\t\teditable_class: 'contenteditable',\n\t\tnoneditable_class: 'noncontenteditable',\n\t\timage_dimensions: true,\n\t\tpaste_data_images: false,\n\n\t\t\n\t\ttoolbar: \"bold italic underline | alignleft aligncenter alignright | bullist numlist | dleemo link dleleech  | dlequote codesample dlespoiler dlehide\",\n\t\t\n\t\tmobile: {\n\t\t\ttoolbar_mode: \"sliding\",\n\t\t\ttoolbar: \"bold italic underline | alignleft aligncenter alignright | bullist numlist | dleemo link dleleech  dlequote dlespoiler dlehide\",\n\t\t\t\n\t\t},\n\t\t\n\t\tcontent_css : dle_root + \"engine/editor/css/content.css?v=ph1s3\",\n\t\t\n\t\tcodesample_languages: [\n\t\t\t{ text: 'HTML/XML', value: 'markup' },\n\t\t\t{ text: 'JavaScript', value: 'javascript' },\n\t\t\t{ text: 'CSS', value: 'css' },\n\t\t\t{ text: 'PHP', value: 'php' },\n\t\t\t{ text: 'SQL', value: 'sql' },\n\t\t\t{ text: 'Ruby', value: 'ruby' },\n\t\t\t{ text: 'Python', value: 'python' },\n\t\t\t{ text: 'Java', value: 'java' },\n\t\t\t{ text: 'C', value: 'c' },\n\t\t\t{ text: 'C#', value: 'csharp' },\n\t\t\t{ text: 'C++', value: 'cpp' }\n\t\t],\n\n\t\tsetup: (editor) => {\n\n\t\t\tconst onCompeteAction = (autocompleteApi, rng, value) => {\n\t\t\t\teditor.selection.setRng(rng);\n\t\t\t\teditor.insertContent(value);\n\t\t\t\tautocompleteApi.hide();\n\t\t\t};\n\n\t\t\teditor.ui.registry.addAutocompleter('getusers', {\n\t\t\ttrigger: '@',\n\t\t\tminChars: 1,\n\t\t\tcolumns: 1,\n\t\t\tonAction: onCompeteAction,\n\t\t\tfetch: (pattern) => {\n\n\t\t\t\treturn new Promise((resolve) => {\n\n\t\t\t\t\t$.get(dle_root + \"engine/ajax/controller.php?mod=find_tags\", { mode: 'users', term: pattern, skin: dle_skin, user_hash: dle_login_hash }, function(data){\n\t\t\t\t\t\tif ( data.found ) {\n\t\t\t\t\t\t\tresolve(data.items);\n\t\t\t\t\t\t}\n\t\t\t\t\t}, \"json\");\n\n\t\t\t\t});\n\t\t\t}\n\t\t\t});\n\t\t}\n\n\t});\n\t\t\t\t$('#dle-comments-form').submit(function() {\n\t\t\t\t\tif( $('#comments-image-uploader').data('files') == 'selected' ) {\n\t\t\t\t\t\t$('#comments-image-uploader').plupload('start');\n\t\t\t\t\t} else {\n\t\t\t\t\t\tdoAddComments();\n\t\t\t\t\t}\n\t\t\t\t\treturn false;\n\t\t\t\t});\nFastSearch();\n});\n//-->"
-      },
-      {
-        "content": "var _Hasync= _Hasync|| [];\n_Hasync.push(['Histats.start', '1,4929448,4,0,0,0,00010000']);\n_Hasync.push(['Histats.fasi', '1']);\n_Hasync.push(['Histats.track_hits', '']);\n(function() {\nvar hs = document.createElement('script'); hs.type = 'text/javascript'; hs.async = true;\nhs.src = ('//s10.histats.com/js15_as.js');\n(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(hs);\n})();"
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      }
-    ],
+    "inner_text": "",
     "playback_urls": [],
-    "iframe_urls": [
-      "https://french-tv.lol/player/fsplayer.php?id=44"
-    ],
-    "network_requests": [
-      "https://iptv1.french-live.lol/live/70013B23F3440093B75C4C8CF5C5C84D/44.m3u8"
-    ]
+    "iframe_urls": null,
+    "network_requests": null
   }
 }
