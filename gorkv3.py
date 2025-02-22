@@ -21,9 +21,9 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-SCRIPT_VERSION = "3.0.1"  # Bumped for syntax fix
+SCRIPT_VERSION = "3.0.2"  # Bumped for network filtering
 CURRENT_USER = "saqoah"
-LAST_UPDATED = "2025-02-22 20:00:00"
+LAST_UPDATED = "2025-02-22 20:10:00"
 
 class ScrapingError(Exception):
     pass
@@ -111,14 +111,19 @@ async def scrape_website(schema: ScrapingSchema):
         network_data = {"requests": [], "responses": []}
 
         async def handle_request(request):
-            network_data["requests"].append({"method": request.method, "url": request.url, "headers": dict(request.headers)})
+            # Filter out unwanted file types
+            unwanted_extensions = ('.gif', '.png', '.jpg', '.jpeg', '.woff', '.woff2', '.css', '.ico')
+            if not any(request.url.endswith(ext) for ext in unwanted_extensions):
+                network_data["requests"].append({"method": request.method, "url": request.url, "headers": dict(request.headers)})
 
         async def handle_response(response):
-            try:
-                body = await response.text()
-            except Exception:
-                body = None
-            network_data["responses"].append({"url": response.url, "status": response.status, "body": body})
+            unwanted_extensions = ('.gif', '.png', '.jpg', '.jpeg', '.woff', '.woff2', '.css', '.ico')
+            if not any(response.url.endswith(ext) for ext in unwanted_extensions):
+                try:
+                    body = await response.text()
+                except Exception:
+                    body = None
+                network_data["responses"].append({"url": response.url, "status": response.status, "body": body})
 
         page.on("request", handle_request)
         page.on("response", handle_response)
@@ -128,7 +133,7 @@ async def scrape_website(schema: ScrapingSchema):
             page.set_default_timeout(timeout)
             for attempt in range(schema.get("max_retries", 3)):
                 try:
-                    response = await page.goto(url, wait_until='domcontentloaded')
+                    response = await page.goto(url, wait_until='networkidle')  # Changed to networkidle for full load
                     if not response or not response.ok:
                         raise ScrapingError(f"Failed to load page: {response.status}")
                     break
@@ -139,6 +144,8 @@ async def scrape_website(schema: ScrapingSchema):
                     logger.warning(f"Attempt {attempt + 1} failed, retrying...")
                     await asyncio.sleep(2 ** attempt)
 
+            # Ensure JS renders fully
+            await page.wait_for_load_state('networkidle')
             data = await extract_data(page, schema)
             if "actions" in schema:
                 for action in schema["actions"]:
@@ -214,7 +221,7 @@ async def extract_property(page: Page, key: str, value: PropertyConfig, depth: i
         selector_type = value.get("selector_type", "css")
         selector = value["selector"]
         if selector_type == "css":
-            await page.wait_for_selector(selector, state="attached", timeout=20000)
+            await page.wait_for_selector(selector, state="attached", timeout=30000)  # Increased timeout
             elements = await page.query_selector_all(selector)
         elif selector_type == "xpath":
             elements = await page.locator(selector).all()
@@ -279,10 +286,10 @@ async def extract_property(page: Page, key: str, value: PropertyConfig, depth: i
 
 async def extract_element_content(element):
     return {
-        "tag": await element.evaluate("el => el.tagName.toLowerCase()"),  # Fixed: Added closing quote and parenthesis
+        "tag": await element.evaluate("el => el.tagName.toLowerCase()"),
         "text": await element.inner_text(),
         "html": await element.inner_html(),
-        "attributes": await element.evaluate("el => Object.fromEntries([...el.attributes].map(attr => [attr.name, attr.value]))")  # Removed extra parenthesis
+        "attributes": await element.evaluate("el => Object.fromEntries([...el.attributes].map(attr => [attr.name, attr.value]))")
     }
 
 async def perform_action(page: Page, action: ActionConfig):
