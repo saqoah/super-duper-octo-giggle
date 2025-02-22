@@ -1,46 +1,99 @@
 {
-  "url": "https://wiflix-pro.site/film-en-streaming/32793-vol-a-haut-risque.html",
+  "url": "https://french-stream.my/15119718-henry-danger-the-movie.html",
   "properties": {
-    "title": {
+    "inner_text": {
       "type": "string",
-      "selector": "title",
-      "selector_type": "css"
-    },
-    "description": {
-      "type": "string",
-      "selector": "meta[name='description']",
       "selector_type": "css",
-      "attribute": "content"
+      "selector": "body"
     },
-    "externalImages": {
+    "images": {
       "type": "array",
-      "selector": "img[src^='http']",
       "selector_type": "css",
+      "selector": "img",
       "items": {
         "properties": {
           "src": {
+            "type": "string",
             "selector": "self",
-            "selector_type": "css",
             "attribute": "src"
           },
           "alt": {
+            "type": "string",
             "selector": "self",
-            "selector_type": "css",
             "attribute": "alt"
+          }
+        },
+        "filter": {
+          "attribute": "src",
+          "pattern": ".*\\.(jpg|png|gif|webp)$"
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "a[href]",
+      "items": {
+        "properties": {
+          "href": {
+            "type": "string",
+            "selector": "self",
+            "attribute": "href"
+          },
+          "text": {
+            "type": "string",
+            "selector": "self"
+          }
+        },
+        "filter": {
+          "attribute": "text",
+          "pattern": ".+"
+        }
+      }
+    },
+    "scripts": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "script",
+      "items": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "selector": "self"
           }
         }
       }
     },
-    "uqloadLinks": {
+    "playback_urls": {
       "type": "regex",
-      "pattern": "(https?://(?:www\\.)?uqload\\.\\w+/[^\"\\s]+)",
       "selector_type": "css",
-      "selector": "body",
-      "attribute": "innerHTML"
+      "selector": "script, iframe",
+      "pattern": "\"(https?://[^\"]+?(?:embed|video|stream|media|player|m3u8|mp4|ts)[^\"]*)\""
     }
   },
-  "metadata": {
-    "timestamp": "2025-02-15 21:04:34",
-    "user": "saqoah"
+  "actions": [
+    {
+      "type": "click",
+      "selector_type": "css",
+      "selector": "button, a",
+      "match_text": "(play|regarder|stream|lecture)",
+      "retries": 3
+    },
+    {
+      "type": "wait",
+      "duration": 5
+    }
+  ],
+  "post_actions": {
+    "iframe_urls": {
+      "selector_type": "css",
+      "selector": "iframe",
+      "attribute": "src"
+    },
+    "network_requests": {
+      "type": "network",
+      "methods": ["GET", "POST"],
+      "pattern": ".*(?:m3u8|mp4|ts|video|stream|media|embed).*"
+    }
   }
 }
