@@ -36,7 +36,7 @@
         },
         "filter": {
           "attribute": "text",
-          "pattern": ".{20,}"  // Filters for summaries at least 20 chars long
+          "pattern": ".{20,}"
         }
       }
     },
@@ -59,7 +59,7 @@
         },
         "filter": {
           "attribute": "src",
-          "pattern": ".*\\.(jpg|png|gif|mp4)$"  // Targets common media formats
+          "pattern": ".*\\.(jpg|png|gif|mp4)$"
         }
       }
     },
@@ -81,7 +81,7 @@
         },
         "filter": {
           "attribute": "href",
-          "pattern": "^https://www.theguardian.com/.*"  // Keeps only Guardian article URLs
+          "pattern": "^https://www.theguardian.com/.*"
         }
       }
     }
@@ -90,7 +90,7 @@
     "network_requests": {
       "type": "network",
       "methods": ["GET"],
-      "pattern": ".*(?:json|api|news).*"  // Captures potential news API calls
+      "pattern": ".*(?:json|api|news).*"
     }
   }
 }
