@@ -353,7 +353,7 @@ async def main():
         data = await scrape_website(schema)
         if data is None:
             data = {key: None for key in schema["properties"]}
-        output_file = f"output_{datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')}.json"
+        output_file = "output.json"
         with open(output_file, "w", encoding="utf-8") as outfile:
             json.dump({
                 "metadata": {
