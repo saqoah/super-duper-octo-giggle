@@ -7,15 +7,28 @@
       "selector": "div[data-asin]",
       "items": {
         "properties": {
+          "raw_content": {
+            "type": "string",
+            "selector": "self",
+            "attribute": "innerHTML"
+          },
           "rank": {
             "type": "string",
-            "selector": "span.zg-bdg-text, span",
-            "attribute": "textContent"
+            "selector": "span",
+            "attribute": "textContent",
+            "filter": {
+              "attribute": "textContent",
+              "pattern": "#\\d+"
+            }
           },
           "title": {
             "type": "string",
-            "selector": "a span, h2",
-            "attribute": "textContent"
+            "selector": "span, a",
+            "attribute": "textContent",
+            "filter": {
+              "attribute": "textContent",
+              "pattern": ".{10,}"
+            }
           },
           "link": {
             "type": "string",
@@ -24,7 +37,7 @@
           },
           "price": {
             "type": "string",
-            "selector": "span[class*='price'], span",
+            "selector": "span",
             "attribute": "textContent",
             "filter": {
               "attribute": "textContent",
@@ -33,12 +46,16 @@
           },
           "rating": {
             "type": "string",
-            "selector": "span[aria-label*='out of 5 stars'], span",
-            "attribute": "aria-label"
+            "selector": "span",
+            "attribute": "textContent",
+            "filter": {
+              "attribute": "textContent",
+              "pattern": "\\d\\.\\d out of 5 stars"
+            }
           },
           "review_count": {
             "type": "string",
-            "selector": "span.a-size-small, span",
+            "selector": "span",
             "attribute": "textContent",
             "filter": {
               "attribute": "textContent",
@@ -50,10 +67,6 @@
             "selector": "img",
             "attribute": "src"
           }
-        },
-        "filter": {
-          "attribute": "title",
-          "pattern": ".{10,}"
         }
       }
     }
@@ -61,7 +74,7 @@
   "actions": [
     {
       "type": "wait",
-      "duration": 3 
+      "duration": 5
     }
   ],
   "post_actions": {
