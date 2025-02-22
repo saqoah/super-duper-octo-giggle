@@ -309,7 +309,7 @@ async def perform_action(page: Page, action: ActionConfig):
 async def main():
     logger.info(f"Script started at {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')} UTC")
     logger.info(f"User: {CURRENT_USER}")
-    url = "https://french-stream.my/15119718-henry-danger-the-movie.html"
+    url = "https://wiflix-pro.site/serie-en-streaming/32858-reacher-saison-3.html"
     schema = get_universal_schema(url)
     try:
         data = await scrape_website(schema)
