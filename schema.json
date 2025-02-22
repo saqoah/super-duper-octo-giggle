@@ -1,44 +1,96 @@
 {
-  "url": "https://vidsrc.to/embed/movie/200",
+  "url": "https://www.theguardian.com/uk",
   "properties": {
-    "inner_text": {
-      "type": "string",
+    "headlines": {
+      "type": "array",
       "selector_type": "css",
-      "selector": "body"
+      "selector": "h2, h3, h4",
+      "items": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "selector": "self"
+          },
+          "link": {
+            "type": "string",
+            "selector": "a",
+            "attribute": "href"
+          }
+        },
+        "filter": {
+          "attribute": "text",
+          "pattern": ".{10,}"  // Ensures headlines are at least 10 chars to avoid noise
+        }
+      }
     },
-    "playback_urls": {
-      "type": "regex",
+    "summaries": {
+      "type": "array",
       "selector_type": "css",
-      "selector": "script, iframe",
-      "pattern": "\"(https?://[^\"]+?(?:embed|video|stream|media|player|m3u8|mp4|ts)[^\"]*)\""
+      "selector": "p",
+      "items": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "selector": "self"
+          }
+        },
+        "filter": {
+          "attribute": "text",
+          "pattern": ".{20,}"  // Filters for summaries at least 20 chars long
+        }
+      }
+    },
+    "media": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "img, video",
+      "items": {
+        "properties": {
+          "src": {
+            "type": "string",
+            "selector": "self",
+            "attribute": "src"
+          },
+          "alt": {
+            "type": "string",
+            "selector": "self",
+            "attribute": "alt"
+          }
+        },
+        "filter": {
+          "attribute": "src",
+          "pattern": ".*\\.(jpg|png|gif|mp4)$"  // Targets common media formats
+        }
+      }
+    },
+    "article_links": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "a[href]",
+      "items": {
+        "properties": {
+          "href": {
+            "type": "string",
+            "selector": "self",
+            "attribute": "href"
+          },
+          "text": {
+            "type": "string",
+            "selector": "self"
+          }
+        },
+        "filter": {
+          "attribute": "href",
+          "pattern": "^https://www.theguardian.com/.*"  // Keeps only Guardian article URLs
+        }
+      }
     }
   },
-  "actions": [
-    {
-      "type": "wait",
-      "duration": 2
-    },
-    {
-      "type": "click",
-      "selector_type": "css",
-      "selector": "body",
-      "retries": 1
-    },
-    {
-      "type": "wait",
-      "duration": 3
-    }
-  ],
   "post_actions": {
-    "iframe_urls": {
-      "selector_type": "css",
-      "selector": "iframe",
-      "attribute": "src"
-    },
     "network_requests": {
       "type": "network",
-      "methods": ["GET", "POST"],
-      "pattern": ".*(?:m3u8|mp4|ts|video|stream|media|embed).*"
+      "methods": ["GET"],
+      "pattern": ".*(?:json|api|news).*"  // Captures potential news API calls
     }
   }
 }
