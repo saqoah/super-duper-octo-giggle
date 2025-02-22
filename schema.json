@@ -1,87 +1,51 @@
 {
-  "url": "https://www.theguardian.com/uk",
+  "url": "https://www.amazon.com/best-sellers-laptops/zgbs/pc/565108",
   "properties": {
-    "headlines": {
+    "laptops": {
       "type": "array",
       "selector_type": "css",
-      "selector": "h2, h3, h4",
+      "selector": "div.zg-grid-general-faceout",
       "items": {
         "properties": {
-          "text": {
+          "rank": {
             "type": "string",
-            "selector": "self"
+            "selector": "span.zg-bdg-text",
+            "attribute": "textContent"
+          },
+          "title": {
+            "type": "string",
+            "selector": "div > a > span",
+            "attribute": "textContent"
           },
           "link": {
             "type": "string",
-            "selector": "a",
+            "selector": "div > a",
             "attribute": "href"
-          }
-        },
-        "filter": {
-          "attribute": "text",
-          "pattern": ".{10,}"
-        }
-      }
-    },
-    "summaries": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "p",
-      "items": {
-        "properties": {
-          "text": {
+          },
+          "price": {
             "type": "string",
-            "selector": "self"
-          }
-        },
-        "filter": {
-          "attribute": "text",
-          "pattern": ".{20,}"
-        }
-      }
-    },
-    "media": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "img, video",
-      "items": {
-        "properties": {
-          "src": {
+            "selector": "span._cDEzb_p13n-sc-price_3mJ9Z",
+            "attribute": "textContent"
+          },
+          "rating": {
             "type": "string",
-            "selector": "self",
+            "selector": "span[aria-label*='out of 5 stars']",
+            "attribute": "aria-label"
+          },
+          "review_count": {
+            "type": "string",
+            "selector": "span.a-size-small",
+            "attribute": "textContent"
+          },
+          "image": {
+            "type": "string",
+            "selector": "img",
             "attribute": "src"
-          },
-          "alt": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "alt"
           }
         },
         "filter": {
-          "attribute": "src",
-          "pattern": ".*\\.(jpg|png|gif|mp4)$"
-        }
-      }
-    },
-    "article_links": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "a[href]",
-      "items": {
-        "properties": {
-          "href": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "href"
-          },
-          "text": {
-            "type": "string",
-            "selector": "self"
-          }
-        },
-        "filter": {
-          "attribute": "href",
-          "pattern": "^https://www.theguardian.com/.*"
+          "attribute": "title",
+          "pattern": ".{10,}"
         }
       }
     }
@@ -90,7 +54,7 @@
     "network_requests": {
       "type": "network",
       "methods": ["GET"],
-      "pattern": ".*(?:json|api|news).*"
+      "pattern": ".*(?:json|api|product).*"
     }
   }
 }
