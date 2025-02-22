@@ -1,8 +1,8 @@
 {
   "metadata": {
-    "timestamp": "2025-02-22 22:10:49",
+    "timestamp": "2025-02-22 22:31:37",
     "version": "2.3.2",
-    "url": "https://direct-streamfr.live/player.php?id=82"
+    "url": "https://direct-streamfr.live/player.php?id=1"
   },
   "data": {
     "inner_text": "",
@@ -11,7 +11,7 @@
       "javascript:false"
     ],
     "network_requests": [
-      "https://fremtv.lol/live/144BB5626E2EDF5C9E6B39A688E5DF07/166.m3u8"
+      "https://fremtv.lol/live/144BB5626E2EDF5C9E6B39A688E5DF07/33.m3u8"
     ]
   }
 }
