@@ -4,38 +4,46 @@
     "laptops": {
       "type": "array",
       "selector_type": "css",
-      "selector": "div.zg-grid-general-faceout",
+      "selector": "div[data-asin]",
       "items": {
         "properties": {
           "rank": {
             "type": "string",
-            "selector": "span.zg-bdg-text",
+            "selector": "span.zg-bdg-text, span",
             "attribute": "textContent"
           },
           "title": {
             "type": "string",
-            "selector": "div > a > span",
+            "selector": "a span, h2",
             "attribute": "textContent"
           },
           "link": {
             "type": "string",
-            "selector": "div > a",
+            "selector": "a",
             "attribute": "href"
           },
           "price": {
             "type": "string",
-            "selector": "span._cDEzb_p13n-sc-price_3mJ9Z",
-            "attribute": "textContent"
+            "selector": "span[class*='price'], span",
+            "attribute": "textContent",
+            "filter": {
+              "attribute": "textContent",
+              "pattern": "\\$\\d+\\.\\d{2}"
+            }
           },
           "rating": {
             "type": "string",
-            "selector": "span[aria-label*='out of 5 stars']",
+            "selector": "span[aria-label*='out of 5 stars'], span",
             "attribute": "aria-label"
           },
           "review_count": {
             "type": "string",
-            "selector": "span.a-size-small",
-            "attribute": "textContent"
+            "selector": "span.a-size-small, span",
+            "attribute": "textContent",
+            "filter": {
+              "attribute": "textContent",
+              "pattern": "^\\d{1,3}(,\\d{3})*$"
+            }
           },
           "image": {
             "type": "string",
@@ -50,6 +58,12 @@
       }
     }
   },
+  "actions": [
+    {
+      "type": "wait",
+      "duration": 3 
+    }
+  ],
   "post_actions": {
     "network_requests": {
       "type": "network",
