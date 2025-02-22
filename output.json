@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "timestamp": "2025-02-22 15:25:53",
+    "timestamp": "2025-02-22 15:29:07",
     "version": "2.3.1",
     "url": "https://french-stream.my/15119718-henry-danger-the-movie.html"
   },
@@ -814,7 +814,7 @@
         "content": "function gizle() {\n      var x = document.getElementById('cn-content').style;\n      var y = document.getElementById('rk-content').style;\n      y.display = 'none';\n      x.display = 'block';\n      myStopFunction();\n  }"
       },
       {
-        "content": "<!--\nvar dle_root       = '/';\nvar dle_admin      = '';\nvar dle_login_hash = '862b3329606e0de5a8aea585d3923e8a7b3292a7';\nvar dle_group      = 5;\nvar dle_skin       = 'VFV1';\nvar dle_wysiwyg    = '0';\nvar quick_wysiwyg  = '1';\nvar dle_act_lang   = [\"Oui\", \"Non\", \"Entrer\", \"Fermer\", \"Enregistrer\", \"supprimer\", \"En cours. veuillez patienter... \"];\nvar menu_short     = 'Edition rapide';\nvar menu_full      = 'Edition complète';\nvar menu_profile   = 'Profil';\nvar menu_send      = 'Envoyer Message';\nvar menu_uedit     = 'Administration';\nvar dle_info       = 'Info';\nvar dle_confirm    = 'Confirmer';\nvar dle_prompt     = 'Entrer';\nvar dle_req_field  = 'Vérifiez toutes les zones requises';\nvar dle_del_agree  = 'êtes vous sûr de vouloir effacer ce commentaire?';\nvar dle_spam_agree = 'Voulez-vous vraiment marquer cet utilisateur comme un spammeur ? Ceci va supprimer tous ses commentaires';\nvar dle_complaint  = 'Quel est le problème ? ';\nvar dle_big_text   = 'Zone de texte selectionnée trop grande.';\nvar dle_orfo_title = 'Entrez un commentaire pour Prevenir deune erreur';\nvar dle_p_send     = 'Envoyer';\nvar dle_p_send_ok  = 'Envoie de la notification réussis';\nvar dle_save_ok    = 'Les modifications ont bien été enregistré.';\nvar dle_reply_title= 'Répondre au commentaire';\nvar dle_tree_comm  = '0';\nvar dle_del_news   = 'Supprimer';\nvar dle_sub_agree  = '';\nvar allow_dle_delete_news   = false;\n\njQuery(function($){\n$('#dle-comments-form').submit(function() {\n\tdoAddComments();\n\treturn false;\n});\n});\n//-->"
+        "content": "<!--\nvar dle_root       = '/';\nvar dle_admin      = '';\nvar dle_login_hash = 'a81da42ca210d9b5f7c1d2b04225abd7359f73cf';\nvar dle_group      = 5;\nvar dle_skin       = 'VFV1';\nvar dle_wysiwyg    = '0';\nvar quick_wysiwyg  = '1';\nvar dle_act_lang   = [\"Oui\", \"Non\", \"Entrer\", \"Fermer\", \"Enregistrer\", \"supprimer\", \"En cours. veuillez patienter... \"];\nvar menu_short     = 'Edition rapide';\nvar menu_full      = 'Edition complète';\nvar menu_profile   = 'Profil';\nvar menu_send      = 'Envoyer Message';\nvar menu_uedit     = 'Administration';\nvar dle_info       = 'Info';\nvar dle_confirm    = 'Confirmer';\nvar dle_prompt     = 'Entrer';\nvar dle_req_field  = 'Vérifiez toutes les zones requises';\nvar dle_del_agree  = 'êtes vous sûr de vouloir effacer ce commentaire?';\nvar dle_spam_agree = 'Voulez-vous vraiment marquer cet utilisateur comme un spammeur ? Ceci va supprimer tous ses commentaires';\nvar dle_complaint  = 'Quel est le problème ? ';\nvar dle_big_text   = 'Zone de texte selectionnée trop grande.';\nvar dle_orfo_title = 'Entrez un commentaire pour Prevenir deune erreur';\nvar dle_p_send     = 'Envoyer';\nvar dle_p_send_ok  = 'Envoie de la notification réussis';\nvar dle_save_ok    = 'Les modifications ont bien été enregistré.';\nvar dle_reply_title= 'Répondre au commentaire';\nvar dle_tree_comm  = '0';\nvar dle_del_news   = 'Supprimer';\nvar dle_sub_agree  = '';\nvar allow_dle_delete_news   = false;\n\njQuery(function($){\n$('#dle-comments-form').submit(function() {\n\tdoAddComments();\n\treturn false;\n});\n});\n//-->"
       },
       {
         "content": ""
@@ -836,49 +836,24 @@
       }
     ],
     "playback_urls": [
-      "https://1.multiup.us/player/embed_player.php?vid=S5AohnZUDtsn&autoplay=no",
-      "https://flixeo.xyz//bigwar/newPlayer.php?id=e4a5bb72-cdc1-4739-9578-9b2930307a09",
-      "https://fsvid.lol/embed-e98orf37ckj5.html",
       "https://1.multiup.us/player/embed_player.php?vid=&autoplay=no",
-      "https://flixeo.xyz/voe3/newPlayer.php?id=95032b64-2d93-42ba-a5eb-d48e627612d3",
-      "https://flixeo.xyz/voe3/newPlayer.php?id=3eb20ee4-ff6c-4752-9320-eb2ec657a629",
-      "https://fsvid.lol/embed-mw23hm16z5mm.html",
       "https://uqload.net/embed-9jptp86fulet.html",
-      "https://flixeo.xyz//bigwar/newPlayer.php?id=b86334a5-4c28-48e0-be1c-b95267877d08",
-      "https://fr.flixeo.xyz/viper/newplayer.php?id=83vJskdKpDOE9uZn1G1n0",
       "https://1.multiup.us/player/embed_player.php?vid=6k2cqK6Rbbtv&autoplay=no",
+      "https://fr.flixeo.xyz/viper/newplayer.php?id=83vJskdKpDOE9uZn1G1n0",
+      "https://fsvid.lol/embed-e98orf37ckj5.html",
+      "https://flixeo.xyz//bigwar/newPlayer.php?id=b86334a5-4c28-48e0-be1c-b95267877d08",
+      "https://uqload.net/embed-c4d65ysm0d7c.html",
+      "https://flixeo.xyz/voe3/newPlayer.php?id=3eb20ee4-ff6c-4752-9320-eb2ec657a629",
+      "https://flixeo.xyz//bigwar/newPlayer.php?id=e4a5bb72-cdc1-4739-9578-9b2930307a09",
       "https://fr.flixeo.xyz/viper/newplayer.php?id=2gX7eiluPlwcbkyMobaQW",
-      "https://uqload.net/embed-c4d65ysm0d7c.html"
+      "https://fsvid.lol/embed-mw23hm16z5mm.html",
+      "https://1.multiup.us/player/embed_player.php?vid=S5AohnZUDtsn&autoplay=no",
+      "https://flixeo.xyz/voe3/newPlayer.php?id=95032b64-2d93-42ba-a5eb-d48e627612d3"
     ],
     "iframe_urls": null,
     "network_requests": [
-      "https://french-stream.my/engine/data/emoticons/dix.gif",
-      "https://french-stream.my/avatar.webp",
-      "https://french-stream.my/engine/classes/js/bbcodes.js?v=23",
-      "https://french-stream.my/engine/data/emoticons/Un.gif",
-      "https://french-stream.my/engine/data/emoticons/six.gif",
-      "https://french-stream.my/templates/VFV1/style/styles.css",
-      "https://french-stream.my/templates/VFV1/style/engine.css",
-      "https://french-stream.my/engine/data/emoticons/cinq.gif",
-      "https://french-stream.my/engine/data/emoticons/huit.gif",
-      "https://french-stream.my/engine/classes/js/jqueryui.js?v=23",
-      "https://french-stream.my/engine/data/emoticons/trois.gif",
-      "https://french-stream.my/engine/data/emoticons/lienmort.gif",
-      "https://french-stream.my/engine/editor/css/default.css?v=23",
       "https://french-stream.my/templates/VFV1/fonts/fontawesome-webfont.woff2?v=4.5.0",
-      "https://french-stream.my/engine/data/emoticons/thankyou.gif",
-      "https://french-stream.my/engine/data/emoticons/plusun.gif",
-      "https://french-stream.my/engine/data/emoticons/neuf.gif",
-      "https://french-stream.my/engine/classes/js/dle_js.js?v=23",
-      "https://french-stream.my/engine/data/emoticons/Deux.gif",
-      "https://french-stream.my/engine/data/emoticons/sept.gif",
-      "https://french-stream.my/templates/VFV1/dleimages/noavatar.png",
-      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-regular-400.woff2",
-      "https://french-stream.my/engine/data/emoticons/quatre.gif",
-      "https://french-stream.my/templates/VFV1/js/libs77.js",
-      "https://french-stream.my/15119718-henry-danger-the-movie.html",
-      "https://french-stream.my/engine/classes/js/jquery.js?v=23",
-      "https://french-stream.my/engine/data/emoticons/merci.gif"
+      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-regular-400.woff2"
     ]
   }
 }
