@@ -18,9 +18,9 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-SCRIPT_VERSION = "2.3.1"
+SCRIPT_VERSION = "2.3.2"  # Bumped version for the fix
 CURRENT_USER = "saqoah"
-LAST_UPDATED = "2025-02-22 14:40:00"
+LAST_UPDATED = "2025-02-22 16:50:00"
 
 class ScrapingError(Exception):
     pass
@@ -170,6 +170,8 @@ async def extract_property(page: Page, key: str, value: PropertyConfig):
         if value["type"] == "string":
             element = await page.query_selector(selector)
             if "attribute" in value and element:
+                if value["attribute"] == "innerHTML":  # Fix: Use inner_html() for "innerHTML"
+                    return await element.inner_html()
                 return await element.get_attribute(value["attribute"])
             return await element.inner_text() if element else None
         elif value["type"] == "array":
@@ -181,12 +183,28 @@ async def extract_property(page: Page, key: str, value: PropertyConfig):
                     sub_selector = sub_value["selector"]
                     if sub_selector == "self":
                         if "attribute" in sub_value:
-                            attr_value = await element.get_attribute(sub_value["attribute"])
+                            if sub_value["attribute"] == "innerHTML":  # Fix: Use inner_html() for "innerHTML"
+                                attr_value = await element.inner_html()
+                            else:
+                                attr_value = await element.get_attribute(sub_value["attribute"])
                             if sub_value["attribute"] in ["href", "src"]:
                                 attr_value = urljoin(page.url, attr_value)
                             item[sub_key] = attr_value
                         else:
                             item[sub_key] = (await element.inner_text()).strip()
+                    else:
+                        sub_element = await element.query_selector(sub_selector)
+                        if sub_element:
+                            if "attribute" in sub_value:
+                                if sub_value["attribute"] == "innerHTML":  # Fix: Use inner_html() for "innerHTML"
+                                    attr_value = await sub_element.inner_html()
+                                else:
+                                    attr_value = await sub_element.get_attribute(sub_value["attribute"])
+                                if sub_value["attribute"] in ["href", "src"]:
+                                    attr_value = urljoin(page.url, attr_value)
+                                item[sub_key] = attr_value
+                            else:
+                                item[sub_key] = (await sub_element.inner_text()).strip()
                 if filter_pattern:
                     filter_attr = item.get(value["filter"]["attribute"], "")
                     if not filter_pattern.search(filter_attr):
@@ -244,7 +262,10 @@ async def extract_post_action(page: Page, config: PostActionConfig):
         results = []
         for element in elements:
             if attribute:
-                value = await element.get_attribute(attribute)
+                if attribute == "innerHTML":  # Fix: Use inner_html() for "innerHTML"
+                    value = await element.inner_html()
+                else:
+                    value = await element.get_attribute(attribute)
                 if value:
                     results.append(urljoin(page.url, value))
         return list(set(results)) if results else None
