@@ -1,34 +1,6 @@
 {
-  "url": "https://french-stream.my/15119718-henry-danger-the-movie.html",
+  "url": "https://wiflix-pro.site/serie-en-streaming/32858-reacher-saison-3.html",
   "properties": {
-    "inner_text": {
-      "type": "string",
-      "selector_type": "css",
-      "selector": "body"
-    },
-    "images": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "img",
-      "items": {
-        "properties": {
-          "src": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "src"
-          },
-          "alt": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "alt"
-          }
-        },
-        "filter": {
-          "attribute": "src",
-          "pattern": ".*\\.(jpg|png|gif|webp)$"
-        }
-      }
-    },
     "links": {
       "type": "array",
       "selector_type": "css",
