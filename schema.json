@@ -4,7 +4,7 @@
     "laptops": {
       "type": "array",
       "selector_type": "css",
-      "selector": "div[data-asin]",
+      "selector": "div[data-asin], div[id*='grid']",
       "items": {
         "properties": {
           "raw_content": {
@@ -12,18 +12,9 @@
             "selector": "self",
             "attribute": "innerHTML"
           },
-          "rank": {
-            "type": "string",
-            "selector": "span",
-            "attribute": "textContent",
-            "filter": {
-              "attribute": "textContent",
-              "pattern": "#\\d+"
-            }
-          },
           "title": {
             "type": "string",
-            "selector": "span, a",
+            "selector": "*",
             "attribute": "textContent",
             "filter": {
               "attribute": "textContent",
@@ -37,35 +28,12 @@
           },
           "price": {
             "type": "string",
-            "selector": "span",
+            "selector": "*",
             "attribute": "textContent",
             "filter": {
               "attribute": "textContent",
               "pattern": "\\$\\d+\\.\\d{2}"
             }
-          },
-          "rating": {
-            "type": "string",
-            "selector": "span",
-            "attribute": "textContent",
-            "filter": {
-              "attribute": "textContent",
-              "pattern": "\\d\\.\\d out of 5 stars"
-            }
-          },
-          "review_count": {
-            "type": "string",
-            "selector": "span",
-            "attribute": "textContent",
-            "filter": {
-              "attribute": "textContent",
-              "pattern": "^\\d{1,3}(,\\d{3})*$"
-            }
-          },
-          "image": {
-            "type": "string",
-            "selector": "img",
-            "attribute": "src"
           }
         }
       }
@@ -74,7 +42,7 @@
   "actions": [
     {
       "type": "wait",
-      "duration": 5
+      "duration": 10
     }
   ],
   "post_actions": {
