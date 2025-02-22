@@ -327,7 +327,7 @@ async def main():
                 },
                 "data": data
             }, outfile, indent=2, ensure_ascii=False)
-        logger.info(f"Data successfully saved to {output.json}")
+        logger.info(f"Data successfully saved to {output_file}")
     except Exception as e:
         logger.error(f"An error occurred during execution: {str(e)}", exc_info=True)
 
