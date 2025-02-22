@@ -135,6 +135,17 @@ def get_universal_schema(url):
         }
     }
 
+def extract_playback_urls(scripts):
+    playback_urls = []
+    url_pattern = r'"(https?://[^"]+)"'
+    playback_keywords = ["play", "stream", "video", "media", "embed", "iframe"]
+    for script in scripts:
+        urls = re.findall(url_pattern, script["content"])
+        for url in urls:
+            if any(keyword in url.lower() for keyword in playback_keywords):
+                playback_urls.append(url)
+    return list(set(playback_urls))
+
 async def scrape_website(schema: ScrapingSchema):
     start_time = datetime.now(timezone.utc)
     url = schema.get("url", "https://www.google.com/")
@@ -151,6 +162,7 @@ async def scrape_website(schema: ScrapingSchema):
             if not response or not response.ok:
                 raise ScrapingError(f"Failed to load page: {response.status if response else 'No response'}")
             data = await extract_data(page, schema)
+            data["playback_urls"] = extract_playback_urls(data["scripts"])
             end_time = datetime.now(timezone.utc)
             duration = (end_time - start_time).total_seconds()
             logger.info(f"Scraping completed in {duration:.2f} seconds")
@@ -228,7 +240,7 @@ async def extract_property(page: Page, key: str, value: PropertyConfig):
                                 attr_value = urljoin(page.url, attr_value)
                             item[sub_key] = attr_value
                         else:
-                            item[sub_key] = await element.inner_text()
+                            item[sub_key] = (await element.inner_text()).strip()
                     else:
                         if sub_selector_type == "css":
                             sub_element = await element.query_selector(sub_selector)
@@ -242,6 +254,8 @@ async def extract_property(page: Page, key: str, value: PropertyConfig):
                         elif sub_selector_type == "xpath":
                             sub_elements = await page.locator(sub_selector).all_inner_texts()
                             item[sub_key] = sub_elements[0] if sub_elements else None
+                if key == "links" and (not item.get("text") or item["text"].strip() == ""):
+                    continue
                 result.append(item)
             return result
         elif value["type"] == "html":
@@ -313,7 +327,7 @@ async def main():
                 },
                 "data": data
             }, outfile, indent=2, ensure_ascii=False)
-        logger.info(f"Data successfully saved to {output_file}")
+        logger.info(f"Data successfully saved to {output.json}")
     except Exception as e:
         logger.error(f"An error occurred during execution: {str(e)}", exc_info=True)
 
