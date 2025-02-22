@@ -6,51 +6,6 @@
       "selector_type": "css",
       "selector": "body"
     },
-    "images": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "img",
-      "items": {
-        "properties": {
-          "src": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "src"
-          },
-          "alt": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "alt"
-          }
-        },
-        "filter": {
-          "attribute": "src",
-          "pattern": ".*\\.(jpg|png|gif|webp)$"
-        }
-      }
-    },
-    "links": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "a[href]",
-      "items": {
-        "properties": {
-          "href": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "href"
-          },
-          "text": {
-            "type": "string",
-            "selector": "self"
-          }
-        },
-        "filter": {
-          "attribute": "text",
-          "pattern": ".+"
-        }
-      }
-    },
     "scripts": {
       "type": "array",
       "selector_type": "css",
@@ -80,7 +35,7 @@
     "network_requests": {
       "type": "network",
       "methods": ["GET", "POST"],
-      "pattern": ".*(?:m3u8|mp4|ts|video|stream|media|embed).*"
+      "pattern": ".*\\.(m3u8|mp4)$"
     }
   }
 }
