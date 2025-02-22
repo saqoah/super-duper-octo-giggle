@@ -15,13 +15,6 @@
   },
   "actions": [
     {
-      "type": "click",
-      "selector_type": "css",
-      "selector": "*",
-      "match_text": "(play|start|watch|▷|video)",
-      "retries": 1
-    },
-    {
       "type": "wait",
       "duration": 2
     },
