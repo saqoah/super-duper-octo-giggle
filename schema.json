@@ -1,52 +1,69 @@
 {
-  "url": "https://www.amazon.com/s?k=laptops&ref=nb_sb_noss_2",
+  "url": "https://www.amazon.com/best-sellers-laptops/zgbs/pc/565108",
   "properties": {
-    "products": {
+    "page_content": {
+      "type": "string",
+      "selector_type": "css",
+      "selector": "body",
+      "attribute": "innerHTML"
+    },
+    "laptops": {
       "type": "array",
-      "selector": "div.s-main-slot.s-result-list.s-search-results.sg-row > div[data-component-type='s-search-result']",
+      "selector_type": "css",
+      "selector": "div[data-asin]",
       "items": {
         "properties": {
-          "name": {
+          "raw_content": {
             "type": "string",
-            "selector": "h2 a.a-link-normal.a-text-normal",
-            "attribute": "innerText"
+            "selector": "self",
+            "attribute": "innerHTML"
+          },
+          "title": {
+            "type": "string",
+            "selector": "*",
+            "attribute": "textContent",
+            "filter": {
+              "attribute": "textContent",
+              "pattern": ".{10,}"
+            }
+          },
+          "link": {
+            "type": "string",
+            "selector": "a",
+            "attribute": "href"
           },
           "price": {
             "type": "string",
-            "selector": "span.a-price > span.a-offscreen",
-            "attribute": "innerText"
-          },
-          "rating": {
-            "type": "string",
-            "selector": "span.a-icon-alt",
-            "attribute": "innerText"
-          },
-          "url": {
-            "type": "string",
-            "selector": "h2 a.a-link-normal.a-text-normal",
-            "attribute": "href"
+            "selector": "*",
+            "attribute": "textContent",
+            "filter": {
+              "attribute": "textContent",
+              "pattern": "\\$\\d+\\.\\d{2}"
+            }
           }
-        }
+        },
+        "extract_children": true
       }
     }
   },
   "actions": [
     {
       "type": "wait",
-      "duration": 5
+      "duration": 15
     }
   ],
   "post_actions": {
-    "clean_data": {
+    "network_requests": {
       "type": "network",
-      "pattern": ".*amazon.com.*",
       "methods": ["GET"],
+      "pattern": ".*(?:json|api|product).*",
       "capture_response": true
     }
   },
   "headers": {
-    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+    "Accept-Language": "en-US,en;q=0.9",
+    "Referer": "https://www.google.com/"
   },
-  "max_retries": 3,
-  "timeout": 60
+  "max_retries": 5,
+  "timeout": 120
 }
