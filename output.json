@@ -1,11 +1,17 @@
 {
   "metadata": {
-    "timestamp": "2025-02-22 16:56:55",
+    "timestamp": "2025-02-22 17:03:42",
     "version": "2.3.2",
     "url": "https://www.amazon.com/best-sellers-laptops/zgbs/pc/565108"
   },
   "data": {
     "laptops": null,
-    "network_requests": null
+    "network_requests": [
+      "https://crb.kargo.com/api/v1/dsync/amazon?exid=hOtAmW-dRkO0yzaMgE73Ng&r=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3DKargoHMT&id=&gdpr_consent=",
+      "https://capi.connatix.com/us/pixel?pId=32&puId=6ec_mPPSRaiu-UfEDEpziw&callback=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3DconnatixHMT%26id%3D%7BpuId%7D&gdpr_consent=",
+      "https://lciapi.ninthdecimal.com/v1/lci/sync/adv-amzn/c-23445/?rdr=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3F%26ex%3Dninthdecimal.com%26id%3D%24%7BND_UID%7D",
+      "https://capi.connatix.com/us/pixel?pId=32&puId=6ec_mPPSRaiu-UfEDEpziw&callback=https%3A%2F%2Fs.amazon-adsystem.com%2Fecm3%3Fex%3DconnatixHMT%26id%3D%7BpuId%7D&gdpr_consent=&final=true",
+      "https://fls-na.amazon.com/1/batch/1/OP/ATVPDKIKX0DER:146-0095917-9877038:B50C0681F20ZRX0BY4SG$uedata=s:%2Frd%2Fuedata%3Fld%26v%3D0.306711.0%26id%3DB50C0681F20ZRX0BY4SG%26ctb%3D1%26sc0%3Dglow-toaster-api-timer-DESKTOP%26bb0%3D361%26pc0%3D513%26ld0%3D513%26t0%3D1740243792487%26csmtags%3Daui%3Asw%3Apage_proxy%3Ano_ctrl%7Caui%7Caui%3Aajax%26pty%3Dzeitgeist%26spty%3Dbs%26pti%3Dpc%26tid%3DB50C0681F20ZRX0BY4SG%26aftb%3D1%26lob%3D1:513"
+    ]
   }
 }
