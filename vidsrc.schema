@@ -1,0 +1,44 @@
+{
+  "url": "https://vidsrc.to/embed/movie/200",
+  "properties": {
+    "inner_text": {
+      "type": "string",
+      "selector_type": "css",
+      "selector": "body"
+    },
+    "playback_urls": {
+      "type": "regex",
+      "selector_type": "css",
+      "selector": "script, iframe",
+      "pattern": "\"(https?://[^\"]+?(?:embed|video|stream|media|player|m3u8|mp4|ts)[^\"]*)\""
+    }
+  },
+  "actions": [
+    {
+      "type": "wait",
+      "duration": 2
+    },
+    {
+      "type": "click",
+      "selector_type": "css",
+      "selector": "body",
+      "retries": 1
+    },
+    {
+      "type": "wait",
+      "duration": 3
+    }
+  ],
+  "post_actions": {
+    "iframe_urls": {
+      "selector_type": "css",
+      "selector": "iframe",
+      "attribute": "src"
+    },
+    "network_requests": {
+      "type": "network",
+      "methods": ["GET", "POST"],
+      "pattern": ".*(?:m3u8|mp4|ts|video|stream|media|embed).*"
+    }
+  }
+}
