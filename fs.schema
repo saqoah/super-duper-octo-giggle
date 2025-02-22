@@ -1,0 +1,86 @@
+{
+  "url": "https://french-stream.my/15119718-henry-danger-the-movie.html",
+  "properties": {
+    "inner_text": {
+      "type": "string",
+      "selector_type": "css",
+      "selector": "body"
+    },
+    "images": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "img",
+      "items": {
+        "properties": {
+          "src": {
+            "type": "string",
+            "selector": "self",
+            "attribute": "src"
+          },
+          "alt": {
+            "type": "string",
+            "selector": "self",
+            "attribute": "alt"
+          }
+        },
+        "filter": {
+          "attribute": "src",
+          "pattern": ".*\\.(jpg|png|gif|webp)$"
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "a[href]",
+      "items": {
+        "properties": {
+          "href": {
+            "type": "string",
+            "selector": "self",
+            "attribute": "href"
+          },
+          "text": {
+            "type": "string",
+            "selector": "self"
+          }
+        },
+        "filter": {
+          "attribute": "text",
+          "pattern": ".+"
+        }
+      }
+    },
+    "scripts": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "script",
+      "items": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "selector": "self"
+          }
+        }
+      }
+    },
+    "playback_urls": {
+      "type": "regex",
+      "selector_type": "css",
+      "selector": "script, iframe",
+      "pattern": "\"(https?://[^\"]+?(?:embed|video|stream|media|player|m3u8|mp4|ts)[^\"]*)\""
+    }
+  },
+  "post_actions": {
+    "iframe_urls": {
+      "selector_type": "css",
+      "selector": "iframe",
+      "attribute": "src"
+    },
+    "network_requests": {
+      "type": "network",
+      "methods": ["GET", "POST"],
+      "pattern": ".*(?:m3u8|mp4|ts|video|stream|media|embed).*"
+    }
+  }
+}
