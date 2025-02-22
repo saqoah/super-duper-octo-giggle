@@ -1,13 +1,15 @@
 {
   "metadata": {
-    "timestamp": "2025-02-22 21:55:52",
+    "timestamp": "2025-02-22 21:58:47",
     "version": "2.3.2",
-    "url": "https://vm.tiktok.com/ZNdJdfffJ/"
+    "url": "https://www.tiktok.com/@celinesilafromgaz/video/7472322173873573142"
   },
   "data": {
     "inner_text": "",
     "playback_urls": [],
     "iframe_urls": null,
-    "network_requests": null
+    "network_requests": [
+      "https://lf16-tiktok-web.tiktokcdn-us.com/obj/tiktok-web-tx/tiktok/webapp/main/webapp-desktop/playback1.mp4"
+    ]
   }
 }
