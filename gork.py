@@ -20,7 +20,7 @@ logger.setLevel(logging.INFO)
 
 SCRIPT_VERSION = "2.1.0"
 CURRENT_USER = "saqoah"
-LAST_UPDATED = "2025-02-15 20:36:04"
+LAST_UPDATED = "2025-02-22 14:14:00"
 
 class ScrapingError(Exception):
     pass
@@ -157,10 +157,19 @@ async def scrape_website(schema: ScrapingSchema):
         try:
             page.on("request", lambda request: logger.debug(f">> {request.method} {request.url}"))
             page.on("response", lambda response: logger.debug(f"<< {response.status} {response.url}"))
-            page.set_default_timeout(30000)
-            response = await page.goto(url, wait_until='networkidle')
-            if not response or not response.ok:
-                raise ScrapingError(f"Failed to load page: {response.status if response else 'No response'}")
+            page.set_default_timeout(60000)  # Increased to 60 seconds
+            for attempt in range(3):  # Retry up to 3 times
+                try:
+                    response = await page.goto(url, wait_until='domcontentloaded')
+                    if not response or not response.ok:
+                        raise ScrapingError(f"Failed to load page: {response.status if response else 'No response'}")
+                    break
+                except Exception as e:
+                    if attempt == 2:
+                        logger.error(f"Failed after 3 attempts: {str(e)}")
+                        raise
+                    logger.warning(f"Attempt {attempt + 1} failed, retrying...")
+                    await asyncio.sleep(2 ** attempt)  # Exponential backoff
             data = await extract_data(page, schema)
             data["playback_urls"] = extract_playback_urls(data["scripts"])
             end_time = datetime.now(timezone.utc)
