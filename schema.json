@@ -4,7 +4,7 @@
     "laptops": {
       "type": "array",
       "selector_type": "css",
-      "selector": "div[data-asin]",
+      "selector": "div[data-asin], div[id*='grid']",
       "items": {
         "properties": {
           "raw_content": {
@@ -42,7 +42,7 @@
   "actions": [
     {
       "type": "wait",
-      "duration": 10
+      "duration": 10  // Extended to 10s for full JS load
     }
   ],
   "post_actions": {
