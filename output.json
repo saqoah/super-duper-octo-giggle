@@ -1,123 +1,12 @@
 {
   "metadata": {
-    "timestamp": "2025-02-22 20:53:10",
+    "timestamp": "2025-02-22 21:39:01",
     "version": "2.3.2",
     "url": "https://french-tv.lol/index.php?newsid=4"
   },
   "data": {
     "inner_text": "FRENCH\nSTREAM TV\n|  CHAINES TV\n|  FRENCH STREAM |\n|  ANIMES |\n|  CONTACT |\nLIVE\nBein Sport 1\nSIGNALER UN PROBLEME\n\n\nGARDER CE SITE GRATUIT ET SANS PUBLICITÉ EN FAISANT UN DON\n|  CHAINES TV\n|  FRENCH STREAM |\n|  ANIMES |\n|  CONTACT |",
-    "images": [
-      {
-        "src": "https://frembed.live/_next/image?url=%2Flogo%2Fchannels%2Fbein-sports-1-logo.png&w=256&q=75",
-        "alt": "Bein Sport 1"
-      }
-    ],
-    "links": [
-      {
-        "href": "https://french-tv.lol/",
-        "text": "FRENCH\nSTREAM TV"
-      },
-      {
-        "href": "https://french-tv.lol/index.php?newsid=4",
-        "text": "|  CHAINES TV"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/sport",
-        "text": "Sport"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/generaliste",
-        "text": "Généraliste"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/cinema",
-        "text": "Cinéma"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/enfants",
-        "text": "Jeunesse"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/documentaire",
-        "text": "Documentaire"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/information",
-        "text": "Info"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/musique",
-        "text": "Musique"
-      },
-      {
-        "href": "https://fstream.one ",
-        "text": "|  FRENCH STREAM |"
-      },
-      {
-        "href": "https://french-manga.net/",
-        "text": "|  ANIMES |"
-      },
-      {
-        "href": "https://french-tv.lol/?do=feedback",
-        "text": "|  CONTACT |"
-      },
-      {
-        "href": "javascript:AddComplaint('4', 'news')",
-        "text": "SIGNALER UN PROBLEME"
-      },
-      {
-        "href": "https://french-tv.lol/index.php?newsid=4",
-        "text": "|  CHAINES TV"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/sport",
-        "text": "Sport"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/generaliste",
-        "text": "Généraliste"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/cinema",
-        "text": "Cinéma"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/enfants",
-        "text": "Jeunesse"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/documentaire",
-        "text": "Documentaire"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/information",
-        "text": "Info"
-      },
-      {
-        "href": "https://french-tv.lol/chaines-live/musique",
-        "text": "Musique"
-      },
-      {
-        "href": "https://fstream.one ",
-        "text": "|  FRENCH STREAM |"
-      },
-      {
-        "href": "https://french-manga.net/",
-        "text": "|  ANIMES |"
-      },
-      {
-        "href": "https://french-tv.lol/?do=feedback",
-        "text": "|  CONTACT |"
-      },
-      {
-        "href": "https://french-tv.lol/inscription",
-        "text": "CLIQUEZ ICI POUR DEVENIR PREMIUM"
-      }
-    ],
     "scripts": [
-      {
-        "content": ""
-      },
       {
         "content": ""
       },
@@ -137,15 +26,6 @@
         "content": ""
       },
       {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
         "content": "function openPopup(type) {\n            let content = \"\";\n            if (type === 'donation') {\n                content = `\n                    <h2>Soutenez-nous avec un don BTC</h2>\n                    <img src='https://i.imgur.com/wy5YZ19.jpeg' alt='QR Code'>\n                    <p class='btc-key'>Adresse BTC : <br><strong>bc1q0lpl5vmdp6vf3n5s3k7y5lszvsmsw35k4q4fkv</strong></p>\n                    <p class='help-link' onclick='openPopup(\"help\")'>Pas familiarisé avec le BTC ?</p>\n                `;\n            } else if (type === 'help') {\n                content = `\n                    <div class='help-content'>\n                        <h2>Avantages du Bitcoin</h2>\n                        <ul>\n                            <li><strong>Sécurisé</strong> - Le Bitcoin est une monnaie numérique sécurisée. Contrairement à PayPal ou à une carte bancaire, il n’est pas nécessaire de saisir des informations bancaires ni de fournir une adresse e-mail. Il suffit simplement de scanner le QR code avec votre téléphone, et c'est terminé !</li>\n                            <li><strong>Coinbase</strong> - Pour commencer à utiliser le BTC, nous vous conseillons l'application Coinbase, car elle est simple d'utilisation. Il vous suffit de télécharger Coinbase depuis votre store pour recevoir et envoyer du BTC facilement.</li>\n                            <li><strong>Faire un don</strong> - Une fois l'application installée, connectez-vous puis scannez simplement notre QR Code pour envoyer un don.</li>\n                        </ul>\n                        <p class='help-link' onclick='openPopup(\"donation\")'>Faire un don</p>\n                    </div>\n                `;\n            }\n            document.getElementById(\"popup-content\").innerHTML = content;\n            document.getElementById(\"popup\").style.display = \"block\";\n            document.getElementById(\"overlay\").style.display = \"block\";\n        }\n\n        function closePopup() {\n            document.getElementById(\"popup\").style.display = \"none\";\n            document.getElementById(\"overlay\").style.display = \"none\";\n        }"
       },
       {
@@ -159,52 +39,14 @@
       },
       {
         "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
-      },
-      {
-        "content": ""
       }
     ],
     "playback_urls": [],
     "iframe_urls": [
-      "https://french-tv.lol/player/fsplayer.php?id=44",
-      "https://pxdrop.lijit.com/a/t_.htm?ver=1.1741.924&cid=c026&cls=sync#cls=sync&dmn=french-tv.lol&GDPR_v2=&us_privacy=&pubid=dt_scout&gpp=&gpp_sid=&tt=t.dhj&cid=c026&lbl=lijit&flbl=pxcel&ll=d&ver=1.1741.924&ell=d&cck=ljt_reader&pn=%2Findex.php&qs=newsid%3D4&rdn=french-tv.lol&rpn=%2Findex.php&rqs=newsid%3D4&cc=US&cont=NA&rc=IL&ipaddr=",
-      "https://t.dtscout.com/idg/?su=6D0017402575896F7FA0D8B581F4732C",
-      "https://t.sharethis.com/a/t_.htm?ver=1.1741.23410&cid=c010&cls=C#cid=c010&cls=C&rnd=0.07841150446952838&stid=ZGGAB2e6OTUAAAAIDmv3Aw%253D%253D&tt=t.dhj&dhjLcy=1740257589607&lbl=pxcel&flbl=pxcel&ll=d&ver=1.1741.23410&ell=d&cck=__stid&dmn=french-tv.lol&pn=%2Findex.php&qs=newsid%3D4&rdn=french-tv.lol&rpn=%2Findex.php&rqs=newsid%3D4&cc=US&cont=NA&rc=IL&ipaddr="
+      "https://french-tv.lol/player/fsplayer.php?id=44"
     ],
     "network_requests": [
-      "https://t.dtscdn.com/widget/?d=6D0017402575896F7FA0D8B581F4732C&nid=300&p=0&t=0&s=1920x1080x24&u=https%3A%2F%2Ffrench-tv.lol%2Fplayer%2Ffsplayer.php%3Fid%3D44&r=https%3A%2F%2Ffrench-tv.lol%2Findex.php%3Fnewsid%3D4",
-      "https://frembed.live/_next/image?url=%2Flogo%2Fchannels%2Fbein-sports-1-logo.png&w=256&q=75",
-      "https://t.dtscout.com/idg/?su=6D0017402575896E7652D9F0296243CE",
-      "https://p.dtsan.net/dtsa.js",
-      "https://iptv1.french-live.lol/auth/44.m3u8?token=MGmglcrAPlaOVitsxtrxPXScFLNXLnAw3tYiq3C4KXjm7H4sYP-G1Q8D_uEkVwiyxAt6CHXBslLeL_hY6qrhY_37G99D_YNG3EWBCUCe6FjqZ8c2R2RftR2UythLf1nA4awk6ebSW7pb7HxJAKO6mAnJKWb_jZy8SNPyCR6-R89nooPKv74qOemYi2V1fFScdJUiijrv6pXah6Dq3G8tJ6RHzvDcurDDQwThZMr-Bd12dcHbDEsFD5KJthVR8TSkrO_lEqpDN3pS2zPpdrChmd-bpEyR9AEofPFz7vWmwkpMjwRl8gK1PaxCL7ExJfWQOL5OEAEQwWVWUISH1nhJV0t3nS7QawQIO5UO600pynkE3O1lpTWd7q-HTSA5bRB-8dhKq962I7zJFaO006OyJS4fz56-Ks1cYUBqcfAEgtwX2ce3MBxebOcOXDcd3KjB8MFCFF68wEA0H3CtVDfc2mOhP_3n6pEfFLL3D5q_n_vTuwkQOmKxGarnxoHqqIac_ShXgiKI7TgNrdl6PK11h80FpKjcklK4ZjmV3R_iWFWw4db1ZIiATaNT5XG_d2zMFzTBl8RbruDHN_idEh2ROH_kpwKas6B77hC45hJgZ1wY68LXko6YvAbPSqkvt2wM",
-      "https://ml314.com/utsync.ashx?eid=50131&et=13&cid=lr&fp=ZGGAB2e6OTUAAAAIDmv3Aw%3D%3D&gdpr=0&gdpr_consent=&return=https%3A%2F%2Fidsync.rlcdn.com%2F395886.gif%3Fpartner_uid%3D%5BPersonID%5D",
-      "https://iptv1.french-live.lol/live/70013B23F3440093B75C4C8CF5C5C84D/44.m3u8",
-      "https://t.dtscout.com/pv/?_a=v&_h=french-tv.lol&_ss=1502hf09r0&_pv=2&_ls=0&_cc=us&_pl=d&_cbid=34hd&_cb=_dtspv.c",
-      "https://french-tv.lol/engine/editor/jscripts/tiny_mce/tinymce.min.js?v=ph1s3",
-      "https://pd.sharethis.com/pd/dtscout?_t_=px&url=https%3A%2F%2Ffrench-tv.lol%2Findex.php%3Fnewsid%3D4&event_source=dtscout&rnd=0.49230190064507395&exptid=ZGEACGe6OTUAAAAIPzEiAw%3D%3D&fcmp=false",
-      "https://ic.tynt.com/b/p?id=wu!&lm=0&ts=1740257589506&dn=AFWU&iso=0&pu=https%3A%2F%2Ffrench-tv.lol%2Findex.php%3Fnewsid%3D4&t=Bein%20Sport%201%20%C2%BB%20French%20TV%20LIVE%20STREAMING&chpv=10_15_7&chuav=Not(A%3ABrand%3Bv%3D99.0.0.0%2C%20HeadlessChrome%3Bv%3D133.0.6943.16%2C%20Chromium%3Bv%3D133.0.6943.16&chp=macOS&chmob=0&chua=Not(A%3ABrand%3Bv%3D99%2C%20HeadlessChrome%3Bv%3D133%2C%20Chromium%3Bv%3D133",
-      "https://ssc-cms.33across.com/ps/?ts=1740257589581.3&ri=4&ru=https%3A%2F%2Fpartner.mediawallahscript.com%2F%3Faccount_id%3D1029%26partner_id%3D936a40b7%26uid%3D33XUSERID33X%26custom%3D%26tag_format%3Dimg%26tag_action%3Dsync",
-      "https://t.dtscout.com/idg/?su=6D0017402575896F7FA0D8B581F4732C",
-      "https://t.dtscdn.com/widget/?d=6D0017402575896F7FA0D8B581F4732C&nid=300&p=0&t=0&s=1920x1080x24&u=https%3A%2F%2Ffrench-tv.lol%2Findex.php%3Fnewsid%3D4&r=",
-      "https://partner.mediawallahscript.com/?account_id=1029&partner_id=936a40b7&uid=212761364323668&custom=&tag_format=img&tag_action=sync",
-      "https://s4.histats.com/stats/0.php?4929448&@f16&@g1&@h1&@i1&@j1740257589080&@k0&@l1&@mBein%20Sport%201%20%C2%BB%20French%20TV%20LIVE%20STREAMING&@n0&@o1000&@q0&@r0&@s0&@ten-US%40posix&@u1920&@b1:-147904289&@b3:1740257589&@b4:js15_as.js&@b5:0&@a-_0.2.1&@vhttps%3A%2F%2Ffrench-tv.lol%2Findex.php%3Fnewsid%3D4&@w",
-      "https://iptv1.french-live.lol/hls/44_132.ts?token=TCgSBdC0Bqx5OAbSAGuVKgZOmlBKp3keOaMc9HJAyTo-0D7nFcj-i-obvdX_8wfriLpuwuaJSBbI85-7anFD-FiCI9a8eB75Bw6L5uCrtZVvpbh9luSeJnM3y9WYdwiS2s-uaK6uwPPY3nl54FJJuQ",
-      "https://french-tv.lol/templates/french-live/fonts/fontawesome-webfont.woff2?v=4.5.0",
-      "https://s10.histats.com/js15_as.js",
-      "https://pd.sharethis.com/pd/dtscout",
-      "https://s4.histats.com/stats/0.php?4929448&@f16&@g0&@h2&@i1&@j1740257589271&@k191&@l2&@mFrench%20LIVE%20TV%20STREAM&@n0&@ohttps%3A%2F%2Ffrench-tv.lol%2Findex.php%3Fnewsid%3D4&@q0&@r0&@s0&@ten-US%40posix&@u1920&@b1:-16071543&@b3:1740257589&@b4:js15_as.js&@b5:0&@a-_0.2.1&@vhttps%3A%2F%2Ffrench-tv.lol%2Fplayer%2Ffsplayer.php%3Fid%3D44&@w",
-      "https://pd.sharethis.com/pd/dtscout?_t_=px&url=https%3A%2F%2Ffrench-tv.lol%2Findex.php%3Fnewsid%3D4&event_source=dtscout&rnd=0.07841150446952838&exptid=ZGGAB2e6OTUAAAAIDmv3Aw%3D%3D&fcmp=false",
-      "https://e.dtscout.com/e/?v=1a&pid=5200&site=1&l=https%3A%2F%2Ffrench-tv.lol%2Fplayer%2Ffsplayer.php%3Fid%3D44&j=https%3A%2F%2Ffrench-tv.lol%2Findex.php%3Fnewsid%3D4",
-      "https://partner.mediawallahscript.com/?account_id=1029&partner_id=936a40b7&uid=212761364323668&custom=&tag_format=img&tag_action=sync&final=true&reqid=06128980-f15f-11ef-b509-b9335c7d7b83&timestamp=2025-02-22T20%3A53%3A09.784Z",
-      "https://t.dtscout.com/pv/?_a=v&_h=french-tv.lol&_ss=1502hf09r0&_pv=1&_ls=0&_u1=1&_u3=1&_cc=us&_pl=d&_cbid=b5jh&_cb=_dtspv.c",
-      "https://e.dtscout.com/e/?v=1a&pid=5200&site=1&l=https%3A%2F%2Ffrench-tv.lol%2Findex.php%3Fnewsid%3D4&j=",
-      "https://map.go.affec.tv/map/3a/?pid=CoIKTGe6OTVXX1JxA%2FRdAg%3D%3D&us_privacy=&ts=1740257589581.3"
+      "https://iptv1.french-live.lol/live/70013B23F3440093B75C4C8CF5C5C84D/44.m3u8"
     ]
   }
 }
