@@ -19,7 +19,7 @@
         },
         "filter": {
           "attribute": "text",
-          "pattern": ".{10,}"  // Ensures headlines are at least 10 chars to avoid noise
+          "pattern": ".{10,}"
         }
       }
     },
