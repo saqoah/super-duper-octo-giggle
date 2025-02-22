@@ -25,7 +25,7 @@
         },
         "filter": {
           "attribute": "src",
-          "pattern": ".*\\.(jpg|png|gif|webp)$"
+          "pattern": ".*\\.(jpg|png)$"
         }
       }
     },
@@ -80,7 +80,7 @@
     "network_requests": {
       "type": "network",
       "methods": ["GET", "POST"],
-      "pattern": ".*(?:m3u8|mp4|ts|video|stream|media|embed).*"
+      "pattern": ".*(?:m3u8|mp4|ts|video|media|embed).*"
     }
   }
 }
