@@ -153,7 +153,14 @@ async def scrape_website(schema: ScrapingSchema):
             end_time = datetime.now(timezone.utc)
             duration = (end_time - start_time).total_seconds()
             logger.info(f"Scraping completed in {duration:.2f} seconds")
-            return data
+            return {
+                "metadata": {
+                    "start_time": start_time.strftime('%Y-%m-%d %H:%M:%S'),
+                    "duration": duration,
+                    "url": url
+                },
+                "data": data
+            }
         except Exception as e:
             logger.error(f"Error during scraping: {str(e)}", exc_info=True)
             return None
@@ -275,7 +282,7 @@ async def extract_element_content(element):
         "tag": await element.evaluate("el => el.tagName.toLowerCase()"),  # Fixed: Added closing quote and parenthesis
         "text": await element.inner_text(),
         "html": await element.inner_html(),
-        "attributes": await element.evaluate("el => Object.fromEntries([...el.attributes].map(attr => [attr.name, attr.value])))"
+        "attributes": await element.evaluate("el => Object.fromEntries([...el.attributes].map(attr => [attr.name, attr.value]))")  # Removed extra parenthesis
     }
 
 async def perform_action(page: Page, action: ActionConfig):
@@ -338,7 +345,8 @@ async def extract_post_action(page: Page, config: PostActionConfig):
     return None
 
 async def main():
-    logger.info(f"Script started at {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')} UTC")
+    start_time = datetime.now(timezone.utc)
+    logger.info(f"Script started at {start_time.strftime('%Y-%m-%d %H:%M:%S')} UTC")
     try:
         with open("schema.json", "r", encoding="utf-8") as f:
             schema = json.load(f)
@@ -360,7 +368,7 @@ async def main():
                     "version": SCRIPT_VERSION,
                     "url": schema.get("url"),
                     "user": CURRENT_USER,
-                    "duration": (datetime.now(timezone.utc) - datetime.strptime(data.get("metadata", {}).get("start_time", start_time.strftime('%Y-%m-%d %H:%M:%S')), '%Y-%m-%d %H:%M:%S')).total_seconds() if "metadata" in data else None
+                    "duration": (datetime.now(timezone.utc) - start_time).total_seconds()
                 },
                 "data": data
             }, outfile, indent=2, ensure_ascii=False)
