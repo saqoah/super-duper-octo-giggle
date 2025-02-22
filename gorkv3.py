@@ -11,7 +11,6 @@ from urllib.parse import urljoin
 import aiohttp
 from tenacity import retry, stop_after_attempt, wait_exponential
 
-# Enhanced logging with detailed output
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s UTC - %(levelname)s - %(message)s - [Thread: %(threadName)s] - [File: %(pathname)s:%(lineno)d]',
@@ -22,9 +21,9 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-SCRIPT_VERSION = "3.0.0"
+SCRIPT_VERSION = "3.0.1"  # Bumped for syntax fix
 CURRENT_USER = "saqoah"
-LAST_UPDATED = "2025-02-22 17:00:00"
+LAST_UPDATED = "2025-02-22 20:00:00"
 
 class ScrapingError(Exception):
     pass
@@ -37,8 +36,8 @@ class ActionConfig(TypedDict, total=False):
     value: Optional[str]
     duration: Optional[float]
     retries: Optional[int]
-    x: Optional[int]  # X-coordinate for click
-    y: Optional[int]  # Y-coordinate for click
+    x: Optional[int]
+    y: Optional[int]
 
 class PropertyConfig(TypedDict, total=False):
     type: str
@@ -48,8 +47,8 @@ class PropertyConfig(TypedDict, total=False):
     items: Optional[Dict[str, Any]]
     pattern: Optional[str]
     filter: Optional[Dict[str, str]]
-    max_depth: Optional[int]  # Depth for recursive extraction
-    extract_children: Optional[bool]  # Extract nested elements
+    max_depth: Optional[int]
+    extract_children: Optional[bool]
 
 class PostActionConfig(TypedDict, total=False):
     type: Optional[str]
@@ -58,17 +57,17 @@ class PostActionConfig(TypedDict, total=False):
     attribute: Optional[str]
     methods: Optional[List[str]]
     pattern: Optional[str]
-    capture_response: Optional[bool]  # Capture network response body
+    capture_response: Optional[bool]
 
 class ScrapingSchema(TypedDict):
     url: str
     properties: Dict[str, PropertyConfig]
     actions: Optional[List[ActionConfig]]
     post_actions: Optional[Dict[str, PostActionConfig]]
-    headers: Optional[Dict[str, str]]  # Custom headers
-    proxy: Optional[str]  # Proxy URL
-    max_retries: Optional[int]  # Global retry count
-    timeout: Optional[int]  # Global timeout in seconds
+    headers: Optional[Dict[str, str]]
+    proxy: Optional[str]
+    max_retries: Optional[int]
+    timeout: Optional[int]
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
@@ -82,7 +81,7 @@ BROWSER_ARGS = [
     '--disable-gpu',
     '--disable-software-rasterizer',
     '--disable-extensions',
-    '--disable-blink-features=AutomationControlled'  # Anti-bot stealth
+    '--disable-blink-features=AutomationControlled'
 ]
 
 async def create_browser_context(playwright: BrowserType, schema: ScrapingSchema) -> BrowserContext:
@@ -125,7 +124,7 @@ async def scrape_website(schema: ScrapingSchema):
         page.on("response", handle_response)
 
         try:
-            timeout = schema.get("timeout", 60) * 1000  # Convert to ms
+            timeout = schema.get("timeout", 60) * 1000
             page.set_default_timeout(timeout)
             for attempt in range(schema.get("max_retries", 3)):
                 try:
@@ -150,7 +149,7 @@ async def scrape_website(schema: ScrapingSchema):
                         data[key] = extract_network_data(network_data, config)
                     else:
                         data[key] = await extract_post_action(page, config)
-            data["network"] = network_data  # Full network dump for LLM
+            data["network"] = network_data
             end_time = datetime.now(timezone.utc)
             duration = (end_time - start_time).total_seconds()
             logger.info(f"Scraping completed in {duration:.2f} seconds")
@@ -273,10 +272,10 @@ async def extract_property(page: Page, key: str, value: PropertyConfig, depth: i
 
 async def extract_element_content(element):
     return {
-        "tag": await element.evaluate("el => el.tagName.toLowerCase()},
+        "tag": await element.evaluate("el => el.tagName.toLowerCase()"),  # Fixed: Added closing quote and parenthesis
         "text": await element.inner_text(),
         "html": await element.inner_html(),
-        "attributes": await element.evaluate("el => Object.fromEntries([...el.attributes].map(attr => [attr.name, attr.value]))")
+        "attributes": await element.evaluate("el => Object.fromEntries([...el.attributes].map(attr => [attr.name, attr.value])))"
     }
 
 async def perform_action(page: Page, action: ActionConfig):
