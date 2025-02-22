@@ -6,64 +6,6 @@
       "selector_type": "css",
       "selector": "body"
     },
-    "images": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "img",
-      "items": {
-        "properties": {
-          "src": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "src"
-          },
-          "alt": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "alt"
-          }
-        },
-        "filter": {
-          "attribute": "src",
-          "pattern": ".*\\.(jpg|png|gif|webp)$"
-        }
-      }
-    },
-    "links": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "a[href]",
-      "items": {
-        "properties": {
-          "href": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "href"
-          },
-          "text": {
-            "type": "string",
-            "selector": "self"
-          }
-        },
-        "filter": {
-          "attribute": "text",
-          "pattern": ".+"
-        }
-      }
-    },
-    "scripts": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "script",
-      "items": {
-        "properties": {
-          "content": {
-            "type": "string",
-            "selector": "self"
-          }
-        }
-      }
-    },
     "playback_urls": {
       "type": "regex",
       "selector_type": "css",
@@ -75,8 +17,8 @@
     {
       "type": "click",
       "selector_type": "css",
-      "selector": "button, div",
-      "match_text": "(play|start|watch|▷)",
+      "selector": "*",
+      "match_text": "(play|start|watch|▷|video)",
       "retries": 1
     },
     {
