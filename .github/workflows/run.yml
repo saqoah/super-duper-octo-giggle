@@ -1,6 +1,9 @@
 name: Run Python Script
 
 on:
+  push:
+    branches:
+      - mainw
   workflow_dispatch:
 
 jobs:
@@ -10,34 +13,33 @@ jobs:
       contents: write
 
     steps:
-    - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-    - uses: actions/setup-python@v5
+    - name: Set up Python
+      uses: actions/setup-python@v2
       with:
         python-version: '3.9'
 
-    - run: |
+    - name: Install dependencies
+      run: |
         python -m pip install --upgrade pip
-        pip install playwright nest_asyncio aiohttp tenacity
+        pip install playwright nest_asyncio
 
-    - run: |
-        python -m playwright install --with-deps
+    - name: Install Playwright browsers
+      run: |
+        python -m playwright install
 
-    - run: |
-        python gorkv3.py || echo "Script failed, but continuing to capture output"
-        ls -l output_*.json || echo "No output files found"
+    - name: Run script
+      run: |
+        python gorkv3.py
 
-    - run: |
+    - name: Commit output.json
+      run: |
         git config --global user.name 'github-actions'
         git config --global user.email 'github-actions@github.com'
-        OUTPUT_FILE=$(ls -t output_*.json 2>/dev/null | head -n 1 || echo "")
-        if [ -n "$OUTPUT_FILE" ]; then
-          mv "$OUTPUT_FILE" output.json
-          git add output.json
-          git commit -m "Add latest output.json from scrape job"
-          git push
-        else
-          echo "No output file generated, skipping commit"
-        fi
+        git add output.json
+        git commit -m 'Add output.json'
+        git push
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
