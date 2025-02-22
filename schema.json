@@ -1,10 +1,16 @@
 {
   "url": "https://www.amazon.com/best-sellers-laptops/zgbs/pc/565108",
   "properties": {
+    "page_content": {
+      "type": "string",
+      "selector_type": "css",
+      "selector": "body",
+      "attribute": "innerHTML"
+    },
     "laptops": {
       "type": "array",
       "selector_type": "css",
-      "selector": "div[data-asin], div[id*='grid']",
+      "selector": "div",
       "items": {
         "properties": {
           "raw_content": {
@@ -42,7 +48,7 @@
   "actions": [
     {
       "type": "wait",
-      "duration": 10 
+      "duration": 10
     }
   ],
   "post_actions": {
