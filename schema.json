@@ -6,19 +6,6 @@
       "selector_type": "css",
       "selector": "body"
     },
-    "scripts": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "script",
-      "items": {
-        "properties": {
-          "content": {
-            "type": "string",
-            "selector": "self"
-          }
-        }
-      }
-    },
     "playback_urls": {
       "type": "regex",
       "selector_type": "css",
