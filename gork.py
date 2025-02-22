@@ -18,9 +18,9 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
-SCRIPT_VERSION = "2.1.0"
-CURRENT_USER = "saqoah"
-LAST_UPDATED = "2025-02-22 14:14:00"
+SCRIPT_VERSION = "2.2.0"
+CURRENT_USER = "user"
+LAST_UPDATED = "2023-10-01 14:20:00"
 
 class ScrapingError(Exception):
     pass
@@ -45,12 +45,11 @@ class ScrapingSchema(TypedDict):
     url: str
     properties: Dict[str, PropertyConfig]
     actions: Optional[List[ActionConfig]]
+    post_actions: Optional[Dict[str, Any]]
 
 USER_AGENTS = [
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Edge/120.0.0.0 Safari/537.36",
-    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Safari/605.1.15"
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
 ]
 
 BROWSER_ARGS = [
@@ -73,92 +72,16 @@ async def create_browser_context(playwright):
     )
     return context
 
-def get_universal_schema(url):
-    return {
-        "url": url,
-        "properties": {
-            "inner_text": {
-                "type": "string",
-                "selector_type": "css",
-                "selector": "body"
-            },
-            "images": {
-                "type": "array",
-                "selector_type": "css",
-                "selector": "img",
-                "items": {
-                    "properties": {
-                        "src": {
-                            "type": "string",
-                            "selector": "self",
-                            "attribute": "src"
-                        },
-                        "alt": {
-                            "type": "string",
-                            "selector": "self",
-                            "attribute": "alt"
-                        }
-                    }
-                }
-            },
-            "links": {
-                "type": "array",
-                "selector_type": "css",
-                "selector": "a[href]",
-                "items": {
-                    "properties": {
-                        "href": {
-                            "type": "string",
-                            "selector": "self",
-                            "attribute": "href"
-                        },
-                        "text": {
-                            "type": "string",
-                            "selector": "self"
-                        }
-                    }
-                }
-            },
-            "scripts": {
-                "type": "array",
-                "selector_type": "css",
-                "selector": "script",
-                "items": {
-                    "properties": {
-                        "content": {
-                            "type": "string",
-                            "selector": "self"
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-def extract_playback_urls(scripts):
-    playback_urls = []
-    url_pattern = r'"(https?://[^"]+)"'
-    playback_keywords = ["play", "stream", "video", "media", "embed", "iframe"]
-    for script in scripts:
-        urls = re.findall(url_pattern, script["content"])
-        for url in urls:
-            if any(keyword in url.lower() for keyword in playback_keywords):
-                playback_urls.append(url)
-    return list(set(playback_urls))
-
 async def scrape_website(schema: ScrapingSchema):
     start_time = datetime.now(timezone.utc)
     url = schema.get("url", "https://www.google.com/")
     logger.info(f"Starting scraping job for {url} at {start_time.strftime('%Y-%m-%d %H:%M:%S')} UTC")
-    logger.info(f"Script version: {SCRIPT_VERSION}, User: {CURRENT_USER}")
     async with async_playwright() as p:
         context = await create_browser_context(p)
         page = await context.new_page()
         try:
-            page.on("request", lambda request: logger.debug(f">> {request.method} {request.url}"))
-            page.on("response", lambda response: logger.debug(f"<< {response.status} {response.url}"))
-            page.set_default_timeout(60000)  # Increased to 60 seconds
-            for attempt in range(3):  # Retry up to 3 times
+            page.set_default_timeout(60000)
+            for attempt in range(3):
                 try:
                     response = await page.goto(url, wait_until='domcontentloaded')
                     if not response or not response.ok:
@@ -169,9 +92,14 @@ async def scrape_website(schema: ScrapingSchema):
                         logger.error(f"Failed after 3 attempts: {str(e)}")
                         raise
                     logger.warning(f"Attempt {attempt + 1} failed, retrying...")
-                    await asyncio.sleep(2 ** attempt)  # Exponential backoff
+                    await asyncio.sleep(2 ** attempt)
             data = await extract_data(page, schema)
-            data["playback_urls"] = extract_playback_urls(data["scripts"])
+            if "actions" in schema:
+                for action in schema["actions"]:
+                    await perform_action(page, action)
+            if "post_actions" in schema:
+                for key, config in schema["post_actions"].items():
+                    data[key] = await extract_post_action(page, config)
             end_time = datetime.now(timezone.utc)
             duration = (end_time - start_time).total_seconds()
             logger.info(f"Scraping completed in {duration:.2f} seconds")
@@ -191,9 +119,6 @@ async def extract_data(page: Page, schema: ScrapingSchema):
             except Exception as e:
                 logger.error(f"Error extracting {key}: {str(e)}")
                 data[key] = None
-    if "actions" in schema:
-        for action in schema["actions"]:
-            await perform_action(page, action)
     return data
 
 async def extract_property(page: Page, key: str, value: PropertyConfig):
@@ -202,22 +127,14 @@ async def extract_property(page: Page, key: str, value: PropertyConfig):
             pattern = value.get("pattern")
             if not pattern:
                 raise ValueError(f"Regex pattern is required for key '{key}'")
-            elements = await page.query_selector_all("a")
+            elements = await page.query_selector_all(value["selector"])
             results = []
             regex = re.compile(pattern, re.IGNORECASE)
             for element in elements:
-                try:
-                    href = await element.get_attribute("href")
-                    text = await element.inner_text()
-                    if href and regex.search(href):
-                        results.append({
-                            "url": href,
-                            "text": text.strip(),
-                            "matches": regex.findall(href)
-                        })
-                except Exception as e:
-                    logger.debug(f"Skipping element due to: {str(e)}")
-                    continue
+                text = await element.inner_text()
+                matches = regex.findall(text)
+                if matches:
+                    results.extend(matches)
             return results
         selector_type = value.get("selector_type", "css")
         selector = value["selector"]
@@ -267,9 +184,6 @@ async def extract_property(page: Page, key: str, value: PropertyConfig):
                     continue
                 result.append(item)
             return result
-        elif value["type"] == "html":
-            element = await page.query_selector(selector)
-            return await element.evaluate('(element) => element.outerHTML') if element else None
     except Exception as e:
         logger.error(f"Error extracting {key}: {str(e)}")
         return None
@@ -278,7 +192,6 @@ async def perform_action(page: Page, action: ActionConfig):
     action_type = action.get("type")
     selector_type = action.get("selector_type", "css")
     selector = action.get("selector")
-    value = action.get("value")
     duration = action.get("duration", 0)
     retries = action.get("retries", 3)
     for attempt in range(retries):
@@ -294,19 +207,8 @@ async def perform_action(page: Page, action: ActionConfig):
             if action_type == "click":
                 if element:
                     await element.click()
-            elif action_type == "write":
-                if element and value:
-                    await element.fill(value)
-            elif action_type == "scroll":
-                await page.evaluate("window.scrollTo(0, document.body.scrollHeight);")
             elif action_type == "wait":
                 await asyncio.sleep(duration)
-            elif action_type == "keyboard":
-                if value:
-                    await page.keyboard.press(value)
-            elif action_type == "goto":
-                if value:
-                    await page.goto(value)
             break
         except Exception as e:
             if attempt == retries - 1:
@@ -315,23 +217,41 @@ async def perform_action(page: Page, action: ActionConfig):
             logger.warning(f"Attempt {attempt + 1} failed, retrying...")
             await asyncio.sleep(2 ** attempt)
 
+async def extract_post_action(page: Page, config: Dict[str, Any]):
+    selector_type = config.get("selector_type", "css")
+    selector = config.get("selector")
+    attribute = config.get("attribute")
+    if selector_type == "css":
+        element = await page.query_selector(selector)
+        if element and attribute:
+            return await element.get_attribute(attribute)
+        return await element.inner_text() if element else None
+    elif selector_type == "xpath":
+        elements = await page.locator(selector).all_inner_texts()
+        return elements[0] if elements else None
+    return None
+
 async def main():
     logger.info(f"Script started at {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S')} UTC")
-    logger.info(f"User: {CURRENT_USER}")
-    url = "https://wiflix-pro.site/serie-en-streaming/32858-reacher-saison-3.html"
-    schema = get_universal_schema(url)
+    try:
+        with open("schema.json", "r", encoding="utf-8") as f:
+            schema = json.load(f)
+    except FileNotFoundError:
+        logger.error("Error: schema.json not found. Create this file with the correct JSON schema.")
+        return
+    except json.JSONDecodeError:
+        logger.error("Error: Invalid JSON in schema.json. Check for syntax errors.")
+        return
     try:
         data = await scrape_website(schema)
         if data is None:
             data = {key: None for key in schema["properties"]}
-        timestamp = datetime.now(timezone.utc).strftime('%Y%m%d_%H%M%S')
-        output_file = f"output.json"
+        output_file = "output.json"
         with open(output_file, "w", encoding="utf-8") as outfile:
             json.dump({
                 "metadata": {
                     "timestamp": datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M:%S'),
                     "version": SCRIPT_VERSION,
-                    "user": CURRENT_USER,
                     "url": schema.get("url")
                 },
                 "data": data
