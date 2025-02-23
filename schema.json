@@ -1,5 +1,10 @@
 {
   "url": "https://direct-streamfr.live/player.php?id=1",
+  "url_template": "https://direct-streamfr.live/player.php?id={id}",
+  "url_range": {
+    "start": 1,
+    "end": 50
+  },
   "properties": {
     "page_title": {
       "type": "string",
