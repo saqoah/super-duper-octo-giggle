@@ -32,7 +32,7 @@ jobs:
 
     - name: Run script
       run: |
-        python gork.py
+        python gorkv3.py
 
     - name: Commit output.json
       run: |
