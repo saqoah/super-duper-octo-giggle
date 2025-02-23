@@ -1,10 +1,10 @@
 {
   "url": "https://direct-streamfr.live/player.php?id=1",
   "properties": {
-    "inner_text": {
+    "page_title": {
       "type": "string",
       "selector_type": "css",
-      "selector": "body"
+      "selector": "title"
     },
     "playback_urls": {
       "type": "regex",
