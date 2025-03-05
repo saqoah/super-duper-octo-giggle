@@ -139,15 +139,52 @@
         // Create Movie/TV Show Card
         function createCard(item, type) {
             return `
-                <div class="movie-card flex-shrink-0 w-40 relative cursor-pointer" onclick="window.open('https://vidsrc.to/embed/${type}/${item.id}', '_blank')">
+                <div class="movie-card flex-shrink-0 w-40 relative cursor-pointer" onclick="openBlobPage('${item.title || item.name}', '${item.overview}', 'https://vidsrc.to/embed/${type}/${item.id}')">
                     <img src="${IMG_URL}${item.poster_path}" alt="${item.title || item.name}"
                         class="w-full h-60 object-cover rounded-lg">
                     <div class="rating absolute top-2 right-2 px-2 py-1 rounded text-sm">
-                        ╤В╨╜╨а ${item.vote_average.toFixed(1)}
+                        ${item.vote_average.toFixed(1)}
                     </div>
                     <h3 class="mt-2 text-sm">${item.title || item.name}</h3>
                 </div>
             `;
+        }
+
+        // Function to create a new page as a blob
+        function createBlobPage(title, description, videoUrl) {
+            const htmlContent = `
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <title>${title}</title>
+                <style>
+                    body { font-family: Arial, sans-serif; background-color: var(--imdb-dark); color: white; }
+                    .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+                    .player { position: relative; padding-bottom: 56.25%; height: 0; }
+                    .player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <h1>${title}</h1>
+                    <div>${description}</div>
+                    <div class="player">
+                        <iframe src="${videoUrl}" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </body>
+            </html>
+            `;
+            const blob = new Blob([htmlContent], { type: 'text/html' });
+            return URL.createObjectURL(blob);
+        }
+
+        // Open the new blob page
+        function openBlobPage(title, description, videoUrl) {
+            const blobUrl = createBlobPage(title, description, videoUrl);
+            window.open(blobUrl, '_blank');
         }
 
         // Fetch and Display Content
