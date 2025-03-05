@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oreo Stream</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --imdb-dark: #1a1a1a;
+            --imdb-yellow: #f5c518;
+        }
+        body {
+            background-color: var(--imdb-dark);
+            color: white;
+        }
+        .scroll-container {
+            scrollbar-width: none;
+        }
+        .scroll-container::-webkit-scrollbar {
+            display: none;
+        }
+        .movie-card {
+            transition: transform 0.3s;
+        }
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+        .rating {
+            background-color: rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="bg-[#121212] p-4 fixed w-full top-0 z-50">
+        <div class="flex justify-between items-center">
+            <h1 class="text-[#f5c518] text-2xl font-bold">Oreo Stream</h1>
+            <button id="menuBtn" class="text-white"><i class="fas fa-bars text-2xl"></i></button>
+        </div>
+    </header>
+
+    <!-- Menu -->
+    <div id="menu" class="fixed right-0 top-0 h-full w-64 bg-[#121212] transform translate-x-full transition-transform duration-300 z-50">
+        <div class="p-4">
+            <button id="closeMenu" class="text-white mb-4"><i class="fas fa-times"></i></button>
+            <h2 class="text-[#f5c518] text-xl mb-4 cursor-pointer" id="moviesHeader">Movies</h2>
+            <div class="space-y-2 mb-4 hidden" id="movieCategories"></div>
+            <h2 class="text-[#f5c518] text-xl mb-4 cursor-pointer" id="tvHeader">TV Series</h2>
+            <div class="space-y-2 hidden" id="tvCategories"></div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="mt-20 p-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="relative mb-8">
+                <input type="text" id="search" placeholder="Search movies and TV shows..." 
+                    class="w-full p-3 bg-[#2a2a2a] text-white rounded-lg focus:outline-none focus:ring-2 focus:ring-[#f5c518]">
+                <i class="fas fa-search absolute right-3 top-3 text-gray-400"></i>
+            </div>
+
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4">Latest Movies</h2>
+                <div class="scroll-container flex space-x-4 overflow-x-auto pb-4" id="latestMovies"></div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4">Latest TV Shows</h2>
+                <div class="scroll-container flex space-x-4 overflow-x-auto pb-4" id="latestTVShows"></div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4">Latest TV Shows - Netflix</h2>
+                <div class="scroll-container flex space-x-4 overflow-x-auto pb-4" id="latestNetflix"></div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4">Latest TV Shows - Prime</h2>
+                <div class="scroll-container flex space-x-4 overflow-x-auto pb-4" id="latestPrime"></div>
+            </section>
+
+            <section class="mb-8">
+                <h2 class="text-xl font-bold mb-4">Latest TV Shows - Apple TV</h2>
+                <div class="scroll-container flex space-x-4 overflow-x-auto pb-4" id="latestAppleTV"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-[#121212] p-4 mt-8">
+        <div class="max-w-4xl mx-auto text-center">
+            <p class="text-gray-400">Oreo Stream is your go-to platform for the latest movies and TV series.</p>
+            <p class="text-gray-400">Explore a wide range of genres and enjoy high-quality streaming.</p>
+            <p class="text-gray-400 mt-4">&copy; 2025 Oreo Stream. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const API_KEY = 'f562845c2beca65e1028ff2e31ccaff1';
+        const BASE_URL = 'https://api.themoviedb.org/3';
+        const IMG_URL = 'https://image.tmdb.org/t/p/w500';
+
+        // Menu Toggle
+        const menuBtn = document.getElementById('menuBtn');
+        const menu = document.getElementById('menu');
+        const closeMenu = document.getElementById('closeMenu');
+
+        menuBtn.addEventListener('click', () => {
+            menu.classList.remove('translate-x-full');
+        });
+
+        closeMenu.addEventListener('click', () => {
+            menu.classList.add('translate-x-full');
+        });
+
+        // Toggle Categories Visibility
+        const moviesHeader = document.getElementById('moviesHeader');
+        const tvHeader = document.getElementById('tvHeader');
+        const movieCategories = document.getElementById('movieCategories');
+        const tvCategories = document.getElementById('tvCategories');
+
+        moviesHeader.addEventListener('click', () => {
+            movieCategories.classList.toggle('hidden');
+        });
+
+        tvHeader.addEventListener('click', () => {
+            tvCategories.classList.toggle('hidden');
+        });
+
+        // Fetch Categories
+        async function fetchCategories(type) {
+            const response = await fetch(`${BASE_URL}/genre/${type}/list?api_key=${API_KEY}`);
+            const data = await response.json();
+            return data.genres;
+        }
+
+        // Create Movie/TV Show Card
+        function createCard(item, type) {
+            return `
+                <div class="movie-card flex-shrink-0 w-40 relative cursor-pointer" onclick="window.open('https://vidsrc.to/embed/${type}/${item.id}', '_blank')">
+                    <img src="${IMG_URL}${item.poster_path}" alt="${item.title || item.name}"
+                        class="w-full h-60 object-cover rounded-lg">
+                    <div class="rating absolute top-2 right-2 px-2 py-1 rounded text-sm">
+                        ╤В╨╜╨а ${item.vote_average.toFixed(1)}
+                    </div>
+                    <h3 class="mt-2 text-sm">${item.title || item.name}</h3>
+                </div>
+            `;
+        }
+
+        // Fetch and Display Content
+        async function fetchContent(type, container, genreIds = [], providerId = null) {
+            let url = `${BASE_URL}/discover/${type}?api_key=${API_KEY}&sort_by=popularity.desc`;
+            if (genreIds.length > 0) {
+                url += `&with_genres=${genreIds.join(',')}`;
+            }
+            if (providerId) {
+                url += `&with_watch_providers=${providerId}&watch_region=US`;
+            }
+            const response = await fetch(url);
+            const data = await response.json();
+            document.getElementById(container).innerHTML = 
+                data.results.map(item => createCard(item, type)).join('');
+        }
+
+        // Initialize
+        async function init() {
+            // Fetch and display categories
+            const movieCategoriesData = await fetchCategories('movie');
+            const tvCategoriesData = await fetchCategories('tv');
+
+            document.getElementById('movieCategories').innerHTML = 
+                movieCategoriesData.map(cat => `<div class="text-white hover:text-[#f5c518] cursor-pointer">${cat.name}</div>`).join('');
+            document.getElementById('tvCategories').innerHTML = 
+                tvCategoriesData.map(cat => `<div class="text-white hover:text-[#f5c518] cursor-pointer">${cat.name}</div>`).join('');
+
+            // Fetch content
+            fetchContent('movie', 'latestMovies');
+            fetchContent('tv', 'latestTVShows'); // Latest TV Shows
+            fetchContent('tv', 'latestNetflix', [], 8); // Netflix provider ID is 8
+            fetchContent('tv', 'latestPrime', [], 9); // Prime provider ID is 9
+            fetchContent('tv', 'latestAppleTV', [], 2); // Apple TV provider ID is 2
+
+            // Search functionality
+            const searchInput = document.getElementById('search');
+            searchInput.addEventListener('input', debounce(async (e) => {
+                if (e.target.value.trim()) {
+                    const response = await fetch(
+                        `${BASE_URL}/search/multi?api_key=${API_KEY}&query=${e.target.value}`
+                    );
+                    const data = await response.json();
+                    document.getElementById('latestMovies').innerHTML = 
+                        data.results.filter(item => item.media_type === 'movie').map(item => createCard(item, 'movie')).join('');
+                    document.getElementById('latestTVShows').innerHTML = 
+                        data.results.filter(item => item.media_type === 'tv').map(item => createCard(item, 'tv')).join('');
+                } else {
+                    fetchContent('movie', 'latestMovies');
+                    fetchContent('tv', 'latestTVShows');
+                }
+            }, 500));
+        }
+
+        // Debounce function
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        init();
+    </script>
+</body>
+</html>
