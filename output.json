@@ -1,15 +1,12 @@
 {
   "metadata": {
-    "timestamp": "2025-03-07 00:27:22",
+    "timestamp": "2025-03-07 00:35:24",
     "version": "2.3.2",
-    "url": "https://www.theguardian.com/uk"
+    "url": "https://www.theguardian.com/world/all"
   },
   "data": [
     {
-      "news_articles": null,
-      "article_headlines": null,
-      "article_images": null,
-      "nav_sections": null
+      "news_stories": null
     }
   ]
 }
