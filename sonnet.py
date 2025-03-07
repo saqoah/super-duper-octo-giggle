@@ -99,7 +99,7 @@ MEDIA_PATTERNS = {
 # JavaScript URL patterns (commonly used for hidden URLs)
 JS_URL_PATTERNS = [
     # Standard URLs in single or double quotes
-    r'(?:"|\'|\()(?:https?:)?\/\/[a-zA-Z0-9_\-\.\/\?\=\&\%\+\~\#\;\:\@\[\]\(\)]+(?:"|\'|\)))',
+    r'(?:"|\'|\()(?:https?:)?\/\/[a-zA-Z0-9_\-\.\/\?\=\&\%\+\~\#\;\:\@\[\]\(\)]+(?:"|\'|\))',
     # m3u8 URLs in various formats
     r'["\'`](?:https?:)?\/\/[^"\'`\s]+\.m3u8(?:\?[^"\'`\s]*)?["\'`]',
     # mp4 URLs in various formats
