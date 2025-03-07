@@ -1,90 +1,68 @@
 {
-  "url": "https://www.theguardian.com/uk",
+  "url": "https://wiflix-pro.mom/film-en-streaming/32799-captain-america-brave-new-world.html",
   "properties": {
-    "articles": {
-      "type": "array",
+    "title": {
+      "type": "string",
       "selector_type": "css",
-      "selector": "article",
-      "items": {
-        "properties": {
-          "title": {
-            "type": "string",
-            "selector": "h1, h2, h3",
-            "selector_type": "css"
-          },
-          "description": {
-            "type": "string",
-            "selector": "p",
-            "selector_type": "css"
-          },
-          "link": {
-            "type": "string",
-            "selector": "a",
-            "selector_type": "css",
-            "attribute": "href"
-          }
-        }
-      }
+      "selector": "h1.heading-1"
     },
-    "headline_links": {
-      "type": "array",
+    "description": {
+      "type": "string",
       "selector_type": "css",
-      "selector": "a[data-link-name='article']",
-      "items": {
-        "properties": {
-          "text": {
-            "type": "string",
-            "selector": "self",
-            "selector_type": "css"
-          },
-          "url": {
-            "type": "string",
-            "selector": "self",
-            "selector_type": "css",
-            "attribute": "href"
-          }
-        }
-      }
+      "selector": ".synopsis"
     },
-    "sections": {
+    "streaming_servers": {
       "type": "array",
       "selector_type": "css",
-      "selector": "section h2",
+      "selector": ".tabs-sel li",
       "items": {
         "properties": {
           "name": {
-            "type": "string",
             "selector": "self",
-            "selector_type": "css"
+            "type": "string"
           }
         }
       }
     },
-    "navigation": {
-      "type": "array",
+    "page_html": {
+      "type": "string",
       "selector_type": "css",
-      "selector": "nav ul li a",
-      "items": {
-        "properties": {
-          "text": {
-            "type": "string",
-            "selector": "self",
-            "selector_type": "css"
-          },
-          "url": {
-            "type": "string",
-            "selector": "self",
-            "selector_type": "css",
-            "attribute": "href"
-          }
-        }
-      }
+      "selector": "html",
+      "attribute": "innerHTML"
     }
   },
   "actions": [
     {
       "type": "wait",
-      "duration": 5
+      "duration": 3
+    },
+    {
+      "type": "click",
+      "selector_type": "css",
+      "selector": ".tabs-sel li:nth-child(1)",
+      "retries": 3
+    },
+    {
+      "type": "wait",
+      "duration": 2
     }
-  ]
+  ],
+  "post_actions": {
+    "iframe_sources": {
+      "type": "regex",
+      "selector_type": "css",
+      "selector": "script",
+      "pattern": "url_iframe = ['\"]([^'\"]+)['\"]"
+    },
+    "direct_player_urls": {
+      "selector_type": "css",
+      "selector": "iframe",
+      "attribute": "src"
+    },
+    "all_streaming_links": {
+      "type": "network",
+      "methods": ["GET", "POST"],
+      "pattern": "embed|player|stream|iframe|video"
+    }
+  }
 }
