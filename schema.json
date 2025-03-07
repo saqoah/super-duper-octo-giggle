@@ -1,27 +1,81 @@
 {
-  "url": "https://www.theguardian.com/world/all",
+  "url": "https://www.theguardian.com/uk",
   "properties": {
-    "news_stories": {
+    "articles": {
       "type": "array",
       "selector_type": "css",
-      "selector": "li.fc-slice__item, article, .js-headline-list-item, .u-faux-block-link",
+      "selector": "article",
       "items": {
         "properties": {
           "title": {
-            "selector": "h2, h3, h4, .js-headline-text, .fc-item__title",
-            "attribute": null
-          },
-          "link": {
-            "selector": "a.fc-item__link, a.u-faux-block-link__overlay",
-            "attribute": "href"
+            "type": "string",
+            "selector": "h1, h2, h3",
+            "selector_type": "css"
           },
           "description": {
-            "selector": "p, .fc-item__standfirst",
-            "attribute": null
+            "type": "string",
+            "selector": "p",
+            "selector_type": "css"
           },
-          "date": {
-            "selector": "time, .fc-item__timestamp, .fc-item__meta",
-            "attribute": null
+          "link": {
+            "type": "string",
+            "selector": "a",
+            "selector_type": "css",
+            "attribute": "href"
+          }
+        }
+      }
+    },
+    "headline_links": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "a[data-link-name='article']",
+      "items": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "selector": "self",
+            "selector_type": "css"
+          },
+          "url": {
+            "type": "string",
+            "selector": "self",
+            "selector_type": "css",
+            "attribute": "href"
+          }
+        }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "section h2",
+      "items": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "selector": "self",
+            "selector_type": "css"
+          }
+        }
+      }
+    },
+    "navigation": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "nav ul li a",
+      "items": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "selector": "self",
+            "selector_type": "css"
+          },
+          "url": {
+            "type": "string",
+            "selector": "self",
+            "selector_type": "css",
+            "attribute": "href"
           }
         }
       }
@@ -30,7 +84,7 @@
   "actions": [
     {
       "type": "wait",
-      "duration": 3.0
+      "duration": 5
     }
   ]
 }
