@@ -1,34 +1,23 @@
 {
   "url": "https://wiflix-pro.mom/film-en-streaming/32799-captain-america-brave-new-world.html",
   "properties": {
-    "title": {
-      "type": "string",
-      "selector_type": "css",
-      "selector": "h1.heading-1"
-    },
-    "description": {
+    "movie_info": {
       "type": "string",
       "selector_type": "css",
       "selector": ".synopsis"
     },
-    "streaming_servers": {
+    "all_servers": {
       "type": "array",
       "selector_type": "css",
       "selector": ".tabs-sel li",
       "items": {
         "properties": {
-          "name": {
+          "server_name": {
             "selector": "self",
             "type": "string"
           }
         }
       }
-    },
-    "page_html": {
-      "type": "string",
-      "selector_type": "css",
-      "selector": "html",
-      "attribute": "innerHTML"
     }
   },
   "actions": [
@@ -40,6 +29,36 @@
       "type": "click",
       "selector_type": "css",
       "selector": ".tabs-sel li:nth-child(1)",
+      "retries": 3
+    },
+    {
+      "type": "wait",
+      "duration": 2
+    },
+    {
+      "type": "click",
+      "selector_type": "css",
+      "selector": ".tabs-sel li:nth-child(2)",
+      "retries": 3
+    },
+    {
+      "type": "wait",
+      "duration": 2
+    },
+    {
+      "type": "click",
+      "selector_type": "css",
+      "selector": ".tabs-sel li:nth-child(3)",
+      "retries": 3
+    },
+    {
+      "type": "wait",
+      "duration": 2
+    },
+    {
+      "type": "click",
+      "selector_type": "css",
+      "selector": ".tabs-sel li:nth-child(4)",
       "retries": 3
     },
     {
