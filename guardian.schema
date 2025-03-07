@@ -1,0 +1,90 @@
+{
+  "url": "https://www.theguardian.com/uk",
+  "properties": {
+    "articles": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "article",
+      "items": {
+        "properties": {
+          "title": {
+            "type": "string",
+            "selector": "h1, h2, h3",
+            "selector_type": "css"
+          },
+          "description": {
+            "type": "string",
+            "selector": "p",
+            "selector_type": "css"
+          },
+          "link": {
+            "type": "string",
+            "selector": "a",
+            "selector_type": "css",
+            "attribute": "href"
+          }
+        }
+      }
+    },
+    "headline_links": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "a[data-link-name='article']",
+      "items": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "selector": "self",
+            "selector_type": "css"
+          },
+          "url": {
+            "type": "string",
+            "selector": "self",
+            "selector_type": "css",
+            "attribute": "href"
+          }
+        }
+      }
+    },
+    "sections": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "section h2",
+      "items": {
+        "properties": {
+          "name": {
+            "type": "string",
+            "selector": "self",
+            "selector_type": "css"
+          }
+        }
+      }
+    },
+    "navigation": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "nav ul li a",
+      "items": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "selector": "self",
+            "selector_type": "css"
+          },
+          "url": {
+            "type": "string",
+            "selector": "self",
+            "selector_type": "css",
+            "attribute": "href"
+          }
+        }
+      }
+    }
+  },
+  "actions": [
+    {
+      "type": "wait",
+      "duration": 5
+    }
+  ]
+}
