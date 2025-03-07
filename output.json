@@ -1,19 +1,14 @@
 {
   "metadata": {
-    "timestamp": "2025-03-07 00:01:43",
+    "timestamp": "2025-03-07 00:03:45",
     "version": "3.0.0",
-    "url": "https://egydead.fyi/episode/%d9%85%d8%b3%d9%84%d8%b3%d9%84-reacher-%d8%a7%d9%84%d9%85%d9%88%d8%b3%d9%85-%d8%a7%d9%84%d8%ab%d8%a7%d9%84%d8%ab-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-3-%d9%85%d8%aa%d8%b1%d8%ac%d9%85%d8%a9/"
+    "url": "https://vidsrc.to/embed/movie/200"
   },
   "data": [
     {
       "inner_text": null,
-      "images": null,
-      "links": null,
-      "scripts": null,
       "playback_urls": [],
-      "iframe_urls": [
-        "https://www.youtube.com/embed/mCFXvDeUoi0"
-      ]
+      "iframe_urls": null
     }
   ]
 }
