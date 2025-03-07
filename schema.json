@@ -1,73 +1,27 @@
 {
-  "url": "https://www.theguardian.com/uk",
+  "url": "https://www.theguardian.com/world/all",
   "properties": {
-    "news_articles": {
+    "news_stories": {
       "type": "array",
       "selector_type": "css",
-      "selector": "a[href*='/20']",
+      "selector": "li.fc-slice__item, article, .js-headline-list-item, .u-faux-block-link",
       "items": {
         "properties": {
-          "headline": {
-            "type": "string",
-            "selector": "self",
+          "title": {
+            "selector": "h2, h3, h4, .js-headline-text, .fc-item__title",
             "attribute": null
           },
-          "url": {
-            "type": "string",
-            "selector": "self",
+          "link": {
+            "selector": "a.fc-item__link, a.u-faux-block-link__overlay",
             "attribute": "href"
-          }
-        }
-      }
-    },
-    "article_headlines": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "h1, h2, h3",
-      "items": {
-        "properties": {
-          "text": {
-            "type": "string",
-            "selector": "self",
-            "attribute": null
-          }
-        }
-      }
-    },
-    "article_images": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "img[srcset], img[src*='guim']",
-      "items": {
-        "properties": {
-          "src": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "src"
           },
-          "alt": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "alt"
-          }
-        }
-      }
-    },
-    "nav_sections": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "nav a",
-      "items": {
-        "properties": {
-          "section_name": {
-            "type": "string",
-            "selector": "self",
+          "description": {
+            "selector": "p, .fc-item__standfirst",
             "attribute": null
           },
-          "section_url": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "href"
+          "date": {
+            "selector": "time, .fc-item__timestamp, .fc-item__meta",
+            "attribute": null
           }
         }
       }
@@ -76,32 +30,7 @@
   "actions": [
     {
       "type": "wait",
-      "duration": 5.0
-    },
-    {
-      "type": "click",
-      "selector": "button[data-link-name='dismiss']",
-      "retries": 1
+      "duration": 3.0
     }
-  ],
-  "post_actions": {
-    "meta_title": {
-      "type": "string",
-      "selector_type": "css",
-      "selector": "title",
-      "attribute": null
-    },
-    "meta_description": {
-      "type": "string",
-      "selector_type": "css",
-      "selector": "meta[name='description']",
-      "attribute": "content"
-    },
-    "json_ld": {
-      "type": "string",
-      "selector_type": "css",
-      "selector": "script[type='application/ld+json']",
-      "attribute": "innerHTML"
-    }
-  }
+  ]
 }
