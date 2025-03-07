@@ -1,68 +1,10 @@
 {
-  "url": "https://egydead.fyi/episode/%d9%85%d8%b3%d9%84%d8%b3%d9%84-reacher-%d8%a7%d9%84%d9%85%d9%88%d8%b3%d9%85-%d8%a7%d9%84%d8%ab%d8%a7%d9%84%d8%ab-%d8%a7%d9%84%d8%ad%d9%84%d9%82%d8%a9-3-%d9%85%d8%aa%d8%b1%d8%ac%d9%85%d8%a9/",
+  "url": "https://vidsrc.to/embed/movie/200",
   "properties": {
     "inner_text": {
       "type": "string",
       "selector_type": "css",
       "selector": "body"
-    },
-    "images": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "img",
-      "items": {
-        "properties": {
-          "src": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "src"
-          },
-          "alt": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "alt"
-          }
-        },
-        "filter": {
-          "attribute": "src",
-          "pattern": ".*\\.(jpg|png|gif|webp)$"
-        }
-      }
-    },
-    "links": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "a[href]",
-      "items": {
-        "properties": {
-          "href": {
-            "type": "string",
-            "selector": "self",
-            "attribute": "href"
-          },
-          "text": {
-            "type": "string",
-            "selector": "self"
-          }
-        },
-        "filter": {
-          "attribute": "text",
-          "pattern": ".+"
-        }
-      }
-    },
-    "scripts": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": "script",
-      "items": {
-        "properties": {
-          "content": {
-            "type": "string",
-            "selector": "self"
-          }
-        }
-      }
     },
     "playback_urls": {
       "type": "regex",
@@ -71,6 +13,22 @@
       "pattern": "\"(https?://[^\"]+?(?:embed|video|stream|media|player|m3u8|mp4|ts)[^\"]*)\""
     }
   },
+  "actions": [
+    {
+      "type": "wait",
+      "duration": 2
+    },
+    {
+      "type": "click",
+      "selector_type": "css",
+      "selector": "body",
+      "retries": 1
+    },
+    {
+      "type": "wait",
+      "duration": 3
+    }
+  ],
   "post_actions": {
     "iframe_urls": {
       "selector_type": "css",
