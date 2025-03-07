@@ -1,83 +1,72 @@
 {
   "url": "https://www.theguardian.com/uk",
   "properties": {
-    "articles": {
+    "news_articles": {
       "type": "array",
       "selector_type": "css",
-      "selector": ".fc-item--standard",
+      "selector": "a[href*='/20']",
       "items": {
         "properties": {
-          "title": {
-            "type": "string",
-            "selector": ".fc-item__title",
-            "attribute": null
-          },
-          "description": {
-            "type": "string",
-            "selector": ".fc-item__standfirst",
-            "attribute": null
-          },
-          "link": {
-            "type": "string",
-            "selector": ".fc-item__link",
-            "attribute": "href"
-          },
-          "image": {
-            "type": "string",
-            "selector": "picture img",
-            "attribute": "src"
-          },
-          "category": {
-            "type": "string",
-            "selector": ".fc-item__kicker",
-            "attribute": null
-          },
-          "timestamp": {
-            "type": "string",
-            "selector": "time",
-            "attribute": "datetime"
-          }
-        }
-      }
-    },
-    "top_stories": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": ".fc-item--type-analysis",
-      "items": {
-        "properties": {
-          "title": {
-            "type": "string",
-            "selector": ".fc-item__title",
-            "attribute": null
-          },
-          "link": {
-            "type": "string",
-            "selector": ".fc-item__link",
-            "attribute": "href"
-          },
-          "category": {
-            "type": "string",
-            "selector": ".fc-item__kicker",
-            "attribute": null
-          }
-        }
-      }
-    },
-    "sections": {
-      "type": "array",
-      "selector_type": "css",
-      "selector": ".fc-container__header__title",
-      "items": {
-        "properties": {
-          "name": {
+          "headline": {
             "type": "string",
             "selector": "self",
             "attribute": null
           },
-          "link": {
+          "url": {
             "type": "string",
-            "selector": "a",
+            "selector": "self",
+            "attribute": "href"
+          }
+        }
+      }
+    },
+    "article_headlines": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "h1, h2, h3",
+      "items": {
+        "properties": {
+          "text": {
+            "type": "string",
+            "selector": "self",
+            "attribute": null
+          }
+        }
+      }
+    },
+    "article_images": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "img[srcset], img[src*='guim']",
+      "items": {
+        "properties": {
+          "src": {
+            "type": "string",
+            "selector": "self",
+            "attribute": "src"
+          },
+          "alt": {
+            "type": "string",
+            "selector": "self",
+            "attribute": "alt"
+          }
+        }
+      }
+    },
+    "nav_sections": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "nav a",
+      "items": {
+        "properties": {
+          "section_name": {
+            "type": "string",
+            "selector": "self",
+            "attribute": null
+          },
+          "section_url": {
+            "type": "string",
+            "selector": "self",
             "attribute": "href"
           }
         }
@@ -87,26 +76,32 @@
   "actions": [
     {
       "type": "wait",
-      "duration": 2.0
+      "duration": 5.0
+    },
+    {
+      "type": "click",
+      "selector": "button[data-link-name='dismiss']",
+      "retries": 1
     }
   ],
   "post_actions": {
-    "breaking_news_banners": {
+    "meta_title": {
       "type": "string",
       "selector_type": "css",
-      "selector": ".breaking-news",
-      "attribute": "innerHTML"
+      "selector": "title",
+      "attribute": null
     },
-    "headline_statistics": {
-      "type": "regex",
+    "meta_description": {
+      "type": "string",
       "selector_type": "css",
-      "selector": ".js-headline-text",
-      "pattern": "([0-9,]+)\\s+(?:cases|deaths|people)"
+      "selector": "meta[name='description']",
+      "attribute": "content"
     },
-    "api_endpoints": {
-      "type": "network",
-      "methods": ["GET"],
-      "pattern": "theguardian\\.com/api/"
+    "json_ld": {
+      "type": "string",
+      "selector_type": "css",
+      "selector": "script[type='application/ld+json']",
+      "attribute": "innerHTML"
     }
   }
 }
