@@ -32,7 +32,7 @@ jobs:
 
     - name: Run script
       run: |
-        python sonnet.py
+        python grokv3.py
 
     - name: Commit output.json
       run: |
