@@ -1,87 +1,86 @@
 {
-  "url": "https://wiflix-pro.mom/film-en-streaming/32799-captain-america-brave-new-world.html",
+  "url": "https://french-stream.my/15118576-the-substance.html",
   "properties": {
-    "movie_info": {
+    "inner_text": {
       "type": "string",
       "selector_type": "css",
-      "selector": ".synopsis"
+      "selector": "body"
     },
-    "all_servers": {
+    "images": {
       "type": "array",
       "selector_type": "css",
-      "selector": ".tabs-sel li",
+      "selector": "img",
       "items": {
         "properties": {
-          "server_name": {
+          "src": {
+            "type": "string",
             "selector": "self",
-            "type": "string"
+            "attribute": "src"
+          },
+          "alt": {
+            "type": "string",
+            "selector": "self",
+            "attribute": "alt"
+          }
+        },
+        "filter": {
+          "attribute": "src",
+          "pattern": ".*\\.(jpg|png|gif|webp)$"
+        }
+      }
+    },
+    "links": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "a[href]",
+      "items": {
+        "properties": {
+          "href": {
+            "type": "string",
+            "selector": "self",
+            "attribute": "href"
+          },
+          "text": {
+            "type": "string",
+            "selector": "self"
+          }
+        },
+        "filter": {
+          "attribute": "text",
+          "pattern": ".+"
+        }
+      }
+    },
+    "scripts": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "script",
+      "items": {
+        "properties": {
+          "content": {
+            "type": "string",
+            "selector": "self"
           }
         }
       }
-    }
-  },
-  "actions": [
-    {
-      "type": "wait",
-      "duration": 3
     },
-    {
-      "type": "click",
-      "selector_type": "css",
-      "selector": ".tabs-sel li:nth-child(1)",
-      "retries": 3
-    },
-    {
-      "type": "wait",
-      "duration": 2
-    },
-    {
-      "type": "click",
-      "selector_type": "css",
-      "selector": ".tabs-sel li:nth-child(2)",
-      "retries": 3
-    },
-    {
-      "type": "wait",
-      "duration": 2
-    },
-    {
-      "type": "click",
-      "selector_type": "css",
-      "selector": ".tabs-sel li:nth-child(3)",
-      "retries": 3
-    },
-    {
-      "type": "wait",
-      "duration": 2
-    },
-    {
-      "type": "click",
-      "selector_type": "css",
-      "selector": ".tabs-sel li:nth-child(4)",
-      "retries": 3
-    },
-    {
-      "type": "wait",
-      "duration": 2
-    }
-  ],
-  "post_actions": {
-    "iframe_sources": {
+    "playback_urls": {
       "type": "regex",
       "selector_type": "css",
-      "selector": "script",
-      "pattern": "url_iframe = ['\"]([^'\"]+)['\"]"
-    },
-    "direct_player_urls": {
+      "selector": "script, iframe",
+      "pattern": "\"(https?://[^\"]+?(?:embed|video|stream|media|player|m3u8|mp4|ts)[^\"]*)\""
+    }
+  },
+  "post_actions": {
+    "iframe_urls": {
       "selector_type": "css",
       "selector": "iframe",
       "attribute": "src"
     },
-    "all_streaming_links": {
+    "network_requests": {
       "type": "network",
       "methods": ["GET", "POST"],
-      "pattern": "embed|player|stream|iframe|video"
+      "pattern": ".*(?:m3u8|mp4|ts|video|stream|media|embed).*"
     }
   }
 }
