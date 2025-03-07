@@ -150,7 +150,7 @@
             `;
         }
 
-        // Function to create a new page as a blob
+        // Function to create a new page as a blob with improved design
         function createBlobPage(title, description, videoUrl) {
             const htmlContent = `
             <!DOCTYPE html>
@@ -158,20 +158,186 @@
             <head>
                 <meta charset="UTF-8">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>${title}</title>
+                <title>${title} | Oreo Stream</title>
+                <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
                 <style>
-                    body { font-family: Arial, sans-serif; background-color: var(--imdb-dark); color: white; }
-                    .container { max-width: 800px; margin: 0 auto; padding: 20px; }
-                    .player { position: relative; padding-bottom: 56.25%; height: 0; }
-                    .player iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+                    :root {
+                        --imdb-dark: #1a1a1a;
+                        --imdb-darker: #121212;
+                        --imdb-yellow: #f5c518;
+                        --text-light: #ffffff;
+                        --text-secondary: #b3b3b3;
+                    }
+                    body {
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        background-color: var(--imdb-dark);
+                        color: var(--text-light);
+                        margin: 0;
+                        padding: 0;
+                        line-height: 1.6;
+                    }
+                    .header {
+                        background-color: var(--imdb-darker);
+                        padding: 16px 24px;
+                        display: flex;
+                        align-items: center;
+                        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+                    }
+                    .header h2 {
+                        color: var(--imdb-yellow);
+                        margin: 0;
+                        font-size: 1.5rem;
+                        font-weight: bold;
+                    }
+                    .back-button {
+                        background: none;
+                        border: none;
+                        color: var(--text-light);
+                        font-size: 1.2rem;
+                        cursor: pointer;
+                        margin-right: 15px;
+                        transition: transform 0.2s;
+                    }
+                    .back-button:hover {
+                        transform: translateX(-3px);
+                        color: var(--imdb-yellow);
+                    }
+                    .container {
+                        max-width: 1000px;
+                        margin: 0 auto;
+                        padding: 20px;
+                    }
+                    .content-wrapper {
+                        display: grid;
+                        grid-template-columns: 1fr;
+                        gap: 30px;
+                    }
+                    .title-section {
+                        border-left: 4px solid var(--imdb-yellow);
+                        padding-left: 20px;
+                        margin-bottom: 30px;
+                    }
+                    h1 {
+                        font-size: 2.2rem;
+                        margin: 0 0 10px 0;
+                        font-weight: 700;
+                    }
+                    .meta-info {
+                        color: var(--text-secondary);
+                        font-size: 0.95rem;
+                        display: flex;
+                        gap: 15px;
+                        flex-wrap: wrap;
+                        margin-bottom: 5px;
+                    }
+                    .meta-info span {
+                        display: flex;
+                        align-items: center;
+                    }
+                    .meta-info i {
+                        margin-right: 5px;
+                    }
+                    .description {
+                        background-color: rgba(0, 0, 0, 0.2);
+                        padding: 20px;
+                        border-radius: 8px;
+                        margin-bottom: 30px;
+                        font-size: 1.05rem;
+                        line-height: 1.7;
+                        max-width: 900px;
+                    }
+                    .player-container {
+                        background-color: var(--imdb-darker);
+                        padding: 20px;
+                        border-radius: 8px;
+                        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+                    }
+                    .player-title {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 15px;
+                    }
+                    .player-title i {
+                        color: var(--imdb-yellow);
+                        margin-right: 10px;
+                        font-size: 1.2rem;
+                    }
+                    .player-title h3 {
+                        margin: 0;
+                        font-size: 1.3rem;
+                    }
+                    .player {
+                        position: relative;
+                        padding-bottom: 56.25%;
+                        height: 0;
+                        overflow: hidden;
+                        border-radius: 6px;
+                    }
+                    .player iframe {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        border: none;
+                        background-color: #000;
+                    }
+                    .footer {
+                        margin-top: 40px;
+                        text-align: center;
+                        color: var(--text-secondary);
+                        font-size: 0.9rem;
+                    }
+                    @media (max-width: 768px) {
+                        .container {
+                            padding: 15px;
+                        }
+                        h1 {
+                            font-size: 1.8rem;
+                        }
+                        .description {
+                            padding: 15px;
+                        }
+                    }
                 </style>
             </head>
             <body>
+                <div class="header">
+                    <button class="back-button" onclick="window.close()">
+                        <i class="fas fa-arrow-left"></i>
+                    </button>
+                    <h2>Oreo Stream</h2>
+                </div>
+                
                 <div class="container">
-                    <h1>${title}</h1>
-                    <div>${description}</div>
-                    <div class="player">
-                        <iframe src="${videoUrl}" frameborder="0" allowfullscreen></iframe>
+                    <div class="content-wrapper">
+                        <div class="title-section">
+                            <h1>${title}</h1>
+                            <div class="meta-info">
+                                <span><i class="fas fa-star"></i> 8.5</span>
+                                <span><i class="fas fa-clock"></i> 120 min</span>
+                                <span><i class="fas fa-calendar"></i> 2025</span>
+                                <span><i class="fas fa-film"></i> Drama, Thriller</span>
+                            </div>
+                        </div>
+                        
+                        <div class="description">
+                            ${description || "No description available for this title."}
+                        </div>
+                        
+                        <div class="player-container">
+                            <div class="player-title">
+                                <i class="fas fa-play-circle"></i>
+                                <h3>Watch Now</h3>
+                            </div>
+                            <div class="player">
+                                <iframe src="${videoUrl}" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="footer">
+                        <p>© 2025 Oreo Stream. All rights reserved.</p>
                     </div>
                 </div>
             </body>
