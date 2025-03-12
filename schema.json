@@ -1,23 +1,110 @@
 {
-  "url": "https://french-stream.my/15118576-the-substance.html",
+  "url": "https://www.theguardian.com/international",
   "properties": {
-    "playback_urls": {
-      "type": "regex",
+    "headlines": {
+      "type": "array",
       "selector_type": "css",
-      "selector": "script, iframe",
-      "pattern": "\"(https?://[^\"]+?(?:embed|video|stream|media|player|m3u8|mp4|ts)[^\"]*)\""
+      "selector": "div.fc-item__container, div[data-link-name='article']",
+      "items": {
+        "properties": {
+          "title": {
+            "selector": "h3.fc-item__title, div.dcr-12fpkzd span.dcr-lv2u9s, h3",
+            "type": "string"
+          },
+          "url": {
+            "selector": "a.fc-item__link, a[data-link-name='article']",
+            "attribute": "href",
+            "type": "string"
+          },
+          "image": {
+            "selector": "picture.fc-item__image img, img.responsive-img, img.dcr-1989ovb",
+            "attribute": "src",
+            "type": "string"
+          },
+          "category": {
+            "selector": "span.fc-item__kicker, div.dcr-1kgafm8, span.dcr-y70rip",
+            "type": "string"
+          },
+          "timestamp": {
+            "selector": "time, span.dcr-u0h1qy",
+            "attribute": "datetime",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "top_story": {
+      "type": "string",
+      "selector_type": "css",
+      "selector": "div.fc-item--type-article.fc-item--pillar-news.fc-item--standard-tablet h3.fc-item__title, div[data-gu-name='headline'] h1, div[data-component='headlines'] h3, div.dcr-12fpkzd span.dcr-lv2u9s",
+      "attribute": "innerHTML"
+    },
+    "sections": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "nav.navigation ul.top-navigation__inner li a, nav[data-component='nav2'] a[data-link-name='nav2 : primary'], header nav li a",
+      "items": {
+        "properties": {
+          "name": {
+            "selector": "self",
+            "type": "string"
+          },
+          "url": {
+            "selector": "self",
+            "attribute": "href",
+            "type": "string"
+          }
+        }
+      }
+    },
+    "latest_headlines": {
+      "type": "array",
+      "selector_type": "css",
+      "selector": "div[data-component='headlines'] ul li, section[data-title='Headlines'] div[data-link-name='article']",
+      "items": {
+        "properties": {
+          "title": {
+            "selector": "h3, span.dcr-lv2u9s",
+            "type": "string"
+          },
+          "url": {
+            "selector": "a",
+            "attribute": "href",
+            "type": "string"
+          },
+          "timestamp": {
+            "selector": "time, span.dcr-u0h1qy",
+            "attribute": "datetime",
+            "type": "string"
+          }
+        }
+      }
     }
   },
-  "post_actions": {
-    "iframe_urls": {
-      "selector_type": "css",
-      "selector": "iframe",
-      "attribute": "src"
+  "actions": [
+    {
+      "type": "wait",
+      "duration": 2
     },
-    "network_requests": {
-      "type": "network",
-      "methods": ["GET", "POST"],
-      "pattern": ".*(?:m3u8|mp4|ts|video|stream|media|embed).*"
+    {
+      "type": "click",
+      "selector_type": "css",
+      "selector": "button.css-1bd8djv, button[data-component='dismiss-button']",
+      "retries": 1
+    }
+  ],
+  "post_actions": {
+    "meta_description": {
+      "type": "string",
+      "selector_type": "css",
+      "selector": "meta[name='description']",
+      "attribute": "content"
+    },
+    "logo_url": {
+      "type": "string",
+      "selector_type": "css",
+      "selector": "a[data-link-name='nav2 : logo'] svg, .css-1vzikp2",
+      "attribute": "src"
     }
   }
 }
