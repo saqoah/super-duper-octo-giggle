@@ -1,46 +1,398 @@
 {
   "metadata": {
-    "timestamp": "2025-03-07 02:59:01",
-    "version": "2.3.2",
-    "url": "https://french-stream.my/15118576-the-substance.html"
+    "timestamp": "2025-03-12 05:39:53",
+    "version": "2.4.0",
+    "url": "https://www.theguardian.com/international"
   },
   "data": {
-    "playback_urls": [],
-    "iframe_urls": null,
-    "network_requests": [
-      "https://french-stream.my/engine/data/emoticons/huit.gif",
-      "https://french-stream.my/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js",
-      "https://french-stream.my/templates/VFV1/style/styles8.css",
-      "https://french-stream.my/templates/VFV1/fonts/fontawesome-webfont.woff2?v=4.5.0",
-      "https://french-stream.my/engine/editor/css/default.css?v=23",
-      "https://french-stream.my/engine/classes/js/waypoints.js?v=23",
-      "https://french-stream.my/engine/classes/js/jqueryui.js?v=23",
-      "https://french-stream.my/templates/VFV1/dleimages/noavatar.png",
-      "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/webfonts/fa-regular-400.woff2",
-      "https://french-stream.my/engine/data/emoticons/dix.gif",
-      "https://french-stream.my/engine/data/emoticons/sept.gif",
-      "https://french-stream.my/engine/data/emoticons/lienmort.gif",
-      "https://french-stream.my/engine/data/emoticons/plusun.gif",
-      "https://french-stream.my/avatar.webp",
-      "https://french-stream.my/engine/classes/js/dle_js.js?v=23",
-      "https://french-stream.my/engine/data/emoticons/Un.gif",
-      "https://french-stream.my/engine/classes/js/jquery.js?v=23",
-      "https://french-stream.my/engine/data/emoticons/trois.gif",
-      "https://french-stream.my/engine/data/emoticons/Deux.gif",
-      "https://french-stream.my/templates/VFV1/js/05.style.js",
-      "https://french-stream.my/engine/data/emoticons/quatre.gif",
-      "https://french-stream.my/15118576-the-substance.html",
-      "https://french-stream.my/templates/VFV1/style/engine.css",
-      "https://french-stream.my/engine/classes/js/bbcodes.js?v=23",
-      "https://french-stream.my/templates/VFV1/style/h.style.css",
-      "https://french-stream.my/templates/VFV1/js/styles3.js",
-      "https://french-stream.my/templates/VFV1/style/styles.css",
-      "https://french-stream.my/templates/VFV1/js/libs80.js",
-      "https://french-stream.my/engine/data/emoticons/neuf.gif",
-      "https://french-stream.my/engine/data/emoticons/six.gif",
-      "https://french-stream.my/engine/data/emoticons/cinq.gif",
-      "https://french-stream.my/engine/data/emoticons/thankyou.gif",
-      "https://french-stream.my/engine/data/emoticons/merci.gif"
-    ]
+    "headlines": [],
+    "top_story": null,
+    "sections": [
+      {
+        "name": "US edition",
+        "url": "https://www.theguardian.com/preference/edition/us"
+      },
+      {
+        "name": "UK edition",
+        "url": "https://www.theguardian.com/preference/edition/uk"
+      },
+      {
+        "name": "Australia edition",
+        "url": "https://www.theguardian.com/preference/edition/au"
+      },
+      {
+        "name": "Europe edition",
+        "url": "https://www.theguardian.com/preference/edition/eur"
+      },
+      {
+        "name": "International edition",
+        "url": "https://www.theguardian.com/preference/edition/int"
+      },
+      {
+        "name": "News",
+        "url": "https://www.theguardian.com/"
+      },
+      {
+        "name": "Opinion",
+        "url": "https://www.theguardian.com/commentisfree"
+      },
+      {
+        "name": "Sport",
+        "url": "https://www.theguardian.com/sport"
+      },
+      {
+        "name": "Culture",
+        "url": "https://www.theguardian.com/culture"
+      },
+      {
+        "name": "Lifestyle",
+        "url": "https://www.theguardian.com/lifeandstyle"
+      },
+      {
+        "name": "View all News",
+        "url": "https://www.theguardian.com/"
+      },
+      {
+        "name": "US news",
+        "url": "https://www.theguardian.com/us-news"
+      },
+      {
+        "name": "US politics",
+        "url": "https://www.theguardian.com/us-news/us-politics"
+      },
+      {
+        "name": "World news",
+        "url": "https://www.theguardian.com/world"
+      },
+      {
+        "name": "Climate crisis",
+        "url": "https://www.theguardian.com/environment/climate-crisis"
+      },
+      {
+        "name": "Middle East",
+        "url": "https://www.theguardian.com/world/middleeast"
+      },
+      {
+        "name": "Ukraine",
+        "url": "https://www.theguardian.com/world/ukraine"
+      },
+      {
+        "name": "Soccer",
+        "url": "https://www.theguardian.com/us/soccer"
+      },
+      {
+        "name": "Business",
+        "url": "https://www.theguardian.com/us/business"
+      },
+      {
+        "name": "Environment",
+        "url": "https://www.theguardian.com/us/environment"
+      },
+      {
+        "name": "Tech",
+        "url": "https://www.theguardian.com/us/technology"
+      },
+      {
+        "name": "Science",
+        "url": "https://www.theguardian.com/science"
+      },
+      {
+        "name": "Newsletters",
+        "url": "https://www.theguardian.com/email-newsletters"
+      },
+      {
+        "name": "Wellness",
+        "url": "https://www.theguardian.com/us/wellness"
+      },
+      {
+        "name": "View all Opinion",
+        "url": "https://www.theguardian.com/commentisfree"
+      },
+      {
+        "name": "The Guardian view",
+        "url": "https://www.theguardian.com/profile/editorial"
+      },
+      {
+        "name": "Columnists",
+        "url": "https://www.theguardian.com/index/contributors"
+      },
+      {
+        "name": "Letters",
+        "url": "https://www.theguardian.com/tone/letters"
+      },
+      {
+        "name": "Opinion videos",
+        "url": "https://www.theguardian.com/type/video+tone/comment"
+      },
+      {
+        "name": "Cartoons",
+        "url": "https://www.theguardian.com/tone/cartoons"
+      },
+      {
+        "name": "View all Sport",
+        "url": "https://www.theguardian.com/sport"
+      },
+      {
+        "name": "Soccer",
+        "url": "https://www.theguardian.com/us/soccer"
+      },
+      {
+        "name": "NFL",
+        "url": "https://www.theguardian.com/sport/nfl"
+      },
+      {
+        "name": "Tennis",
+        "url": "https://www.theguardian.com/sport/tennis"
+      },
+      {
+        "name": "MLB",
+        "url": "https://www.theguardian.com/sport/mlb"
+      },
+      {
+        "name": "MLS",
+        "url": "https://www.theguardian.com/football/mls"
+      },
+      {
+        "name": "NBA",
+        "url": "https://www.theguardian.com/sport/nba"
+      },
+      {
+        "name": "WNBA",
+        "url": "https://www.theguardian.com/sport/wnba"
+      },
+      {
+        "name": "NHL",
+        "url": "https://www.theguardian.com/sport/nhl"
+      },
+      {
+        "name": "F1",
+        "url": "https://www.theguardian.com/sport/formulaone"
+      },
+      {
+        "name": "Golf",
+        "url": "https://www.theguardian.com/sport/golf"
+      },
+      {
+        "name": "View all Culture",
+        "url": "https://www.theguardian.com/culture"
+      },
+      {
+        "name": "Film",
+        "url": "https://www.theguardian.com/film"
+      },
+      {
+        "name": "Books",
+        "url": "https://www.theguardian.com/books"
+      },
+      {
+        "name": "Music",
+        "url": "https://www.theguardian.com/music"
+      },
+      {
+        "name": "Art & design",
+        "url": "https://www.theguardian.com/artanddesign"
+      },
+      {
+        "name": "TV & radio",
+        "url": "https://www.theguardian.com/tv-and-radio"
+      },
+      {
+        "name": "Stage",
+        "url": "https://www.theguardian.com/stage"
+      },
+      {
+        "name": "Classical",
+        "url": "https://www.theguardian.com/music/classicalmusicandopera"
+      },
+      {
+        "name": "Games",
+        "url": "https://www.theguardian.com/games"
+      },
+      {
+        "name": "View all Lifestyle",
+        "url": "https://www.theguardian.com/lifeandstyle"
+      },
+      {
+        "name": "Wellness",
+        "url": "https://www.theguardian.com/us/wellness"
+      },
+      {
+        "name": "Fashion",
+        "url": "https://www.theguardian.com/fashion"
+      },
+      {
+        "name": "Food",
+        "url": "https://www.theguardian.com/food"
+      },
+      {
+        "name": "Recipes",
+        "url": "https://www.theguardian.com/tone/recipes"
+      },
+      {
+        "name": "Love & sex",
+        "url": "https://www.theguardian.com/lifeandstyle/love-and-sex"
+      },
+      {
+        "name": "Home & garden",
+        "url": "https://www.theguardian.com/lifeandstyle/home-and-garden"
+      },
+      {
+        "name": "Health & fitness",
+        "url": "https://www.theguardian.com/lifeandstyle/health-and-wellbeing"
+      },
+      {
+        "name": "Family",
+        "url": "https://www.theguardian.com/lifeandstyle/family"
+      },
+      {
+        "name": "Travel",
+        "url": "https://www.theguardian.com/travel"
+      },
+      {
+        "name": "Money",
+        "url": "https://www.theguardian.com/money"
+      },
+      {
+        "name": "Support us",
+        "url": "https://support.theguardian.com?INTCMP=side_menu_support&acquisitionData=%7B%22source%22:%22GUARDIAN_WEB%22,%22componentType%22:%22ACQUISITIONS_HEADER%22,%22componentId%22:%22side_menu_support%22%7D"
+      },
+      {
+        "name": "Print subscriptions",
+        "url": "https://support.theguardian.com/subscribe/weekly?REFPVID=m85hpg4k44oaybk8wwkk&INTCMP=undefined&acquisitionData=%7B%22source%22%3A%22GUARDIAN_WEB%22%2C%22componentId%22%3A%22PrintSubscriptionsHeaderLink%22%2C%22componentType%22%3A%22ACQUISITIONS_HEADER%22%2C%22referrerPageviewId%22%3A%22m85hpg4k44oaybk8wwkk%22%2C%22referrerUrl%22%3A%22https%3A%2F%2Fwww.theguardian.com%2Finternational%22%7D"
+      },
+      {
+        "name": "Newsletters",
+        "url": "https://www.theguardian.com/email-newsletters"
+      },
+      {
+        "name": "Download the app",
+        "url": "https://app.adjust.com/1hskf6nd?adgroup=USHeader"
+      },
+      {
+        "name": "Search jobs",
+        "url": "https://jobs.theguardian.com"
+      },
+      {
+        "name": "Digital Archive",
+        "url": "https://theguardian.newspapers.com"
+      },
+      {
+        "name": "Guardian Licensing",
+        "url": "https://licensing.theguardian.com/"
+      },
+      {
+        "name": "About Us",
+        "url": "https://www.theguardian.com/about"
+      },
+      {
+        "name": "The Guardian app",
+        "url": "https://app.adjust.com/16xt6hai"
+      },
+      {
+        "name": "Video",
+        "url": "https://www.theguardian.com/video"
+      },
+      {
+        "name": "Podcasts",
+        "url": "https://www.theguardian.com/podcasts"
+      },
+      {
+        "name": "Pictures",
+        "url": "https://www.theguardian.com/inpictures"
+      },
+      {
+        "name": "Inside the Guardian",
+        "url": "https://www.theguardian.com/insidetheguardian"
+      },
+      {
+        "name": "Guardian Weekly",
+        "url": "https://www.theguardian.com/weekly?INTCMP=gdnwb_mawns_editorial_gweekly_GW_TopNav_US"
+      },
+      {
+        "name": "Crosswords",
+        "url": "https://www.theguardian.com/crosswords"
+      },
+      {
+        "name": "Wordiply",
+        "url": "https://www.wordiply.com"
+      },
+      {
+        "name": "Corrections",
+        "url": "https://www.theguardian.com/theguardian/series/corrections-and-clarifications"
+      },
+      {
+        "name": "Search jobs",
+        "url": "https://jobs.theguardian.com"
+      },
+      {
+        "name": "Digital Archive",
+        "url": "https://theguardian.newspapers.com"
+      },
+      {
+        "name": "Guardian Licensing",
+        "url": "https://licensing.theguardian.com/"
+      },
+      {
+        "name": "About Us",
+        "url": "https://www.theguardian.com/about"
+      },
+      {
+        "name": "US",
+        "url": "https://www.theguardian.com/us-news"
+      },
+      {
+        "name": "US politics",
+        "url": "https://www.theguardian.com/us-news/us-politics"
+      },
+      {
+        "name": "World",
+        "url": "https://www.theguardian.com/world"
+      },
+      {
+        "name": "Climate crisis",
+        "url": "https://www.theguardian.com/environment/climate-crisis"
+      },
+      {
+        "name": "Middle East",
+        "url": "https://www.theguardian.com/world/middleeast"
+      },
+      {
+        "name": "Ukraine",
+        "url": "https://www.theguardian.com/world/ukraine"
+      },
+      {
+        "name": "Soccer",
+        "url": "https://www.theguardian.com/us/soccer"
+      },
+      {
+        "name": "Business",
+        "url": "https://www.theguardian.com/us/business"
+      },
+      {
+        "name": "Environment",
+        "url": "https://www.theguardian.com/us/environment"
+      },
+      {
+        "name": "Tech",
+        "url": "https://www.theguardian.com/us/technology"
+      },
+      {
+        "name": "Science",
+        "url": "https://www.theguardian.com/science"
+      },
+      {
+        "name": "Newsletters",
+        "url": "https://www.theguardian.com/email-newsletters"
+      },
+      {
+        "name": "Wellness",
+        "url": "https://www.theguardian.com/us/wellness"
+      }
+    ],
+    "latest_headlines": [],
+    "meta_description": [
+      "https://www.theguardian.com/Latest international news, sport and comment from the Guardian"
+    ],
+    "logo_url": null
   }
 }
